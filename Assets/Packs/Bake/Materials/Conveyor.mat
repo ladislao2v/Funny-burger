@@ -8,16 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Conveyor
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ValidKeywords:
+  m_Shader: {fileID: -6465566751694194690, guid: fa4b77b34e0d8d24ab0a469eec6013b4,
+    type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _ENVIRONMENTREFLECTIONS_OFF
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -116,7 +116,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
-    - _Speed: 0
+    - _Speed: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
@@ -125,10 +125,10 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.024029896, g: 0.32600564, b: 0.5660378, a: 1}
-    - _Color: {r: 0.024029896, g: 0.3260056, b: 0.5660378, a: 1}
+    - _Color: {r: 0, g: 0.13078694, b: 0.5471698, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tilling: {r: 2, g: 15, b: 0, a: 0}
+    - _Tilling: {r: 1, g: 30, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3480677263504947578
 MonoBehaviour:
