@@ -6,9 +6,9 @@ namespace Code.Services.Factories.StateFactory
 {
     public class StateFactory : IStateFactory
     {
-        private readonly DiContainer _container;
+        private readonly IInstantiator _container;
 
-        public StateFactory(DiContainer container) => 
+        public StateFactory(IInstantiator container) => 
             _container = container;
 
         public IState Create<TState>() where TState : class, IState => 

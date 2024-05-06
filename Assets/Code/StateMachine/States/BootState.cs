@@ -21,7 +21,7 @@ namespace Code.StateMachine.States
             Debug.Log("BootState enter");
             
             _sceneLoader
-                .LoadScene(SceneNames.Game, () => _stateMachine.EnterState<MenuState>());
+                .LoadScene(SceneNames.Game, () => _stateMachine.EnterState<GameLoopState>());
         }
 
         public async void Exit()
