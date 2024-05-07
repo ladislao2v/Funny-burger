@@ -8,7 +8,7 @@ namespace Code.Views.Units
 {
     public class WalkDustView : MonoBehaviour
     {
-        [SerializeField] private ParticleSystem _dust;
+        [SerializeField] private List<ParticleSystem> _dust;
 
         private IMovable _movable;
         private ICollection<IDisposable> _disposables;
@@ -24,9 +24,9 @@ namespace Code.Views.Units
             _movable.IsMoving.Subscribe(value =>
             {
                 if(value)
-                    _dust.Play();
+                    _dust.ForEach(x => x.Play());
                 else
-                    _dust.Stop();
+                    _dust.ForEach(x => x.Stop());
                 
             }).AddTo(_disposables);
         }
