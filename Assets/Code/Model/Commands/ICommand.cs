@@ -1,4 +1,4 @@
-﻿namespace Code.Model.Commands
+﻿    namespace Code.Model.Commands
 {
     public interface ICommand
     {
