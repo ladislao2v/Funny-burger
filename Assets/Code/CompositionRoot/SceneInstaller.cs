@@ -1,4 +1,4 @@
-﻿using Code.Configs.Chef;
+﻿using Code.Configs;
 using Code.Services.Input;
 using UnityEngine;
 using Zenject;

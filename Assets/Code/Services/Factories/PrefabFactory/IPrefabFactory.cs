@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace Code.Services.Factories.PrefabFactory
 {
-    public interface IPrefabFactory<T> where T : MonoBehaviour
+    public interface IPrefabFactory
     {
-        UniTask<T> Create();
+        UniTask<T> Create<T>() where T : MonoBehaviour;
+        T Create<T>(T prefab) where T : MonoBehaviour;
     }
 }

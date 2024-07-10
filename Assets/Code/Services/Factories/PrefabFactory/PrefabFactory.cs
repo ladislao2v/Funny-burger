@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Code.Services.Factories.PrefabFactory
 {
-    public class PrefabFactory<T> : IPrefabFactory<T> where T : MonoBehaviour
+    public class PrefabFactory : IPrefabFactory
     {
         private readonly IInstantiator _instantiator;
         private readonly IAssetProvider _assetProvider;
@@ -16,7 +16,7 @@ namespace Code.Services.Factories.PrefabFactory
             _assetProvider = assetProvider;
         }
 
-        public async UniTask<T> Create()
+        public async UniTask<T> Create<T>() where T : MonoBehaviour
         {
             var prefab = await _assetProvider
                 .GetPrefab<T>(ResourcesPaths.PrefabsPath); 
@@ -24,5 +24,8 @@ namespace Code.Services.Factories.PrefabFactory
             return _instantiator
                 .InstantiatePrefabForComponent<T>(prefab);
         }
+
+        public T Create<T>(T prefab) where T : MonoBehaviour =>
+            _instantiator.InstantiatePrefabForComponent<T>(prefab);
     }
 }

@@ -16,9 +16,6 @@ namespace Code
         private void Awake() => 
             _stateMachine.EnterState<BootState>();
 
-        private void Start() =>
-            DontDestroyOnLoad(this);
-
         private void Update() => 
             _stateMachine.Update();
     }
