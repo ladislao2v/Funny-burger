@@ -5,7 +5,7 @@ using Code.StateMachine.Core.Interfaces;
 
 namespace Code.StateMachine.Core
 {
-    public class StateMachine : IStateMachine
+    public sealed class StateMachine : IStateMachine
     {
         private readonly IStateFactory _stateFactory;
         private readonly List<Transition> _transitions = new();

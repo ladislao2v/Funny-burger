@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.Services.RecipeService
 {
-    public class RandomRecipeService : IRecipeService
+    public sealed class RandomRecipeService : IRecipeService
     {
         private readonly IStaticDataService _staticDataService;
 

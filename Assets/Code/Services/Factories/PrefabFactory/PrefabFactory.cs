@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Code.Services.Factories.PrefabFactory
 {
-    public class PrefabFactory : IPrefabFactory
+    public sealed class PrefabFactory : IPrefabFactory
     {
         private readonly IInstantiator _instantiator;
         private readonly IAssetProvider _assetProvider;

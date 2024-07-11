@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.BurgerPlate
 {
-    public class BurgerPlate : MonoBehaviour, IBurgerPlate
+    public sealed class BurgerPlate : MonoBehaviour, IBurgerPlate
     {
         private readonly Stack<Ingredient> _ingredients = new();
 

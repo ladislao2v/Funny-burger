@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Code.Effects.Units
 {
     [RequireComponent(typeof(Animator))]
-    public class WalkView : MonoBehaviour
+    public sealed class WalkView : MonoBehaviour
     {
         private IMovable _movable;
         private Animator _animator;

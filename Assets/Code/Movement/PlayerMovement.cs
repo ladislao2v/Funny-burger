@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Code.Movement
 {
-    public class PlayerMovement : MonoBehaviour, IMovable
+    public sealed class PlayerMovement : MonoBehaviour, IMovable
     {
         private ChefConfig _playerConfig;
         private Transform _transform;

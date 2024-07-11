@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Services.AssetProvider
 {
-    public class AssetProvider : IAssetProvider
+    public sealed class AssetProvider : IAssetProvider
     {
         public async UniTask<T> GetPrefab<T>(string path) where T : MonoBehaviour
         {

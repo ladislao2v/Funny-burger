@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Code.Services.StaticDataService
 {
-    public class StaticDataService : IStaticDataService
+    public sealed class StaticDataService : IStaticDataService
     {
         private readonly Dictionary<IngredientType,IngredientConfig> _configs;
         private readonly Recipe[] _recipes;

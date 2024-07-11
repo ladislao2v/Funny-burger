@@ -1,6 +1,6 @@
 namespace Code.Ingredients
 {
-    public class BottomBun : Ingredient
+    public sealed class BottomBun : Ingredient
     {
     }
 }

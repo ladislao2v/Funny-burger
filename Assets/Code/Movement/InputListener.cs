@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Code.Movement
 {
-    public class InputListener : MonoBehaviour
+    public sealed class InputListener : MonoBehaviour
     {
         private IInput _input;
         private IMovable _movable;

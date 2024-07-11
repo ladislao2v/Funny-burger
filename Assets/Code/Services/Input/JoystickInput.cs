@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using Code.Extensions;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +14,6 @@ namespace Code.Services.Input
 
         public JoystickInput(Joystick joystick)
         {
-            _direction = new();
             _joystick = joystick;
         }
 
@@ -24,6 +24,9 @@ namespace Code.Services.Input
             _joystick.enabled = false;
 
         public void Tick() => 
-            _direction = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical).normalized;
+            _direction = _joystick
+                .Direction
+                .ToVector3()
+                .normalized;
     }
 }

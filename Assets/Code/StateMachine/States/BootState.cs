@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.StateMachine.States
 {
-    public class BootState : IState
+    public sealed class BootState : IState
     {
         private readonly IStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
@@ -19,9 +19,6 @@ namespace Code.StateMachine.States
         public async void Enter()
         {
             Debug.Log("BootState enter");
-            
-            _sceneLoader
-                .LoadScene(SceneNames.Game, () => _stateMachine.EnterState<GameLoopState>());
         }
 
         public async void Exit()

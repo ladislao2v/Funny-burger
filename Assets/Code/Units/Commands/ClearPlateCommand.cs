@@ -2,7 +2,7 @@ using Code.BurgerPlate;
 
 namespace Code.Units.Commands
 {
-    public class ClearPlateCommand : ICommand
+    public sealed class ClearPlateCommand : ICommand
     {
         private readonly IBurgerPlate _burgerPlate;
 

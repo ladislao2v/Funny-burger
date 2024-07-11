@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Code.CompositionRoot
 {
-    public class SceneInstaller : MonoInstaller
+    public sealed class SceneInstaller : MonoInstaller
     {
         [Header("Configs")] 
         [SerializeField] private ChefConfig _chefConfig;

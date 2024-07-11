@@ -5,7 +5,7 @@ using Code.Services.StaticDataService;
 
 namespace Code.Services.Factories.IngredientFactory
 {
-    public class IngredientFactory : IIngredientFactory
+    public sealed class IngredientFactory : IIngredientFactory
     {
         private readonly IPrefabFactory _prefabFactory;
         private readonly IStaticDataService _staticDataService;

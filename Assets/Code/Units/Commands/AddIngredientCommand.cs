@@ -3,7 +3,7 @@ using Code.Ingredients;
 
 namespace Code.Units.Commands
 {
-    public class AddIngredientCommand : ICommand
+    public sealed class AddIngredientCommand : ICommand
     {
         private readonly IBurgerPlate _playerBurgerPlate;
         private readonly Ingredient _ingredient;

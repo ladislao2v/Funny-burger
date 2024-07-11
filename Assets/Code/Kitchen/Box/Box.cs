@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Code.Kitchen.Box
 {
-    public class Box : ObservableTrigger<IPlayer>
+    public sealed class Box : ObservableTrigger<IPlayer>
     {
         [SerializeField] private IngredientType _ingredientType;
         

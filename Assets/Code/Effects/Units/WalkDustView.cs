@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Code.Effects.Units
 {
-    public class WalkDustView : MonoBehaviour
+    public sealed class WalkDustView : MonoBehaviour
     {
         [SerializeField] private List<ParticleSystem> _dust;
 

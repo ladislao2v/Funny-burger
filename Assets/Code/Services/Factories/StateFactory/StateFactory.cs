@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Code.Services.Factories.StateFactory
 {
-    public class StateFactory : IStateFactory
+    public sealed class StateFactory : IStateFactory
     {
         private readonly IInstantiator _container;
 

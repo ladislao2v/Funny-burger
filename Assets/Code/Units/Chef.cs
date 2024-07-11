@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Code.Units
 {
-    public class Chef : MonoBehaviour, IPlayer
+    public sealed class Chef : MonoBehaviour, IPlayer
     {
         public ReactiveCommand TaskStarted { get; private set; }
         public ChefConfig Config { get; private set; }

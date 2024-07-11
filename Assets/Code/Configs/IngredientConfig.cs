@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Code.Services.StaticDataService
 {
     [CreateAssetMenu(menuName = "Create IngredientConfig", fileName = "IngredientConfig", order = 0)]
-    public class IngredientConfig : ScriptableObject
+    public sealed class IngredientConfig : ScriptableObject
     {
         public IngredientType Type;
         public Sprite Sprite;

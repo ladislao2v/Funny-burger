@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.StateMachine.States
 {
-    public class GameLoopState : IState
+    public sealed class GameLoopState : IState
     {
         private readonly IInput _input;
 
