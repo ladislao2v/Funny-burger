@@ -18,7 +18,7 @@ namespace Code.Services.Factories.IngredientFactory
         
         public Ingredient Create(IngredientType ingredientType)
         {
-            IngredientConfig config = _staticDataService.GetConfig(ingredientType);
+            IngredientConfig config = _staticDataService.GetIngredientConfig(ingredientType);
             Ingredient ingredient = _prefabFactory.Create(config.Prefab);
 
             return ingredient;

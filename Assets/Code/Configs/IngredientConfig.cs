@@ -8,6 +8,7 @@ namespace Code.Services.StaticDataService
     public class IngredientConfig : ScriptableObject
     {
         public IngredientType Type;
+        public Sprite Sprite;
         public Ingredient Prefab;
     }
 }

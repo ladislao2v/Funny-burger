@@ -1,11 +1,15 @@
-﻿using Code.Configs;
+﻿using Code.BurgerPlate;
+using Code.Configs;
+using Code.Units.Commands;
 using UniRx;
 
 namespace Code.Units
 {
-    public interface IPlayer
+    public interface IPlayer : IUnit
     {
-        public ReactiveCommand TaskStarted { get; }
-        public ChefConfig Config { get; }
+        ReactiveCommand TaskStarted { get; }
+        ChefConfig Config { get; }
+
+        IBurgerPlate BurgerPlate { get; }
     }
 }

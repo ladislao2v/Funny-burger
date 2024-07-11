@@ -7,6 +7,7 @@ namespace Code.Goods
         Tomato,
         Onion,
         Cheese,
-        Bun,
+        TopBun,
+        BottomBun
     }
 }

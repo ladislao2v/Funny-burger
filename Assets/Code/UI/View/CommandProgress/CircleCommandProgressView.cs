@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Code.UI.View.TaskProgressView
+namespace Code.UI.View.CommandProgress
 {
-    public class CircleTaskProgressView : MonoBehaviour, ITaskProgressView
+    public class CircleCommandProgressView : MonoBehaviour, ICommandProgressView
     {
         [SerializeField] private Image _bar;
 
@@ -12,7 +12,7 @@ namespace Code.UI.View.TaskProgressView
             _bar = GetComponent<Image>();
         }
 
-        public void OnTaskProgressChanged(float progress)
+        public void OnCommandProgressed(float progress)
         {
             _bar.fillAmount = progress;
         }
