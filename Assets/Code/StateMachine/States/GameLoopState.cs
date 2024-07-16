@@ -1,5 +1,5 @@
 ﻿using Code.Services.Input;
-using Code.StateMachine.Core.Interfaces;
+using Plugins.StateMachine.Core.Interfaces;
 using UnityEngine;
 
 namespace Code.StateMachine.States

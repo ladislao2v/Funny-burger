@@ -8,8 +8,9 @@ namespace Code.Units
     public interface IPlayer : IUnit
     {
         ReactiveCommand TaskStarted { get; }
-        ChefConfig Config { get; }
+        IChefConfig Config { get; }
         IBurgerPlate BurgerPlate { get; }
         IMovement Movement { get; }
+        void Construct(IChefConfig config);
     }
 }

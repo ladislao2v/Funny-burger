@@ -1,5 +1,5 @@
-using Code.StateMachine.Core.Interfaces;
 using Code.StateMachine.States;
+using Plugins.StateMachine.Core.Interfaces;
 using UnityEngine;
 using Zenject;
 

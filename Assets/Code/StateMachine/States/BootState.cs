@@ -1,29 +1,24 @@
-﻿using Code.Services.Factories.StateFactory;
-using Code.Services.SceneLoader;
-using Code.StateMachine.Core.Interfaces;
-using UnityEngine;
+﻿using Code.Services.AssetProvider;
+using Plugins.StateMachine.Core.Interfaces;
 
 namespace Code.StateMachine.States
 {
     public sealed class BootState : IState
     {
         private readonly IStateMachine _stateMachine;
-        private readonly ISceneLoader _sceneLoader;
+        private readonly IAssetProvider _assetProvider;
 
-        public BootState(IStateMachine stateMachine, ISceneLoader sceneLoader)
+        public BootState(IStateMachine stateMachine, IAssetProvider assetProvider)
         {
             _stateMachine = stateMachine;
-            _sceneLoader = sceneLoader;
+            _assetProvider = assetProvider;
         }
         
         public async void Enter()
         {
-            Debug.Log("BootState enter");
-        }
-
-        public async void Exit()
-        {
-            Debug.Log("BootState exit");
+            await _assetProvider.Load();
+            
+            _stateMachine.EnterState<GameLoopState>();   
         }
     }
 }

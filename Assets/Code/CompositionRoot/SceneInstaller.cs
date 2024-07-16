@@ -39,7 +39,9 @@ namespace Code.CompositionRoot
             Container
                 .BindInterfacesAndSelfTo<Chef>()
                 .FromInstance(_chef)
-                .AsCached();
+                .AsSingle();
+
+            Container.BindInterfacesAndSelfTo<ChefInitializer>().AsSingle();
         }
 
         private void BindChefConfig()

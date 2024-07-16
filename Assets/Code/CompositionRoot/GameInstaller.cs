@@ -1,6 +1,10 @@
 ﻿using Code.Services.AssetProvider;
-using Code.Services.Factories.StateFactory;
+using Code.Services.Factories.IngredientFactory;
+using Code.Services.Factories.PrefabFactory;
 using Code.Services.SceneLoader;
+using Code.Services.StaticDataService;
+using Code.Units;
+using Plugins.StateMachine.StateFactory;
 using Zenject;
 
 namespace Code.CompositionRoot
@@ -10,9 +14,22 @@ namespace Code.CompositionRoot
         public override void InstallBindings()
         {
             BindAssetProvider();
+            BindStaticData();
+            BindFactories();
             BindSceneLoader();
             BindStateFactory();
             BindStateMachine();
+        }
+
+        private void BindStaticData()
+        {
+            Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle();
+        }
+
+        private void BindFactories()
+        {
+            Container.BindInterfacesAndSelfTo<DiPrefabFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<IngredientFactory>().AsSingle();
         }
 
         private void BindAssetProvider()
@@ -27,7 +44,7 @@ namespace Code.CompositionRoot
 
         private void BindStateMachine()
         {
-            Container.BindInterfacesAndSelfTo<StateMachine.Core.StateMachine>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Plugins.StateMachine.Core.StateMachine>().AsSingle();
         }
 
         private void BindStateFactory()

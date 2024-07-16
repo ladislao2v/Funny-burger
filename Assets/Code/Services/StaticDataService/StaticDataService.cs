@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Code.Configs;
 using Code.Constants;
 using Code.Goods;
 using Code.Recipes;
@@ -12,6 +13,8 @@ namespace Code.Services.StaticDataService
     {
         private readonly Dictionary<IngredientType,IngredientConfig> _configs;
         private readonly Recipe[] _recipes;
+        
+        public GameConfig GameConfig { get; }
 
         public StaticDataService()
         {

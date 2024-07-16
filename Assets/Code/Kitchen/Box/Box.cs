@@ -8,6 +8,7 @@ using Zenject;
 
 namespace Code.Kitchen.Box
 {
+    [RequireComponent(typeof(SphereCollider))]
     public sealed class Box : ObservableTrigger<IPlayer>
     {
         [SerializeField] private IngredientType _ingredientType;
@@ -20,9 +21,9 @@ namespace Code.Kitchen.Box
             _ingredientFactory = ingredientFactory;
         }
         
-        protected override void InteractWith(IPlayer player)
+        protected override async void InteractWith(IPlayer player)
         {
-            var ingredient = 
+            var ingredient = await 
                 _ingredientFactory.Create(_ingredientType);
             
             var addIngredientCommand = 

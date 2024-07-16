@@ -1,10 +1,11 @@
 ﻿using Code.Goods;
 using Code.Ingredients;
+using Cysharp.Threading.Tasks;
 
 namespace Code.Services.Factories.IngredientFactory
 {
     public interface IIngredientFactory
     {
-        Ingredient Create(IngredientType ingredientType);
+        UniTask<Ingredient> Create(IngredientType ingredientType);
     }
 }

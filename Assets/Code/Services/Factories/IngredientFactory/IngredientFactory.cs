@@ -1,7 +1,9 @@
-﻿using Code.Goods;
+﻿using Code.Configs;
+using Code.Goods;
 using Code.Ingredients;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.StaticDataService;
+using Cysharp.Threading.Tasks;
 
 namespace Code.Services.Factories.IngredientFactory
 {
@@ -16,10 +18,10 @@ namespace Code.Services.Factories.IngredientFactory
             _staticDataService = staticDataService;
         }
         
-        public Ingredient Create(IngredientType ingredientType)
+        public async UniTask<Ingredient> Create(IngredientType ingredientType)
         {
             IngredientConfig config = _staticDataService.GetIngredientConfig(ingredientType);
-            Ingredient ingredient = _prefabFactory.Create(config.Prefab);
+            Ingredient ingredient = await _prefabFactory.Create<Ingredient>(config.AssetReference);
 
             return ingredient;
         }
