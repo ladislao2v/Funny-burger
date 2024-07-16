@@ -17,8 +17,6 @@ namespace Code.CompositionRoot
             BindStaticData();
             BindFactories();
             BindSceneLoader();
-            BindStateFactory();
-            BindStateMachine();
         }
 
         private void BindStaticData()
@@ -42,14 +40,5 @@ namespace Code.CompositionRoot
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
         }
 
-        private void BindStateMachine()
-        {
-            Container.BindInterfacesAndSelfTo<Plugins.StateMachine.Core.StateMachine>().AsSingle();
-        }
-
-        private void BindStateFactory()
-        {
-            Container.BindInterfacesAndSelfTo<StateFactory>().AsSingle();
-        }
     }
 }

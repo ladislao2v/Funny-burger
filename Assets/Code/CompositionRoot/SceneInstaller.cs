@@ -2,6 +2,7 @@
 using Code.Movement;
 using Code.Services.Input;
 using Code.Units;
+using Plugins.StateMachine.StateFactory;
 using UnityEngine;
 using Zenject;
 
@@ -25,6 +26,8 @@ namespace Code.CompositionRoot
             BindInputService();
             BindPlayer();
             BindPlayerRouter();
+            BindStateFactory();
+            BindStateMachine();
         }
 
         private void BindPlayerRouter()
@@ -65,6 +68,17 @@ namespace Code.CompositionRoot
                 .Bind<Joystick>()
                 .FromInstance(_joystick)
                 .AsSingle();
+        }
+        
+        
+        private void BindStateMachine()
+        {
+            Container.BindInterfacesAndSelfTo<Plugins.StateMachine.Core.StateMachine>().AsSingle();
+        }
+
+        private void BindStateFactory()
+        {
+            Container.BindInterfacesAndSelfTo<StateFactory>().AsSingle();
         }
     }
 }

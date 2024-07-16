@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c02ba6cd750f947acb3d7db594a9c6fe
+  m_SerializeEntries:
+  - m_GUID: 70f069357ffc5bd41bf15950e60c6943
+    m_Address: Assets/Packs/RestarantPack/fbx (unity)/food_ingredient_bun_bottom.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f60c47a4eada4574aa3641d845e6ceaa
+    m_Address: Assets/Packs/RestarantPack/fbx (unity)/food_ingredient_bun_top.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff2879ef84a180148a5adab8091160b4
+    m_Address: Assets/Packs/RestarantPack/fbx (unity)/food_ingredient_burger_cooked.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f4983142d6af03408d33e5c2d82b3c6
+    m_Address: Assets/Packs/RestarantPack/fbx (unity)/food_ingredient_cheese_slice.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6cea8eb614ad009408bf26a15b28b984
+    m_Address: Assets/Packs/RestarantPack/fbx (unity)/food_ingredient_lettuce_slice.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4173435a7e5e847468b768f18790d9b6
+    m_Address: Assets/Packs/RestarantPack/fbx (unity)/food_ingredient_onion_rings.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 02c9431b8256f694dae59f5540ece32c
+    m_Address: Assets/Packs/RestarantPack/fbx (unity)/food_ingredient_tomato_slice.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7b865126df8664d5db906a638fc8c5b6, type: 2}
+    - {fileID: 11400000, guid: 56eae16cd48564972a60a8f90049bc76, type: 2}
