@@ -10,6 +10,6 @@ namespace Code.Configs
     {
         public IngredientType Type;
         public Sprite Sprite;
-        public AssetReferenceT<Ingredient> AssetReference;
+        public AssetReference AssetReference;
     }
 }

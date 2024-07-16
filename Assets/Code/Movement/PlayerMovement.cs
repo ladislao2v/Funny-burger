@@ -9,20 +9,16 @@ namespace Code.Movement
     {
         [SerializeField] private Transform _model;
         
-        private ChefConfig _playerConfig;
         private CharacterController _characterController;
         private ReactiveProperty<bool> _isMoving = new();
-        
         public IReactiveProperty<bool> IsMoving => _isMoving;
-
-        [Inject]
-        private void Construct(ChefConfig chefConfig)
+        
+        public void Construct(IChefConfig chefConfig)
         {
-            _playerConfig = chefConfig;
             _characterController = GetComponent<CharacterController>();
         }
         
-        public void Move(Vector3 direction)
+        public void Move(Vector3 direction, float speed)
         {
             IsMoving.Value = direction.magnitude != 0;
             
@@ -30,7 +26,7 @@ namespace Code.Movement
                 return;
             
             _model.LookAt(_model.position + direction);
-            _characterController.Move(direction * _playerConfig.Speed * Time.fixedDeltaTime);
+            _characterController.Move(direction * (speed * Time.fixedDeltaTime));
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿namespace Code.Constants
 {
-    public class ResourcePathes
+    public static class ResourcePathes
     {
-        public const string Configs = nameof(Configs);
+        public const string Config = nameof(Config);
+        public const string Ingredients = "Config/Ingredients";
         public const string Recipes = nameof(Recipes);
     }
 }

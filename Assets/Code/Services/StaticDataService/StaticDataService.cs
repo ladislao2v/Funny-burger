@@ -18,8 +18,11 @@ namespace Code.Services.StaticDataService
 
         public StaticDataService()
         {
+            GameConfig = Resources
+                .Load<GameConfig>(ResourcePathes.Config);
+            
             _configs = Resources
-                .LoadAll<IngredientConfig>(ResourcePathes.Configs)
+                .LoadAll<IngredientConfig>(ResourcePathes.Ingredients)
                 .ToDictionary(x => x.Type);
 
             _recipes = Resources

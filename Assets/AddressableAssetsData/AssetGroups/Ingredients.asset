@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ingredients
+  m_EditorClassIdentifier: 
+  m_GroupName: Ingredients
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c02ba6cd750f947acb3d7db594a9c6fe
+  m_SerializeEntries:
+  - m_GUID: f48632726752f6240bb59d1b876b98ff
+    m_Address: Assets/Prefabs/Ingredients/Tomato.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11333db6b26a29e4dbd6cfdd12f13e3b
+    m_Address: Assets/Prefabs/Ingredients/Salad.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 19653c871d99b014e9272279ca22b747
+    m_Address: Assets/Prefabs/Ingredients/Cheese.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4db8e95ecaa6ab842a4d2295999f6a01
+    m_Address: Assets/Prefabs/Ingredients/Onion.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 25935d8053a52a5409e28b72a81ce1a9
+    m_Address: Assets/Prefabs/Ingredients/Bun Top.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a9bdaac1a7ef1894fac704590db86ebf
+    m_Address: Assets/Prefabs/Ingredients/Burger.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1a34ec7f4f9613d44a41b54f3e03333f
+    m_Address: Assets/Prefabs/Ingredients/Bun Buttom.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1cd256ba8acac3a4bb49758d889d920e
+    m_Address: Assets/Packs/Low Poly Houses Free Pack/Materials/mat main.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7b865126df8664d5db906a638fc8c5b6, type: 2}
+    - {fileID: 11400000, guid: 56eae16cd48564972a60a8f90049bc76, type: 2}

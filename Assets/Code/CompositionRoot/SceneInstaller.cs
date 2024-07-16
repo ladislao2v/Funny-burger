@@ -10,8 +10,7 @@ namespace Code.CompositionRoot
 {
     public sealed class SceneInstaller : MonoInstaller
     {
-        [Header("Configs")] 
-        [SerializeField] private ChefConfig _chefConfig;
+        [Header("Configs")]
         
         [Header("UI")]
         [SerializeField] private Joystick _joystick;
@@ -21,7 +20,6 @@ namespace Code.CompositionRoot
 
         public override void InstallBindings()
         {
-            BindChefConfig();
             BindJoystick();
             BindInputService();
             BindPlayer();
@@ -45,14 +43,6 @@ namespace Code.CompositionRoot
                 .AsSingle();
 
             Container.BindInterfacesAndSelfTo<ChefInitializer>().AsSingle();
-        }
-
-        private void BindChefConfig()
-        {
-            Container
-                .Bind<ChefConfig>()
-                .FromInstance(_chefConfig)
-                .AsSingle();
         }
 
         private void BindInputService()
