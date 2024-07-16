@@ -10,18 +10,18 @@ namespace Code.Effects.Units
     {
         [SerializeField] private List<ParticleSystem> _dust;
 
-        private IMovable _movable;
+        private IMovement _movement;
         private ICollection<IDisposable> _disposables;
 
         private void Awake()
         {
-            _movable = GetComponent<IMovable>();
+            _movement = GetComponent<IMovement>();
             _disposables = new List<IDisposable>();
         }
 
         private void OnEnable()
         {
-            _movable.IsMoving.Subscribe(value =>
+            _movement.IsMoving.Subscribe(value =>
             {
                 if(value)
                     _dust.ForEach(x => x.Play());

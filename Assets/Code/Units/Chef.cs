@@ -1,6 +1,7 @@
 ﻿using System;
 using Code.BurgerPlate;
 using Code.Configs;
+using Code.Movement;
 using Code.Units.Commands;
 using UniRx;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Code.Units
         public ReactiveCommand TaskStarted { get; private set; }
         public ChefConfig Config { get; private set; }
         public IBurgerPlate BurgerPlate { get; private set; }
+        public IMovement Movement { get; private set; }
 
         [Inject]
         private void Construct(ChefConfig config)
@@ -20,6 +22,7 @@ namespace Code.Units
             TaskStarted = new ReactiveCommand();
             Config = config;
             BurgerPlate = GetComponent<IBurgerPlate>();
+            Movement = GetComponent<IMovement>();
         }
 
         public void Do(ICommand command)

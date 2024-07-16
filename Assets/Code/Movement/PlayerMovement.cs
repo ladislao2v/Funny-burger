@@ -5,10 +5,11 @@ using Zenject;
 
 namespace Code.Movement
 {
-    public sealed class PlayerMovement : MonoBehaviour, IMovable
+    public sealed class PlayerMovement : MonoBehaviour, IMovement
     {
+        [SerializeField] private Transform _model;
+        
         private ChefConfig _playerConfig;
-        private Transform _transform;
         private CharacterController _characterController;
         private ReactiveProperty<bool> _isMoving = new();
         
@@ -18,7 +19,6 @@ namespace Code.Movement
         private void Construct(ChefConfig chefConfig)
         {
             _playerConfig = chefConfig;
-            _transform = transform;
             _characterController = GetComponent<CharacterController>();
         }
         
@@ -29,7 +29,7 @@ namespace Code.Movement
             if(IsMoving.Value == false)
                 return;
             
-            _transform.LookAt(_transform.position + direction);
+            _model.LookAt(_model.position + direction);
             _characterController.Move(direction * _playerConfig.Speed * Time.fixedDeltaTime);
         }
     }

@@ -1,6 +1,6 @@
 ﻿using Code.BurgerPlate;
 using Code.Configs;
-using Code.Units.Commands;
+using Code.Movement;
 using UniRx;
 
 namespace Code.Units
@@ -9,7 +9,7 @@ namespace Code.Units
     {
         ReactiveCommand TaskStarted { get; }
         ChefConfig Config { get; }
-
         IBurgerPlate BurgerPlate { get; }
+        IMovement Movement { get; }
     }
 }
