@@ -13,22 +13,11 @@ namespace Code.Kitchen.Box
     public sealed class Box : ObservableTrigger<IPlayer>
     {
         [SerializeField] private IngredientType _ingredientType;
-        
-        private IIngredientFactory _ingredientFactory;
-
-        [Inject]
-        private void Construct(IIngredientFactory ingredientFactory)
+        protected override void InteractWith(IPlayer player)
         {
-            _ingredientFactory = ingredientFactory;
-        }
-        
-        protected override async UniTask InteractWith(IPlayer player)
-        {
-            var ingredient = await 
-                _ingredientFactory.Create(_ingredientType);
             
             var addIngredientCommand = 
-                new AddIngredientCommand(player.BurgerPlate, ingredient);
+                new AddIngredientCommand(player.BurgerPlate, _ingredientType);
             
             player.Do(addIngredientCommand);
         }

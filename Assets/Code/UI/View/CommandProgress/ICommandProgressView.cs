@@ -1,6 +1,6 @@
 ﻿namespace Code.UI.View.CommandProgress
 {
-    public interface ICommandProgressView
+    public interface ICommandProgressView : IView
     {
         void OnCommandProgressed(float progress);
     }

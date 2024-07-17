@@ -5,14 +5,14 @@ namespace Code.Triggers
 {
     public abstract class ObservableTrigger<TTriggerActivator> : MonoBehaviour
     {
-        private async void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if(other.TryGetComponent(out TTriggerActivator triggerActivator) == false)
                 return;
             
-            await InteractWith(triggerActivator);
+            InteractWith(triggerActivator);
         }
 
-        protected abstract UniTask InteractWith(TTriggerActivator activator);
+        protected abstract void InteractWith(TTriggerActivator activator);
     }
 }

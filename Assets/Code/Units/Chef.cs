@@ -11,16 +11,14 @@ namespace Code.Units
 {
     public sealed class Chef : MonoBehaviour, IPlayer
     {
-        public ReactiveCommand TaskStarted { get; private set; }
+        public IBurgerPlate BurgerPlate { get; } = new Plate();
         public IChefConfig Config { get; private set; }
-        public IBurgerPlate BurgerPlate { get; private set; }
         public IMovement Movement { get; private set; }
+        public ReactiveCommand TaskStarted { get; } = new();
 
         public void Construct(IChefConfig config)
         {
             Config = config;
-            TaskStarted = new ReactiveCommand();
-            BurgerPlate = GetComponent<IBurgerPlate>();
             Movement = GetComponent<IMovement>();
         }
 

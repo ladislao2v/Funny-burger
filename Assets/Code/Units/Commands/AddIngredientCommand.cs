@@ -1,4 +1,5 @@
 using Code.BurgerPlate;
+using Code.Goods;
 using Code.Ingredients;
 
 namespace Code.Units.Commands
@@ -6,17 +7,17 @@ namespace Code.Units.Commands
     public sealed class AddIngredientCommand : ICommand
     {
         private readonly IBurgerPlate _playerBurgerPlate;
-        private readonly Ingredient _ingredient;
+        private readonly IngredientType _ingredientType;
 
-        public AddIngredientCommand(IBurgerPlate playerBurgerPlate, Ingredient ingredient)
+        public AddIngredientCommand(IBurgerPlate playerBurgerPlate, IngredientType ingredientType)
         {
             _playerBurgerPlate = playerBurgerPlate;
-            _ingredient = ingredient;
+            _ingredientType = ingredientType;
         }
 
         public void Execute()
         {
-            _playerBurgerPlate.Add(_ingredient);
+            _playerBurgerPlate.Add(_ingredientType);
         }
     }
 }

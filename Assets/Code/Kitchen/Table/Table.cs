@@ -6,9 +6,9 @@ namespace Code.Kitchen.Table
 {
     public sealed class Table : ObservableTrigger<IPlayer>
     {
-        protected override UniTask InteractWith(IPlayer player)
+        protected override void InteractWith(IPlayer player)
         {
-            return new UniTask();
+            
         }
     }
 }

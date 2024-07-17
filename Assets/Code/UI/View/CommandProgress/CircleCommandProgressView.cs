@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Code.UI.View.CommandProgress
 {
-    public class CircleCommandProgressView : MonoBehaviour, ICommandProgressView
+    public class CircleCommandProgressView : View, ICommandProgressView
     {
         [SerializeField] private Image _bar;
 

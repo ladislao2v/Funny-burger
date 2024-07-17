@@ -1,12 +1,16 @@
-using Code.Ingredients;
+using System;
+using Code.Goods;
 
 namespace Code.BurgerPlate
 {
     public interface IBurgerPlate
     {
         public bool IsEmpty { get; }
-        
-        void Add(Ingredient ingredient);
+
+        event Action<IngredientType> IngredientAdded;  
+        event Action Cleared;  
+
+        void Add(IngredientType ingredientType);
         void Clear();
     }
 }

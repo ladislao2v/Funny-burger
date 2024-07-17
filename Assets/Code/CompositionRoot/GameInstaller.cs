@@ -24,7 +24,7 @@ namespace Code.CompositionRoot
 
         private void BindFactories()
         {
-            Container.BindInterfacesAndSelfTo<DiPrefabFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PrefabFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<IngredientFactory>().AsSingle();
         }
 
