@@ -2,8 +2,8 @@
 {
     public static class ResourcePathes
     {
-        public const string Config = nameof(Config);
+        public const string Settings = "Config/Game";
         public const string Ingredients = "Config/Ingredients";
-        public const string Recipes = nameof(Recipes);
+        public const string Recipes = "Recipes";
     }
 }

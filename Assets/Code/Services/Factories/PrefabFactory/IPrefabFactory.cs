@@ -6,8 +6,8 @@ namespace Code.Services.Factories.PrefabFactory
 {
     public interface IPrefabFactory
     {
-        UniTask<T> Create<T>(string assetKey) where T : MonoBehaviour;
-        UniTask<T> Create<T>(AssetReference assetReference) where T : MonoBehaviour;
+        UniTask<GameObject> Create(string assetKey);
+        UniTask<GameObject> Create(AssetReference assetReference);
         T Create<T>(T prefab) where T : MonoBehaviour;
     }
 }

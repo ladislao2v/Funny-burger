@@ -9,7 +9,7 @@ namespace Code.BurgerPlate
     {
         private readonly Stack<Ingredient> _ingredients = new();
 
-        [SerializeField] private Transform _firstIngredientPoint;
+        [SerializeField] private Transform _container;
         [SerializeField] private Vector3 _offsetBetweenIngredients = new Vector3(0, 1, 0);
 
         public bool IsEmpty => _ingredients.IsEmpty();
@@ -25,6 +25,7 @@ namespace Code.BurgerPlate
             if (ingredient is TopBun && _ingredients.Contains(ingredient))
                 return;
 
+            ingredient.transform.SetParent(_container);
             ingredient.transform.position = GetIngredientPlacementPosition();
 
             _ingredients.Push(ingredient);
@@ -43,9 +44,9 @@ namespace Code.BurgerPlate
             Vector3 lastPosition;
 
             if (_ingredients.TryPeek(out Ingredient last))
-                lastPosition = last.transform.position;
+                lastPosition = last.transform.localPosition;
             else
-                lastPosition = _firstIngredientPoint.position;
+                lastPosition = _container.localPosition;
 
             var newPosition = lastPosition + _offsetBetweenIngredients;
             

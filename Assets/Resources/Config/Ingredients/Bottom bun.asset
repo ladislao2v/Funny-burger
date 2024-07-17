@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1f940e2fb344d29c0e6abc1ecf8d8d, type: 3}
+  m_Name: Bottom bun
+  m_EditorClassIdentifier: 
+  Type: 6
+  Sprite: {fileID: 0}
+  AssetReference:
+    m_AssetGUID: 1a34ec7f4f9613d44a41b54f3e03333f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

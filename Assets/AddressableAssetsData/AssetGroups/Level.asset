@@ -18,15 +18,15 @@ MonoBehaviour:
   m_GUID: e25007edac065604f99b7f9f4e3d7cb3
   m_SerializeEntries:
   - m_GUID: 22211534abd8c9d4b99b4b6a4b63ba06
-    m_Address: Assets/Packs/Nature Pack - Low Polly Trees & Bushes
+    m_Address: Nature Pack - Low Polly Trees & Bushes
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 4df61effc5ccfb5469637d4230489e23
-    m_Address: Assets/Packs/RestarantPack
+    m_Address: RestarantPack
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: eb9fabb4085a6564eb00744a2e243c39
-    m_Address: Assets/Packs/Low Poly Houses Free Pack
+    m_Address: Low Poly Houses Free Pack
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

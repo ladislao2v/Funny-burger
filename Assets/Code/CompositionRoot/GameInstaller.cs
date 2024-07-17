@@ -3,8 +3,6 @@ using Code.Services.Factories.IngredientFactory;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.SceneLoader;
 using Code.Services.StaticDataService;
-using Code.Units;
-using Plugins.StateMachine.StateFactory;
 using Zenject;
 
 namespace Code.CompositionRoot

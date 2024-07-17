@@ -4,6 +4,7 @@ using Code.Ingredients;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.StaticDataService;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Code.Services.Factories.IngredientFactory
 {
@@ -20,10 +21,13 @@ namespace Code.Services.Factories.IngredientFactory
         
         public async UniTask<Ingredient> Create(IngredientType ingredientType)
         {
-            IngredientConfig config = _staticDataService.GetIngredientConfig(ingredientType);
-            Ingredient ingredient = await _prefabFactory.Create<Ingredient>(config.AssetReference);
+            IngredientConfig config = _staticDataService
+                .GetIngredientConfig(ingredientType);
+            
+            GameObject ingredient = await _prefabFactory
+                .Create(config.AssetReference);
 
-            return ingredient;
+            return ingredient.GetComponent<Ingredient>();
         }
     }
 }

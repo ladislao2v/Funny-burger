@@ -23,10 +23,13 @@ namespace Code.Effects.Units
         {
             _movement.IsMoving.Subscribe(value =>
             {
-                if(value)
-                    _dust.ForEach(x => x.Play());
-                else
-                    _dust.ForEach(x => x.Stop());
+                _dust.ForEach(x =>
+                {
+                    if(value)
+                        x.Play();
+                    else
+                        x.Stop();
+                });
                 
             }).AddTo(_disposables);
         }

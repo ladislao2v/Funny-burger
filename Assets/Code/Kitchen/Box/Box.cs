@@ -3,6 +3,7 @@ using Code.Services.Factories.IngredientFactory;
 using Code.Triggers;
 using Code.Units;
 using Code.Units.Commands;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -21,7 +22,7 @@ namespace Code.Kitchen.Box
             _ingredientFactory = ingredientFactory;
         }
         
-        protected override async void InteractWith(IPlayer player)
+        protected override async UniTask InteractWith(IPlayer player)
         {
             var ingredient = await 
                 _ingredientFactory.Create(_ingredientType);

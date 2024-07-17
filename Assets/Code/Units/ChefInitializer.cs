@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Code.Units
 {
-    public sealed class ChefInitializer : IInitializable
+    public sealed class ChefInitializer : IInitializable 
     {
         private readonly IPlayer _player;
         private readonly IStaticDataService _staticDataService;
@@ -19,14 +19,8 @@ namespace Code.Units
 
         public void Initialize()
         {
-            IChefConfig config = _staticDataService.GameConfig;
-    
-            Debug.Log(config);
-
-            if (config == null)
-            {
-                throw new Exception(nameof(config));
-            }
+            IChefConfig config = 
+                _staticDataService.SettingsConfig;
             
             _player.Construct(config);
         }

@@ -11,15 +11,16 @@ namespace Code.Services.StaticDataService
 {
     public sealed class StaticDataService : IStaticDataService
     {
-        private readonly Dictionary<IngredientType,IngredientConfig> _configs;
-        private readonly Recipe[] _recipes;
+        private Dictionary<IngredientType,IngredientConfig> _configs;
+        private Recipe[] _recipes;
         
-        public GameConfig GameConfig { get; }
+        public SettingsConfig SettingsConfig { get; private set; }
 
         public StaticDataService()
         {
-            GameConfig = Resources
-                .Load<GameConfig>(ResourcePathes.Config);
+            SettingsConfig = Resources
+                .LoadAll<SettingsConfig>(ResourcePathes.Settings)
+                .FirstOrDefault();
             
             _configs = Resources
                 .LoadAll<IngredientConfig>(ResourcePathes.Ingredients)

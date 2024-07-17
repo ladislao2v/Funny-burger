@@ -18,11 +18,11 @@ MonoBehaviour:
   m_GUID: f45685ec621484441a6185952dec4df0
   m_SerializeEntries:
   - m_GUID: d4a5df68409edc94ab7573e1f091b76f
-    m_Address: Assets/Packs/Hypercasual Characters Bundle
+    m_Address: Hypercasual Characters Bundle
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: cd59c927211fd924d8764e971f0b176f
-    m_Address: Assets/Packs/LowpolyHats
+    m_Address: LowpolyHats
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

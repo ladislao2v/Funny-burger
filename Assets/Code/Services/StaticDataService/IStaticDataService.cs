@@ -1,12 +1,14 @@
-﻿using Code.Configs;
+﻿using System.Threading.Tasks;
+using Code.Configs;
 using Code.Goods;
 using Code.Recipes;
+using Cysharp.Threading.Tasks;
 
 namespace Code.Services.StaticDataService
 {
     public interface IStaticDataService
     {
-        GameConfig GameConfig { get; }
+        SettingsConfig SettingsConfig { get; }
         IngredientConfig GetIngredientConfig(IngredientType ingredientType);
         Recipe[] GetRecipes();
     }

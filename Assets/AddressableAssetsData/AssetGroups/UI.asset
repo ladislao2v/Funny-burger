@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: b6cd66b05b961614396dd52247f65c65
   m_SerializeEntries:
   - m_GUID: 0cf9b33b760dd8e4ab8ce36c147f90fc
-    m_Address: Assets/Packs/Ui
+    m_Address: Ui
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

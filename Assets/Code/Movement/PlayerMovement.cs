@@ -1,4 +1,5 @@
-﻿using Code.Configs;
+﻿using System;
+using Code.Configs;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -12,12 +13,12 @@ namespace Code.Movement
         private CharacterController _characterController;
         private ReactiveProperty<bool> _isMoving = new();
         public IReactiveProperty<bool> IsMoving => _isMoving;
-        
-        public void Construct(IChefConfig chefConfig)
+
+        private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
         }
-        
+
         public void Move(Vector3 direction, float speed)
         {
             IsMoving.Value = direction.magnitude != 0;

@@ -17,22 +17,22 @@ namespace Code.Services.Factories.PrefabFactory
             _assetProvider = assetProvider;
         }
         
-        public async UniTask<T> Create<T>(string assetKey) where T : MonoBehaviour
+        public async UniTask<GameObject> Create(string assetKey)
         {
             var prefab = await _assetProvider
-                .GetAsset<T>(assetKey); 
+                .GetAsset<GameObject>(assetKey); 
             
             return _instantiator
-                .InstantiatePrefabForComponent<T>(prefab);
+                .InstantiatePrefab(prefab);
         }
 
-        public async UniTask<T> Create<T>(AssetReference assetReference) where T : MonoBehaviour
+        public async UniTask<GameObject> Create(AssetReference assetReference)
         {
             var prefab = await _assetProvider
-                .GetAsset<T>(assetReference); 
+                .GetAsset<GameObject>(assetReference); 
             
             return _instantiator
-                .InstantiatePrefabForComponent<T>(prefab);
+                .InstantiatePrefab(prefab);
         }
 
         public T Create<T>(T prefab) where T : MonoBehaviour

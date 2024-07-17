@@ -52,7 +52,7 @@ namespace Code.Services.AssetProvider
 
             AddHandle(assetKey, handle);
 
-            return await handle.Task;
+            return await handle.ToUniTask();
         }
 
         private void AddHandle<T>(string key, AsyncOperationHandle<T> handle) where T : class

@@ -1,17 +1,18 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Code.Triggers
 {
     public abstract class ObservableTrigger<TTriggerActivator> : MonoBehaviour
     {
-        private void OnTriggerEnter(Collider other)
+        private async void OnTriggerEnter(Collider other)
         {
             if(other.TryGetComponent(out TTriggerActivator triggerActivator) == false)
                 return;
             
-            InteractWith(triggerActivator);
+            await InteractWith(triggerActivator);
         }
 
-        protected abstract void InteractWith(TTriggerActivator activator);
+        protected abstract UniTask InteractWith(TTriggerActivator activator);
     }
 }

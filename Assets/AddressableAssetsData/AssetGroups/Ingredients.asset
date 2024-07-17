@@ -18,35 +18,39 @@ MonoBehaviour:
   m_GUID: c02ba6cd750f947acb3d7db594a9c6fe
   m_SerializeEntries:
   - m_GUID: f48632726752f6240bb59d1b876b98ff
-    m_Address: Assets/Prefabs/Ingredients/Tomato.prefab
+    m_Address: Tomato
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 11333db6b26a29e4dbd6cfdd12f13e3b
-    m_Address: Assets/Prefabs/Ingredients/Salad.prefab
+    m_Address: Salad
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 19653c871d99b014e9272279ca22b747
-    m_Address: Assets/Prefabs/Ingredients/Cheese.prefab
+    m_Address: Cheese
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 4db8e95ecaa6ab842a4d2295999f6a01
-    m_Address: Assets/Prefabs/Ingredients/Onion.prefab
+    m_Address: Onion
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 25935d8053a52a5409e28b72a81ce1a9
-    m_Address: Assets/Prefabs/Ingredients/Bun Top.prefab
+    m_Address: Bun Top
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a9bdaac1a7ef1894fac704590db86ebf
-    m_Address: Assets/Prefabs/Ingredients/Burger.prefab
+    m_Address: Burger
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 1a34ec7f4f9613d44a41b54f3e03333f
-    m_Address: Assets/Prefabs/Ingredients/Bun Buttom.prefab
+    m_Address: Bun Buttom
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 1cd256ba8acac3a4bb49758d889d920e
-    m_Address: Assets/Packs/Low Poly Houses Free Pack/Materials/mat main.mat
+    m_Address: mat main
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 73462a891f0ec46b994c558e1dce0bc9
+    m_Address: Food
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3035296365466217534}
+  - component: {fileID: 2352162463707568711}
   - component: {fileID: 2139300409056617371}
   - component: {fileID: 4203165955804239697}
-  - component: {fileID: 3284584877014944727}
   m_Layer: 0
   m_Name: Bun Buttom
   m_TagString: Untagged
@@ -34,6 +34,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2352162463707568711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401642748287760004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8d89e3e1324172952a3bdd0b7473c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &2139300409056617371
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -62,7 +74,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1724080987372072942, guid: 70f069357ffc5bd41bf15950e60c6943, type: 3}
+  - {fileID: 2100000, guid: 73462a891f0ec46b994c558e1dce0bc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,15 +96,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3284584877014944727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401642748287760004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ad908601ed49488a6b99d3f2ae5407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

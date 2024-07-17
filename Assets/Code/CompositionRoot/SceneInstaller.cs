@@ -42,7 +42,9 @@ namespace Code.CompositionRoot
                 .FromInstance(_chef)
                 .AsSingle();
 
-            Container.BindInterfacesAndSelfTo<ChefInitializer>().AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<ChefInitializer>()
+                .AsCached();
         }
 
         private void BindInputService()
