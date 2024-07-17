@@ -2,6 +2,6 @@
 {
     public interface ICommandProgressView : IView
     {
-        void OnCommandProgressed(float progress);
+        void OnCommandProgressed(float duration);
     }
 }

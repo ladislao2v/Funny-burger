@@ -10,13 +10,10 @@ namespace Code.BurgerPlate
     {
         public bool Validate(IReadOnlyCollection<IngredientType> ingredients, IngredientType ingredient)
         {
-            if (ingredients.IsEmpty() && ingredient == IngredientType.BottomBun)
+            if (ingredients.IsEmpty() && ingredient != IngredientType.BottomBun)
                 return false;
 
-            if (ingredient == IngredientType.BottomBun && ingredients.Contains(ingredient))
-                return false;
-
-            if (ingredient == IngredientType.TopBun && ingredients.Contains(ingredient))
+            if (ingredients.Contains(IngredientType.TopBun))
                 return false;
 
             return true;

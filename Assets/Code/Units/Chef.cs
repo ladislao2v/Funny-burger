@@ -5,16 +5,17 @@ using Code.Movement;
 using Code.Units.Commands;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Code.Units
 {
     public sealed class Chef : MonoBehaviour, IPlayer
     {
+        private IDisposable _timer;
         public IBurgerPlate BurgerPlate { get; } = new Plate();
         public IChefConfig Config { get; private set; }
         public IMovement Movement { get; private set; }
-        public ReactiveCommand TaskStarted { get; } = new();
+        public event Action TaskStarted;
+        public event Action TaskEnded; 
 
         public void Construct(IChefConfig config)
         {
@@ -24,11 +25,17 @@ namespace Code.Units
 
         public void Do(ICommand command)
         {
-            TaskStarted.Execute();
+            TaskStarted?.Invoke();
 
-            Observable.Timer(TimeSpan.FromSeconds(Config.TaskTime))
-                .Subscribe(_ => command?.Execute()).
-                Dispose();
+            var timerTime = TimeSpan.FromSeconds(Config.TaskTime);
+
+            _timer = Observable.Timer(timerTime)
+                .Subscribe(_ =>
+                {
+                    command.Execute();
+                    TaskEnded?.Invoke();
+                    _timer.Dispose();
+                });
         }
     }
 }

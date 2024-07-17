@@ -1,6 +1,5 @@
 using Code.Triggers;
 using Code.Units;
-using Cysharp.Threading.Tasks;
 
 namespace Code.Kitchen.Table
 {

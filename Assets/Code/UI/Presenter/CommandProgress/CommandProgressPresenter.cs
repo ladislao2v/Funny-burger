@@ -9,36 +9,38 @@ namespace Code.UI.Presenter.CommandProgress
 {
     public class CommandProgressPresenter : MonoBehaviour
     {
-        private readonly CompositeDisposable _disposables = new();
-        
         private IPlayer _model;
         private ICommandProgressView _view;
 
         [Inject]
-        private void Construct(IPlayer model, ICommandProgressView view)
+        private void Construct(IPlayer model)
         {
             _model = model;
-            _view = view;
+            _view = GetComponent<ICommandProgressView>();
+            
+            
+            _model.TaskStarted += OnTaskStarted;
+            _model.TaskEnded += OnTaskEnded;
         }
 
-        private void OnEnable()
+        private void OnDestroy()
         {
-            _model.TaskStarted.Subscribe(command =>
-            {
-                float taskTime = _model.Config.TaskTime;
-                TimeSpan limit = TimeSpan.FromSeconds(taskTime);
-                
-                Observable
-                    .Interval(limit)
-                    .Subscribe(time =>
-                        _view.OnCommandProgressed(time / taskTime))
-                    .AddTo(_disposables);
-            }).AddTo(_disposables);
+            _model.TaskStarted -= OnTaskStarted;
+            _model.TaskEnded -= OnTaskEnded;
         }
 
-        private void OnDisable()
+        private void OnTaskStarted()
         {
-            _disposables.Dispose();
+            _view.Show();
+            
+            float taskTime = _model.Config.TaskTime;
+            
+            _view.OnCommandProgressed(taskTime);
+        }
+
+        private void OnTaskEnded()
+        {
+            _view.Hide();
         }
     }
 }

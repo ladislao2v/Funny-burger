@@ -14,7 +14,7 @@ namespace Code.BurgerPlate
         [SerializeField] private Transform _container;
         [SerializeField] private Vector3 _offsetBetweenIngredients = new Vector3(0, 1, 0);
 
-        private Stack<Ingredient> _ingredients;
+        private readonly Stack<Ingredient> _ingredients = new();
         private IBurgerPlate _burgerPlate;
         private IIngredientFactory _factory;
 
@@ -39,11 +39,13 @@ namespace Code.BurgerPlate
 
         private async void OnAdded(IngredientType ingredientType)
         {
-            Ingredient ingredient = await _factory.Create(ingredientType);
+            Ingredient ingredient = await _factory
+                .Create(ingredientType);
             
             ingredient.gameObject.SetActive(true);
             ingredient.transform.SetParent(_container);
-            ingredient.transform.position = GetIngredientPlacementPosition();
+            ingredient.transform.position = 
+                GetIngredientPlacementPosition();
             
             _ingredients.Push(ingredient);
         }

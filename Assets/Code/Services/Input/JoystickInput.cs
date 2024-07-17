@@ -1,5 +1,6 @@
 ﻿using Code.Extensions;
 using UniRx;
+using UnityEditor;
 using UnityEngine;
 using Zenject;
 
@@ -17,16 +18,26 @@ namespace Code.Services.Input
             _joystick = joystick;
         }
 
-        public void Enable() => 
-            _joystick.enabled = true;
+        public void Enable()
+        {
+            _joystick.gameObject.SetActive(true);
+        }
 
-        public void Disable() => 
-            _joystick.enabled = false;
+        public void Disable()
+        {
+            _joystick.gameObject.SetActive(false);
+            _direction = Vector3.zero;
+        }
 
-        public void Tick() => 
+        public void Tick()
+        {
+            if(!_joystick.gameObject.activeInHierarchy)
+                return;
+            
             _direction = _joystick
                 .Direction
                 .ToVector3()
                 .normalized;
+        }
     }
 }
