@@ -34,29 +34,36 @@ namespace Code.Effects.Stove
         private void OnEnter()
         {
             _uncookedBurger.SetActive(true);
-            
-            _sequence = DOTween.Sequence();
 
             var burger = _uncookedBurger.transform;
             var startPosition = burger.localPosition;
 
-            _sequence
-                .Append(burger
-                    .DOMoveY(burger.localPosition.y + _height, _duration)
+            _sequence = CreateSequence(burger, startPosition);
+        }
+
+        private Sequence CreateSequence(Transform transform, Vector3 startPosition)
+        {
+            Sequence sequence = DOTween.Sequence();
+            
+            sequence
+                .Append(transform
+                    .DOMoveY(transform.localPosition.y + _height, _duration)
                     .SetEase(_jumpEase))
-                .Append(burger
+                .Append(transform
                     .DORotate(new Vector3(_angle, 0, 0), _duration)
                     .SetEase(_rotateEase))
-                .Append(burger
-                    .DOMoveY(burger.localPosition.y - _height, _duration)
+                .Append(transform
+                    .DOMoveY(transform.localPosition.y - _height, _duration)
                     .SetEase(_jumpEase))
                 .AppendCallback(() =>
                 {
                     _cookedBurger.SetActive(true);
                     _uncookedBurger.SetActive(false);
-                    burger.localPosition = startPosition;
-                    burger.rotation = Quaternion.identity;
+                    transform.localPosition = startPosition;
+                    transform.rotation = Quaternion.identity;
                 });
+
+            return sequence;
         }
 
         private void OnExit()

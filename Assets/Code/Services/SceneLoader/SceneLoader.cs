@@ -1,23 +1,28 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
 namespace Code.Services.SceneLoader
 {
     public sealed class SceneLoader : ISceneLoader
     {
+        private SceneInstance _sceneInstance;
+
         public async void LoadScene(string name, Action onLoaded = null)
         {
-            await SceneManager.LoadSceneAsync(name);
-            
-            onLoaded?.Invoke();
+            AsyncOperationHandle<SceneInstance> handle =  Addressables.LoadSceneAsync(name);
+
+            handle.Completed += (_) => onLoaded?.Invoke();
+
+            _sceneInstance = await handle.Task;
         }
 
         public async void RestartScene(Action onLoaded = null)
         {
-            Scene scene = SceneManager.GetActiveScene();
-            
-            LoadScene(scene.name, onLoaded);
+            await SceneManager.LoadSceneAsync(_sceneInstance.Scene.name);
         }
     }
 }

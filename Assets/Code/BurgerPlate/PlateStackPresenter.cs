@@ -39,11 +39,8 @@ namespace Code.BurgerPlate
             Ingredient ingredient = await _factory
                 .Create(ingredientType);
             
-            ingredient.gameObject.SetActive(true);
-            ingredient.transform.SetParent(_container);
-            ingredient.transform.localPosition = 
-                GetPosition();
-            
+            SetupIngredient(ingredient);
+
             _ingredients.Push(ingredient);
         }
 
@@ -53,6 +50,13 @@ namespace Code.BurgerPlate
                 Destroy(ingredient.gameObject);
             
             _ingredients.Clear();
+        }
+
+        private void SetupIngredient(Ingredient ingredient)
+        {
+            ingredient.gameObject.SetActive(true);
+            ingredient.transform.SetParent(_container);
+            ingredient.transform.localPosition = GetPosition();
         }
 
         private Vector3 GetPosition() =>
