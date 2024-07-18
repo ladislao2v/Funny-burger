@@ -1,5 +1,5 @@
+using Code.BurgerPlate;
 using Code.Goods;
-using Code.Triggers;
 using Code.Units;
 using Code.Units.Commands;
 using UnityEngine;
@@ -7,15 +7,23 @@ using UnityEngine;
 namespace Code.Kitchen.Box
 {
     [RequireComponent(typeof(SphereCollider))]
-    public sealed class Box : ObservableTrigger<IPlayer>
+    public sealed class Box : Interactor<IPlayer>
     {
         [SerializeField] private IngredientType _ingredientType;
-        protected override void InteractWith(IPlayer player)
+        protected override bool TryInteractWith(IPlayer player)
         {
+            IBurgerPlateValidator validator = 
+                new BurgerPlateValidator(player.BurgerPlate);
+
+            if(!validator.Validate(_ingredientType))
+                return false;
+            
             var addIngredientCommand = 
                 new AddIngredientCommand(player.BurgerPlate, _ingredientType);
             
-            player.Do(addIngredientCommand);
+            player.Do(addIngredientCommand, Disable);
+
+            return true;
         }
     }
 }

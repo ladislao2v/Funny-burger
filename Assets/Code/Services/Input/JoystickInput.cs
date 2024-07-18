@@ -2,6 +2,7 @@
 using UniRx;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Code.Services.Input
@@ -25,6 +26,7 @@ namespace Code.Services.Input
 
         public void Disable()
         {
+            _joystick.OnPointerUp(null);
             _joystick.gameObject.SetActive(false);
             _direction = Vector3.zero;
         }

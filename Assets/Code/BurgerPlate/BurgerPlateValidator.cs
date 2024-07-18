@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Goods;
 using ModestTree;
@@ -8,12 +7,19 @@ namespace Code.BurgerPlate
 {
     public class BurgerPlateValidator : IBurgerPlateValidator
     {
-        public bool Validate(IReadOnlyCollection<IngredientType> ingredients, IngredientType ingredient)
+        private readonly IBurgerPlate _burgerPlate;
+
+        public BurgerPlateValidator(IBurgerPlate burgerPlate)
         {
-            if (ingredients.IsEmpty() && ingredient != IngredientType.BottomBun)
+            _burgerPlate = burgerPlate;
+        }
+        
+        public bool Validate(IngredientType ingredient)
+        {
+            if (_burgerPlate.IsEmpty && ingredient != IngredientType.BottomBun)
                 return false;
 
-            if (ingredients.Contains(IngredientType.TopBun))
+            if (_burgerPlate.Contains(IngredientType.TopBun))
                 return false;
 
             return true;

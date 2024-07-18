@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: Low Poly Houses Free Pack
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1cd256ba8acac3a4bb49758d889d920e
+    m_Address: mat main
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
   m_SchemaSet:

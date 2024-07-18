@@ -12,7 +12,7 @@ namespace Code.BurgerPlate
     public sealed class PlateStackPresenter : MonoBehaviour
     {
         [SerializeField] private Transform _container;
-        [SerializeField] private Vector3 _offsetBetweenIngredients = new Vector3(0, 1, 0);
+        [SerializeField] private Vector3 _offsetBetweenIngredients;
 
         private readonly Stack<Ingredient> _ingredients = new();
         private IBurgerPlate _burgerPlate;
@@ -23,15 +23,12 @@ namespace Code.BurgerPlate
         {
             _burgerPlate = player.BurgerPlate;
             _factory = factory;
-        }
-
-        private void OnEnable()
-        {
+            
             _burgerPlate.IngredientAdded += OnAdded;
             _burgerPlate.Cleared += OnCleared;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _burgerPlate.IngredientAdded -= OnAdded;
             _burgerPlate.Cleared -= OnCleared;
@@ -44,8 +41,8 @@ namespace Code.BurgerPlate
             
             ingredient.gameObject.SetActive(true);
             ingredient.transform.SetParent(_container);
-            ingredient.transform.position = 
-                GetIngredientPlacementPosition();
+            ingredient.transform.localPosition = 
+                GetPosition();
             
             _ingredients.Push(ingredient);
         }
@@ -53,23 +50,12 @@ namespace Code.BurgerPlate
         private void OnCleared()
         {
             foreach (var ingredient in _ingredients)
-                Destroy(ingredient);
+                Destroy(ingredient.gameObject);
             
             _ingredients.Clear();
         }
 
-        private Vector3 GetIngredientPlacementPosition()
-        {
-            Vector3 lastPosition;
-
-            if (_ingredients.TryPeek(out Ingredient last))
-                lastPosition = last.transform.localPosition;
-            else
-                lastPosition = _container.localPosition;
-
-            var newPosition = lastPosition + _offsetBetweenIngredients;
-            
-            return newPosition;
-        }
+        private Vector3 GetPosition() =>
+            _ingredients.Count * _offsetBetweenIngredients;
     }
 }

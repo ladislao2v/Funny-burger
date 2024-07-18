@@ -11,6 +11,7 @@ namespace Code.BurgerPlate
         event Action Cleared;  
 
         void Add(IngredientType ingredientType);
+        bool Contains(IngredientType topBun);
         void Clear();
     }
 }

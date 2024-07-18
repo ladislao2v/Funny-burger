@@ -5,6 +5,6 @@ namespace Code.BurgerPlate
 {
     public interface IBurgerPlateValidator
     {
-        public bool Validate(IReadOnlyCollection<IngredientType> ingredients, IngredientType ingredient);
+        public bool Validate(IngredientType ingredient);
     }
 }

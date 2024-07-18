@@ -45,10 +45,6 @@ MonoBehaviour:
     m_Address: Bun Buttom
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 1cd256ba8acac3a4bb49758d889d920e
-    m_Address: mat main
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 73462a891f0ec46b994c558e1dce0bc9
     m_Address: Food
     m_ReadOnly: 0

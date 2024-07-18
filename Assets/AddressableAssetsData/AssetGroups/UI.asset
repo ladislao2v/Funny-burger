@@ -17,8 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: b6cd66b05b961614396dd52247f65c65
   m_SerializeEntries:
-  - m_GUID: 0cf9b33b760dd8e4ab8ce36c147f90fc
-    m_Address: Ui
+  - m_GUID: 0d230cc8be529a542a08cb878ab14b18
+    m_Address: Floating Joystick
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5b56d9fa0e8bd6e409ed188db38a692c
+    m_Address: AllAxis_Outline
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 010a6e5305fa7004f89c5d317b7b47d4
+    m_Address: Handle_Plain
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

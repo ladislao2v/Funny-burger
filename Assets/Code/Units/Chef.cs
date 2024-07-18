@@ -14,6 +14,7 @@ namespace Code.Units
         public IBurgerPlate BurgerPlate { get; } = new Plate();
         public IChefConfig Config { get; private set; }
         public IMovement Movement { get; private set; }
+        
         public event Action TaskStarted;
         public event Action TaskEnded; 
 
@@ -23,7 +24,7 @@ namespace Code.Units
             Movement = GetComponent<IMovement>();
         }
 
-        public void Do(ICommand command)
+        public void Do(ICommand command, Action onDo)
         {
             TaskStarted?.Invoke();
 
@@ -33,7 +34,9 @@ namespace Code.Units
                 .Subscribe(_ =>
                 {
                     command.Execute();
+                    onDo?.Invoke();
                     TaskEnded?.Invoke();
+
                     _timer.Dispose();
                 });
         }
