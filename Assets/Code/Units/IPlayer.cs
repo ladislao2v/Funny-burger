@@ -9,7 +9,7 @@ namespace Code.Units
     public interface IPlayer : IUnit
     {
         IChefConfig Config { get; }
-        IBurgerPlate BurgerPlate { get; }
+        IBurgerPlate Plate { get; }
         IMovement Movement { get; }
         
         event Action TaskStarted;

@@ -7,19 +7,19 @@ using UnityEngine;
 namespace Code.Kitchen.Box
 {
     [RequireComponent(typeof(SphereCollider))]
-    public sealed class Box : Interactor<IPlayer>
+    public sealed class Box : Trigger<IPlayer>
     {
         [SerializeField] private IngredientType _ingredientType;
         protected override bool TryInteractWith(IPlayer player)
         {
             IBurgerPlateValidator validator = 
-                new BurgerPlateValidator(player.BurgerPlate);
+                new BurgerPlateValidator(player.Plate);
 
             if(!validator.Validate(_ingredientType))
                 return false;
             
             var addIngredientCommand = 
-                new AddIngredientCommand(player.BurgerPlate, _ingredientType);
+                new AddIngredientCommand(player.Plate, _ingredientType);
             
             player.Do(addIngredientCommand, Disable);
 

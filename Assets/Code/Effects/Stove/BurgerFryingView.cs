@@ -8,7 +8,7 @@ namespace Code.Effects.Stove
 {
     public class BurgerFryingView : MonoBehaviour
     {
-        [SerializeField] private Interactor<IPlayer> _interactor;
+        [SerializeField] private Trigger<IPlayer> _trigger;
         [SerializeField] private GameObject _uncookedBurger;
         [SerializeField] private GameObject _cookedBurger;
         [SerializeField] private float _height;
@@ -21,14 +21,14 @@ namespace Code.Effects.Stove
 
         private void Awake()
         {
-            _interactor.Enter += OnEnter;
-            _interactor.Exit += OnExit;
+            _trigger.Enter += OnEnter;
+            _trigger.Exit += OnExit;
         }
 
         private void OnDestroy()
         {
-            _interactor.Enter -= OnEnter;
-            _interactor.Exit -= OnExit;
+            _trigger.Enter -= OnEnter;
+            _trigger.Exit -= OnExit;
         }
 
         private void OnEnter()

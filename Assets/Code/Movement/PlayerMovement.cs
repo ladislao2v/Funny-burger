@@ -21,7 +21,10 @@ namespace Code.Movement
 
         public void Move(Vector3 direction, float speed)
         {
-            IsMoving.Value = direction.magnitude != 0;
+            bool isMove = direction.magnitude != 0;
+
+            if (_isMoving.Value != isMove)
+                _isMoving.Value = isMove;
             
             if(IsMoving.Value == false)
                 return;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Code.Goods;
 using Code.Ingredients;
 using ModestTree;
@@ -26,10 +27,12 @@ namespace Code.BurgerPlate
 
         public void AddRange(IngredientType[] ingredients)
         {
-            foreach (var ingredient in ingredients)
-                Add(ingredient);
+            var reversed = ingredients.Reverse().ToArray();
             
-            IngredientsAdded?.Invoke(ingredients);
+            foreach (var ingredient in reversed)
+                _ingredients.Push(ingredient);
+            
+            IngredientsAdded?.Invoke(reversed);
         }
 
         public bool Contains(IngredientType ingredient) => 

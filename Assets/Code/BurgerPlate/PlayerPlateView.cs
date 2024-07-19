@@ -17,7 +17,7 @@ namespace Code.BurgerPlate
         [Inject]
         private void Construct(IPlayer player)
         {
-            _burgerPlate = player.BurgerPlate;
+            _burgerPlate = player.Plate;
             
             _burgerPlate.IngredientAdded += OnAdded;
             _burgerPlate.IngredientsAdded += OnRangeAdded; 
@@ -33,10 +33,8 @@ namespace Code.BurgerPlate
         private async void OnAdded(IngredientType ingredientType) => 
             await AddIngredientView(ingredientType);
 
-        private async void OnRangeAdded(IngredientType[] ingredients)
-        {
+        private async void OnRangeAdded(IngredientType[] ingredients) => 
             await AddIngredientsView(ingredients);
-        }
 
         private void OnCleared() => 
             ClearPlate();

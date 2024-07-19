@@ -11,17 +11,21 @@ namespace Code.Units
     public sealed class Chef : MonoBehaviour, IPlayer
     {
         private IDisposable _timer;
-        public IBurgerPlate BurgerPlate { get; } = new Plate();
+        public IBurgerPlate Plate { get; } = new Plate();
         public IChefConfig Config { get; private set; }
         public IMovement Movement { get; private set; }
         
         public event Action TaskStarted;
-        public event Action TaskEnded; 
+        public event Action TaskEnded;
+
+        private void Awake()
+        {
+            Movement = GetComponent<IMovement>();
+        }
 
         public void Construct(IChefConfig config)
         {
             Config = config;
-            Movement = GetComponent<IMovement>();
         }
 
         public void Do(ICommand command, Action onDo)
