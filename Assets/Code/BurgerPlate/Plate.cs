@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Code.Goods;
+using Code.Ingredients;
 using ModestTree;
-using UnityEngine;
 
 namespace Code.BurgerPlate
 {
@@ -13,7 +13,8 @@ namespace Code.BurgerPlate
         public IReadOnlyCollection<IngredientType> Ingredients => _ingredients;
         public bool IsEmpty => _ingredients.IsEmpty();
 
-        public event Action<IngredientType> IngredientAdded; 
+        public event Action<IngredientType> IngredientAdded;
+        public event Action<IngredientType[]> IngredientsAdded;
         public event Action Cleared;
 
         public void Add(IngredientType ingredientType)
@@ -23,12 +24,12 @@ namespace Code.BurgerPlate
             IngredientAdded?.Invoke(ingredientType);
         }
 
-        public void AddRange(IReadOnlyCollection<IngredientType> ingredients)
+        public void AddRange(IngredientType[] ingredients)
         {
             foreach (var ingredient in ingredients)
-            {
                 Add(ingredient);
-            }
+            
+            IngredientsAdded?.Invoke(ingredients);
         }
 
         public bool Contains(IngredientType ingredient) => 

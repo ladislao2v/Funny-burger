@@ -9,11 +9,12 @@ namespace Code.BurgerPlate
         public IReadOnlyCollection<IngredientType> Ingredients { get; }
         public bool IsEmpty { get; }
 
-        event Action<IngredientType> IngredientAdded;  
+        event Action<IngredientType> IngredientAdded;
+        event Action<IngredientType[]> IngredientsAdded;
         event Action Cleared;  
 
         void Add(IngredientType ingredientType);
-        void AddRange(IReadOnlyCollection<IngredientType> ingredients);
+        void AddRange(IngredientType[] ingredients);
         bool Contains(IngredientType topBun);
         void Clear();
     }

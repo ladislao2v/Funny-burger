@@ -49,6 +49,10 @@ MonoBehaviour:
     m_Address: Food
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 6983e185696b95f4ca64feeb6554121a
+    m_Address: door_A
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
   m_SchemaSet:
