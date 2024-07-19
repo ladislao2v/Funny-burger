@@ -29,6 +29,46 @@ MonoBehaviour:
     m_Address: Handle_Plain
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: a5e645d0b2507ac42807ef8e886f7d45
+    m_Address: icons
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8a8df2cc7bdd1bf42b66187be72dda6b
+    m_Address: store (1)
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6d1a2570067e3ae4cb5c72a2bca3b8d5
+    m_Address: popups
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 85703ee0d52ea0d479ea35a4259a0b41
+    m_Address: additional controls
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 156ec492e516ccb4099add479601d65e
+    m_Address: buttons
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7f953ee7193134e4ea72436e9cc2c70b
+    m_Address: new-moon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0a84e505a0a7cef46868119462f0aee3
+    m_Address: dry-clean (1)
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 768f9a34bef0a8041a67657bde0362dd
+    m_Address: hand
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 587c799a4e8f8e640b45b1d3ce7f565c
+    m_Address: shape (1)
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e8db097d2628b3a46bf15c324040258f
+    m_Address: shape
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
   m_SchemaSet:

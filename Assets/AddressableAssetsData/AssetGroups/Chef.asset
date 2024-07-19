@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: f45685ec621484441a6185952dec4df0
   m_SerializeEntries:
   - m_GUID: d7e68a14485b2e046a900dafbec6ee20
-    m_Address: Chef
+    m_Address: ChefController
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: fb24f67ac7b8abb4b9da0d7f4a26b33e
@@ -38,7 +38,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: e2544b9f772dbd54ca51cd0adbb9c5c9
-    m_Address: '[CHEF]'
+    m_Address: CHEF
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: ca162b5c29abad240ae77b468d27983c

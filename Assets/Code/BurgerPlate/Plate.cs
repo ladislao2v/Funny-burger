@@ -10,6 +10,7 @@ namespace Code.BurgerPlate
     {
         private readonly Stack<IngredientType> _ingredients = new ();
 
+        public IReadOnlyCollection<IngredientType> Ingredients => _ingredients;
         public bool IsEmpty => _ingredients.IsEmpty();
 
         public event Action<IngredientType> IngredientAdded; 
@@ -20,6 +21,14 @@ namespace Code.BurgerPlate
             _ingredients.Push(ingredientType);
 
             IngredientAdded?.Invoke(ingredientType);
+        }
+
+        public void AddRange(IReadOnlyCollection<IngredientType> ingredients)
+        {
+            foreach (var ingredient in ingredients)
+            {
+                Add(ingredient);
+            }
         }
 
         public bool Contains(IngredientType ingredient) => 

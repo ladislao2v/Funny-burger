@@ -13,7 +13,7 @@ namespace Code.UI.TaskProgress
 
         public void OnCommandProgressed(float duration)
         {
-            _bar.fillAmount = 0;
+            _bar.fillAmount = _minValue;
             _bar.DOFillAmount(_maxValue, duration);
         }
     }
