@@ -38,8 +38,8 @@ namespace Code.Services.Input
             
             _direction = _joystick
                 .Direction
-                .ToVector3()
-                .normalized;
+                .normalized
+                .ToVector3();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Code.Ingredients
 {
-    public class Ingredient : MonoBehaviour
+    public sealed class Ingredient : MonoBehaviour
     {
     }
 }
