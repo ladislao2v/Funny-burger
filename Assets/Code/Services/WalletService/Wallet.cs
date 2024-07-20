@@ -1,4 +1,6 @@
 ﻿using System;
+using Code.Services.GameDataService;
+using Code.Services.GameDataService.Data;
 using UniRx;
 
 namespace Code.Services.WalletService
@@ -8,7 +10,9 @@ namespace Code.Services.WalletService
         private readonly ReactiveProperty<int> _money = new();
 
         public IReadOnlyReactiveProperty<int> Money => _money;
-        
+
+        public string SaveKey => nameof(Wallet);
+
         public void Add(int value)
         {
             if (value < 0)
@@ -29,5 +33,16 @@ namespace Code.Services.WalletService
 
             return true;
         }
+
+        public void Load(IData data)
+        {
+            if (data is not WalletData walletData)
+                throw new ArgumentException(nameof(data));
+
+            _money.Value = walletData.Value;
+        }
+
+        public IData Save() => 
+            new WalletData(_money.Value);
     }
 }

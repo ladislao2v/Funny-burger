@@ -9,7 +9,7 @@ namespace Code.Configs
     public sealed class IngredientConfig : ScriptableObject
     {
         public IngredientType Type;
-        public AssetReference SpriteReference;
+        public AssetReferenceSprite SpriteReference;
         public AssetReference PrefabReference;
     }
 }

@@ -5,38 +5,52 @@ using Code.Configs;
 using Code.Constants;
 using Code.Goods;
 using Code.Recipes;
+using Code.Services.PopupService;
 using UnityEngine;
 
 namespace Code.Services.StaticDataService
 {
     public sealed class StaticDataService : IStaticDataService
     {
-        private Dictionary<IngredientType,IngredientConfig> _configs;
-        private Recipe[] _recipes;
-        
+        private readonly Dictionary<IngredientType,IngredientConfig> _ingredientsConfigs;
+        private readonly Dictionary<PopupType, PopupConfig> _popupConfigs;
+        private readonly Recipe[] _recipes;
+
         public SettingsConfig SettingsConfig { get; private set; }
 
         public StaticDataService()
         {
             SettingsConfig = Resources
-                .LoadAll<SettingsConfig>(ResourcePathes.Settings)
+                .LoadAll<SettingsConfig>(ResourcePath.Settings)
                 .FirstOrDefault();
             
-            _configs = Resources
-                .LoadAll<IngredientConfig>(ResourcePathes.Ingredients)
+            _ingredientsConfigs = Resources
+                .LoadAll<IngredientConfig>(ResourcePath.Ingredients)
+                .ToDictionary(x => x.Type);
+
+            _popupConfigs = Resources
+                .LoadAll<PopupConfig>(ResourcePath.Popups)
                 .ToDictionary(x => x.Type);
 
             _recipes = Resources
-                .LoadAll<Recipe>(ResourcePathes.Recipes)
+                .LoadAll<Recipe>(ResourcePath.Recipes)
                 .ToArray();
         }
         
         public IngredientConfig GetIngredientConfig(IngredientType ingredientType)
         {
-            if (_configs.ContainsKey(ingredientType) == false)
+            if (_ingredientsConfigs.ContainsKey(ingredientType) == false)
                 throw new ArgumentException(nameof(ingredientType));
 
-            return _configs[ingredientType];
+            return _ingredientsConfigs[ingredientType];
+        }
+
+        public PopupConfig GetPopupConfig(PopupType popupType)
+        {
+            if (_popupConfigs.ContainsKey(popupType) == false)
+                throw new ArgumentException(nameof(popupType));
+
+            return _popupConfigs[popupType];
         }
 
         public Recipe[] GetRecipes() => 

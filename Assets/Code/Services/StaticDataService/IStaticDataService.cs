@@ -2,6 +2,7 @@
 using Code.Configs;
 using Code.Goods;
 using Code.Recipes;
+using Code.Services.PopupService;
 using Cysharp.Threading.Tasks;
 
 namespace Code.Services.StaticDataService
@@ -10,6 +11,7 @@ namespace Code.Services.StaticDataService
     {
         SettingsConfig SettingsConfig { get; }
         IngredientConfig GetIngredientConfig(IngredientType ingredientType);
+        PopupConfig GetPopupConfig(PopupType popupType);
         Recipe[] GetRecipes();
     }
 }
