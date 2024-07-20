@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Bottom bun
   m_EditorClassIdentifier: 
   Type: 6
-  Sprite: {fileID: 0}
-  AssetReference:
+  SpriteReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  PrefabReference:
     m_AssetGUID: 1a34ec7f4f9613d44a41b54f3e03333f
     m_SubObjectName: 
     m_SubObjectType: 

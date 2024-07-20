@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Tomato
   m_EditorClassIdentifier: 
   Type: 2
-  Sprite: {fileID: 0}
-  AssetReference:
+  SpriteReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  PrefabReference:
     m_AssetGUID: f48632726752f6240bb59d1b876b98ff
     m_SubObjectName: 
     m_SubObjectType: 

@@ -25,7 +25,7 @@ namespace Code.Services.Factories.IngredientFactory
                 .GetIngredientConfig(ingredientType);
             
             GameObject ingredient = await _prefabFactory
-                .Create(config.AssetReference);
+                .Create(config.PrefabReference);
 
             return ingredient.GetComponent<Ingredient>();
         }

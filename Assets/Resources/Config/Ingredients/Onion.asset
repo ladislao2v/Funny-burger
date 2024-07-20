@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Onion
   m_EditorClassIdentifier: 
   Type: 3
-  Sprite: {fileID: 0}
-  AssetReference:
+  SpriteReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  PrefabReference:
     m_AssetGUID: 4db8e95ecaa6ab842a4d2295999f6a01
     m_SubObjectName: 
     m_SubObjectType: 

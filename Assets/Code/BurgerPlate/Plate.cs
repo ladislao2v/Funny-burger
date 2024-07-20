@@ -27,7 +27,9 @@ namespace Code.BurgerPlate
 
         public void AddRange(IngredientType[] ingredients)
         {
-            var reversed = ingredients.Reverse().ToArray();
+            var reversed = ingredients
+                .Reverse()
+                .ToArray();
             
             foreach (var ingredient in reversed)
                 _ingredients.Push(ingredient);

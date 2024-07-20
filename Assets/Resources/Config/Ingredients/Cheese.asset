@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: 
   Type: 4
-  Sprite: {fileID: 0}
-  AssetReference:
+  SpriteReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  PrefabReference:
     m_AssetGUID: 19653c871d99b014e9272279ca22b747
     m_SubObjectName: 
     m_SubObjectType: 

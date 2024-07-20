@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Burger
   m_EditorClassIdentifier: 
   Type: 0
-  Sprite: {fileID: 0}
-  AssetReference:
+  SpriteReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  PrefabReference:
     m_AssetGUID: a9bdaac1a7ef1894fac704590db86ebf
     m_SubObjectName: 
     m_SubObjectType: 

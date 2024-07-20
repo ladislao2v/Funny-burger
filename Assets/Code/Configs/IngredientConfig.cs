@@ -1,7 +1,7 @@
 ﻿using Code.Goods;
-using Code.Ingredients;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Serialization;
 
 namespace Code.Configs
 {
@@ -9,7 +9,7 @@ namespace Code.Configs
     public sealed class IngredientConfig : ScriptableObject
     {
         public IngredientType Type;
-        public Sprite Sprite;
-        public AssetReference AssetReference;
+        public AssetReference SpriteReference;
+        public AssetReference PrefabReference;
     }
 }

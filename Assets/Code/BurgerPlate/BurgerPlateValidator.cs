@@ -2,6 +2,7 @@
 using System.Linq;
 using Code.Goods;
 using ModestTree;
+using static Code.Goods.IngredientType;
 
 namespace Code.BurgerPlate
 {
@@ -16,10 +17,10 @@ namespace Code.BurgerPlate
         
         public bool Validate(IngredientType ingredient)
         {
-            if (_burgerPlate.IsEmpty && ingredient != IngredientType.BottomBun)
+            if (_burgerPlate.IsEmpty && ingredient != BottomBun)
                 return false;
 
-            if (_burgerPlate.Contains(IngredientType.TopBun))
+            if (_burgerPlate.Contains(TopBun))
                 return false;
 
             return true;
