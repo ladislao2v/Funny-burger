@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Code.Effects.Popup;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Code.UI.Popups
@@ -7,12 +9,18 @@ namespace Code.UI.Popups
     {
         [SerializeField] private Button _closeButton;
 
-        private void Start() => 
-            _closeButton.onClick.AddListener(Close);
+        public event Action Clicked;
+
+        private void Start()
+        {
+            _closeButton.onClick.AddListener(OnClicked);
+        }
 
         private void OnDestroy() => 
-            _closeButton.onClick.RemoveListener(Close);
+            _closeButton.onClick.RemoveListener(OnClicked);
 
-        public void Close() => Destroy(this);
+        public void Close() => Destroy(gameObject);
+
+        private void OnClicked() => Clicked?.Invoke();
     }
 }

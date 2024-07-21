@@ -25,7 +25,7 @@ namespace Code.Effects.Units
         {
             _movement.IsMoving.Subscribe(value =>
             {
-                _animator.SetBool(ChefAnimatorParams.Moving, value);
+                _animator.SetBool(ChefAnimatorParametr.Moving, value);
             }).AddTo(_disposable);
         }
 

@@ -1,8 +1,12 @@
 ﻿using Code.Services.AssetProvider;
 using Code.Services.Factories.IngredientFactory;
+using Code.Services.Factories.PopupFactory;
 using Code.Services.Factories.PrefabFactory;
+using Code.Services.LevelService;
+using Code.Services.PopupService;
 using Code.Services.SceneLoader;
 using Code.Services.StaticDataService;
+using Code.Services.WalletService;
 using Zenject;
 
 namespace Code.CompositionRoot
@@ -13,19 +17,24 @@ namespace Code.CompositionRoot
         {
             BindAssetProvider();
             BindStaticData();
-            BindFactories();
             BindSceneLoader();
+            BindLevelService();
+            BindWalletService();
+        }
+
+        private void BindWalletService()
+        {
+            Container.BindInterfacesAndSelfTo<Wallet>().AsCached();
+        }
+
+        private void BindLevelService()
+        {
+            Container.BindInterfacesAndSelfTo<LevelService>().AsCached();
         }
 
         private void BindStaticData()
         {
             Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle();
-        }
-
-        private void BindFactories()
-        {
-            Container.BindInterfacesAndSelfTo<PrefabFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<IngredientFactory>().AsSingle();
         }
 
         private void BindAssetProvider()

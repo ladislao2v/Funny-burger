@@ -32,12 +32,12 @@ namespace Code.Effects.Units
 
         private void OnTaskEnded()
         {
-            _animator.SetTrigger(ChefAnimatorParams.TaskEnded);
+            _animator.SetTrigger(ChefAnimatorParametr.TaskEnded);
         }
 
         private void OnTaskStarted()
         {
-            _animator.SetTrigger(ChefAnimatorParams.TaskStarted);
+            _animator.SetTrigger(ChefAnimatorParametr.TaskStarted);
         }
     }
 }

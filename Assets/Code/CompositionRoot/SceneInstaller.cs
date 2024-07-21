@@ -1,6 +1,13 @@
-﻿using Code.Configs;
+﻿using System.Linq;
+using Code.Configs;
 using Code.Movement;
+using Code.Services.AudioService;
+using Code.Services.AudioService.Emitters;
+using Code.Services.Factories.IngredientFactory;
+using Code.Services.Factories.PopupFactory;
+using Code.Services.Factories.PrefabFactory;
 using Code.Services.Input;
+using Code.Services.PopupService;
 using Code.Units;
 using Plugins.StateMachine.StateFactory;
 using UnityEngine;
@@ -14,6 +21,7 @@ namespace Code.CompositionRoot
         
         [Header("UI")]
         [SerializeField] private Joystick _joystick;
+        [SerializeField] private PopupContainer _popupContainer;
 
         [Header("Units")] 
         [SerializeField] private Chef _chef;
@@ -24,8 +32,35 @@ namespace Code.CompositionRoot
             BindInputService();
             BindPlayer();
             BindPlayerRouter();
+            BindPopupService();
+            BindAudioService();
+            BindFactories();
             BindStateFactory();
             BindStateMachine();
+        }
+        
+        
+
+        private void BindFactories()
+        {
+            Container.BindInterfacesAndSelfTo<PrefabFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<IngredientFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PopupFactory>().AsSingle();
+        }
+
+        private void BindAudioService()
+        {
+            Container.BindInterfacesAndSelfTo<AudioService>()
+                .AsSingle()
+                .WithArguments(
+                    FindObjectsOfType<Emitter>()
+                        .Cast<ISoundEmitter>());
+        }
+
+        private void BindPopupService()
+        {
+            Container.BindInterfacesAndSelfTo<PopupContainer>().FromInstance(_popupContainer).AsSingle();
+            Container.BindInterfacesAndSelfTo<PopupService>().AsSingle();
         }
 
         private void BindPlayerRouter()

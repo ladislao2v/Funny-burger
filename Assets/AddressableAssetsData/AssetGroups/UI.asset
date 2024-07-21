@@ -69,6 +69,18 @@ MonoBehaviour:
     m_Address: shape
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c144726cb085c401099dbeabf1f08e50
+    m_Address: cross
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1aed1146289404432b18a2c09a1cf085
+    m_Address: volume-disabled
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1c77bb20587014b779b06b2970e23137
+    m_Address: volume-down
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
   m_SchemaSet:
