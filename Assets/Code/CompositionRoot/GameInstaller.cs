@@ -2,8 +2,10 @@
 using Code.Services.Factories.IngredientFactory;
 using Code.Services.Factories.PopupFactory;
 using Code.Services.Factories.PrefabFactory;
+using Code.Services.GameDataService;
 using Code.Services.LevelService;
 using Code.Services.PopupService;
+using Code.Services.SaveDataService;
 using Code.Services.SceneLoader;
 using Code.Services.StaticDataService;
 using Code.Services.WalletService;
@@ -20,6 +22,13 @@ namespace Code.CompositionRoot
             BindSceneLoader();
             BindLevelService();
             BindWalletService();
+            BindGameDataService();
+        }
+
+        private void BindGameDataService()
+        {
+            Container.BindInterfacesAndSelfTo<PlayerPrefsDataSaver>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameDataService>().AsSingle();
         }
 
         private void BindWalletService()

@@ -5,12 +5,11 @@ namespace Code.Services.AudioService.Emitters
     [RequireComponent(typeof(AudioSource))]
     public abstract class Emitter : MonoBehaviour, ISoundEmitter
     {
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
-        
-        private AudioSource _audioSource;
 
-        private void Awake() => 
-            _audioSource = GetComponent<AudioSource>();
+        private void OnValidate() => 
+            _audioSource ??= GetComponent<AudioSource>();
 
         public void Enable() => 
             _audioSource.enabled = true;

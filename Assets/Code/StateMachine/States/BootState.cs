@@ -18,7 +18,7 @@ namespace Code.StateMachine.States
         {
             await _assetProvider.Load();
             
-            _stateMachine.EnterState<GameLoopState>();   
+            _stateMachine.EnterState<DataLoadState>();   
         }
     }
 }

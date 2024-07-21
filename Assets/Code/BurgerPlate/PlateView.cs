@@ -35,7 +35,7 @@ namespace Code.BurgerPlate
             _ingredients.Push(ingredient);
         }
         
-        protected async Task AddIngredientsView(IngredientType[] ingredients)
+        protected async Task AddIngredientsView(IEnumerable<IngredientType> ingredients)
         {
             foreach (var ingredient in ingredients)
                 await AddIngredientView(ingredient);

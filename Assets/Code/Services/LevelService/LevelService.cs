@@ -41,6 +41,9 @@ namespace Code.Services.LevelService
 
         public void Load(IData data)
         {
+            if (data == null)
+                data = new LevelData();
+            
             if (data is not LevelData levelData)
                 throw new ArgumentException(nameof(data));
 
@@ -56,7 +59,7 @@ namespace Code.Services.LevelService
 
         private int GetRequiredTasks(int level)
         {
-            if (level <= 0)
+            if (level < 0)
                 throw new ArgumentException(nameof(level));
 
             return (int)(K * Math.Pow(Math.Log(K + 1, 2), level - 1));

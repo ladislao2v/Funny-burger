@@ -7,7 +7,7 @@ namespace Code.Services.BurgerOrderService
 {
     public class OrderValidator : IOrderValidator
     {
-        public bool Validate(Recipe currentOrder, IReadOnlyCollection<IngredientType> plateIngredients)
+        public bool Validate(Recipe currentOrder, IEnumerable<IngredientType> plateIngredients)
         {
             var recipeIngredients = currentOrder
                 .Burger

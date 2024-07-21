@@ -1,4 +1,5 @@
-﻿using Code.Goods;
+﻿using System.Collections.Generic;
+using Code.Goods;
 
 namespace Code.BurgerPlate
 {
@@ -14,7 +15,7 @@ namespace Code.BurgerPlate
             _burgerPlate.Cleared += ClearPlate;
         }
 
-        public async void ShowBurger(IngredientType[] ingredients) => 
+        public async void ShowBurger(IEnumerable<IngredientType> ingredients) => 
             await AddIngredientsView(ingredients);
 
         private void OnDestroy()

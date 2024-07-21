@@ -13,8 +13,9 @@ namespace Code.Recipes
         private readonly int _maxIngredientsCount = 6;
         
         [SerializeField] private List<IngredientConfig> _burger;
-
+        [SerializeField] private int _price;
         public IReadOnlyList<IngredientConfig> Burger => _burger;
+        public int Price => _price;
 
         private void OnValidate()
         {

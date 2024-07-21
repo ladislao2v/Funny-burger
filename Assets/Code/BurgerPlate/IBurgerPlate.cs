@@ -6,15 +6,15 @@ namespace Code.BurgerPlate
 {
     public interface IBurgerPlate
     {
-        public IReadOnlyCollection<IngredientType> Ingredients { get; }
+        public IEnumerable<IngredientType> Ingredients { get; }
         public bool IsEmpty { get; }
 
         event Action<IngredientType> IngredientAdded;
-        event Action<IngredientType[]> IngredientsAdded;
+        event Action<IEnumerable<IngredientType>> IngredientsAdded;
         event Action Cleared;  
 
         void Add(IngredientType ingredientType);
-        void AddRange(IngredientType[] ingredients);
+        void AddRange(IEnumerable<IngredientType> ingredients);
         bool Contains(IngredientType topBun);
         void Clear();
     }

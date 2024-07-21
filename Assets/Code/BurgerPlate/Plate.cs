@@ -11,11 +11,11 @@ namespace Code.BurgerPlate
     {
         private readonly Stack<IngredientType> _ingredients = new ();
 
-        public IReadOnlyCollection<IngredientType> Ingredients => _ingredients;
+        public IEnumerable<IngredientType> Ingredients => _ingredients;
         public bool IsEmpty => _ingredients.IsEmpty();
 
         public event Action<IngredientType> IngredientAdded;
-        public event Action<IngredientType[]> IngredientsAdded;
+        public event Action<IEnumerable<IngredientType>> IngredientsAdded;
         public event Action Cleared;
 
         public void Add(IngredientType ingredientType)
@@ -25,11 +25,10 @@ namespace Code.BurgerPlate
             IngredientAdded?.Invoke(ingredientType);
         }
 
-        public void AddRange(IngredientType[] ingredients)
+        public void AddRange(IEnumerable<IngredientType> ingredients)
         {
             var reversed = ingredients
-                .Reverse()
-                .ToArray();
+                .Reverse();
             
             foreach (var ingredient in reversed)
                 _ingredients.Push(ingredient);

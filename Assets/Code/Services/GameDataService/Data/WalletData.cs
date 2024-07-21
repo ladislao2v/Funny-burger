@@ -7,7 +7,7 @@ namespace Code.Services.GameDataService.Data
     {
         public int Value { get; set; }
 
-        public WalletData(int value)
+        public WalletData(int value = 0)
         {
             Value = value;
         }

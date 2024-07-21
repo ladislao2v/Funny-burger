@@ -6,6 +6,6 @@ namespace Code.Services.BurgerOrderService
 {
     public interface IOrderValidator
     {
-        bool Validate(Recipe currentOrder, IReadOnlyCollection<IngredientType> plateIngredients);
+        bool Validate(Recipe currentOrder, IEnumerable<IngredientType> plateIngredients);
     }
 }

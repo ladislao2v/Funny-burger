@@ -36,6 +36,9 @@ namespace Code.Services.WalletService
 
         public void Load(IData data)
         {
+            if (data == null)
+                data = new WalletData();
+            
             if (data is not WalletData walletData)
                 throw new ArgumentException(nameof(data));
 

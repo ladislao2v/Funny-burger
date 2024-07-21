@@ -4,6 +4,7 @@ namespace Code.Services.RecipeService
 {
     public interface IRecipeService
     {
-        Recipe GetRecipe();
+        Recipe GetNextRecipe();
+        void AddRecipe(Recipe recipe);
     }
 }

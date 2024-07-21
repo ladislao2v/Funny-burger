@@ -33,7 +33,7 @@ namespace Code.BurgerPlate
         private async void OnAdded(IngredientType ingredientType) => 
             await AddIngredientView(ingredientType);
 
-        private async void OnRangeAdded(IngredientType[] ingredients) => 
+        private async void OnRangeAdded(IEnumerable<IngredientType> ingredients) => 
             await AddIngredientsView(ingredients);
 
         private void OnCleared() => 

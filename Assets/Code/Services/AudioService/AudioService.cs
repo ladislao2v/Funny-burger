@@ -50,11 +50,19 @@ namespace Code.Services.AudioService
 
         public void Load(IData data)
         {
+            if (data == null)
+                data = new AudioData();
+            
             if (data is not AudioData audioData)
                 throw new ArgumentException(nameof(data));
 
             _isActive.Value = audioData.IsActive;
             _currentVolume.Value = audioData.CurrentVolume;
+            
+            if(_isActive.Value)
+                Enable();
+            else
+                Disable();
         }
 
         public IData Save() =>
