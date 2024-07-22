@@ -1,5 +1,4 @@
-﻿using Code.Ingredients;
-using Code.Services.PopupService;
+﻿using Code.Services.PopupService;
 using Code.UI.Popups;
 using Cysharp.Threading.Tasks;
 

@@ -7,7 +7,6 @@ namespace Code.Services.AudioService
 {
     public class AudioService : IAudioService
     {
-        private readonly ISoundEmitter[] _soundEmitters;
         private readonly ReactiveProperty<bool> _isActive = new();
         private readonly ReactiveProperty<float> _currentVolume = new();
 
@@ -16,26 +15,11 @@ namespace Code.Services.AudioService
 
         public string SaveKey => nameof(AudioService);
 
-        public AudioService(ISoundEmitter[] soundEmitters)
-        {
-            _soundEmitters = soundEmitters;
-        }
-
-        public void Enable()
-        {
-            foreach (var soundEmitter in _soundEmitters)
-                soundEmitter.Enable();
-
+        public void Enable() => 
             _isActive.Value = true;
-        }
 
-        public void Disable()
-        {
-            foreach (var soundEmitter in _soundEmitters)
-                soundEmitter.Disable();
-            
+        public void Disable() => 
             _isActive.Value = false;
-        }
 
         public void SetVolume(float value)
         {
@@ -43,9 +27,6 @@ namespace Code.Services.AudioService
                 throw new ArgumentException(nameof(value));
 
             _currentVolume.Value = value;
-            
-            foreach (var soundEmitter in _soundEmitters)
-                soundEmitter.SetVolume(value);    
         }
 
         public void Load(IData data)
@@ -58,11 +39,6 @@ namespace Code.Services.AudioService
 
             _isActive.Value = audioData.IsActive;
             _currentVolume.Value = audioData.CurrentVolume;
-            
-            if(_isActive.Value)
-                Enable();
-            else
-                Disable();
         }
 
         public IData Save() =>

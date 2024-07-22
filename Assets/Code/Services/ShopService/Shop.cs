@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Recipes;
+using Code.Services.ConfigProvider;
 using Code.Services.RecipeService;
-using Code.Services.StaticDataService;
 using Code.Services.WalletService;
 
 namespace Code.Services.ShopService
 {
     public class Shop : IShopService
     {
-        private readonly IStaticDataService _staticDataService;
+        private readonly IConfigProvider _configProvider;
         private readonly IRecipeService _recipeService;
         private readonly IWalletService _walletService;
 
-        public IEnumerable<Recipe> AllRecipes => _staticDataService.GetRecipes();
+        public IEnumerable<Recipe> AllRecipes => _configProvider.GetRecipes();
         public IEnumerable<Recipe> AvailableRecipes => PickAvailableRecipes();
 
-        public Shop(IStaticDataService staticDataService, 
+        public Shop(IConfigProvider configProvider, 
             IRecipeService recipeService, IWalletService walletService)
         {
-            _staticDataService = staticDataService;
+            _configProvider = configProvider;
             _recipeService = recipeService;
             _walletService = walletService;
         }

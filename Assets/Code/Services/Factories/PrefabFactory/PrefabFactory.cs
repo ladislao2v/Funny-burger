@@ -22,7 +22,7 @@ namespace Code.Services.Factories.PrefabFactory
             var prefab = await _assetProvider
                 .GetAsset<GameObject>(assetKey);
 
-            return Object.Instantiate(prefab);
+            return _instantiator.InstantiatePrefab(prefab);
         }
 
         public async UniTask<GameObject> Create(AssetReference assetReference)
@@ -30,7 +30,7 @@ namespace Code.Services.Factories.PrefabFactory
             var prefab = await _assetProvider
                 .GetAsset<GameObject>(assetReference);
 
-            return Object.Instantiate(prefab);
+            return _instantiator.InstantiatePrefab(prefab);
         }
 
         public T Create<T>(T prefab) where T : MonoBehaviour

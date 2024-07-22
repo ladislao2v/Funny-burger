@@ -2,8 +2,7 @@
 {
     public interface ISoundEmitter
     {
-        void Enable();
-        void Disable();
+        void SetActive(bool active);
         void SetVolume(float volume);
     }
 }

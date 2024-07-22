@@ -1,4 +1,6 @@
+using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Services.AudioService.Emitters
 {
@@ -7,22 +9,33 @@ namespace Code.Services.AudioService.Emitters
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
+        
+        private CompositeDisposable _disposables = new();
 
         private void OnValidate() => 
             _audioSource ??= GetComponent<AudioSource>();
 
-        public void Enable() => 
-            _audioSource.enabled = true;
+        [Inject]
+        private void Construct(IAudioService audioService)
+        {
+            audioService.IsActive.Subscribe(SetActive).AddTo(_disposables);
+            audioService.CurrentVolume.Subscribe(SetVolume).AddTo(_disposables);
+        }
 
-        public void Disable() => 
-            _audioSource.enabled = false;
+        private void OnDestroy() => 
+            _disposables.Dispose();
+
+        public void SetActive(bool value) =>
+            _audioSource.mute = !value;
 
         public void SetVolume(float volume) => 
             _audioSource.volume = volume;
 
-        public void Play() => 
+        public void Play()
+        {
             Play(_audioSource, _audioClip);
+        }
 
-        public abstract void Play(AudioSource audioSource, AudioClip audioClip);
+        protected abstract void Play(AudioSource audioSource, AudioClip audioClip);
     }
 }

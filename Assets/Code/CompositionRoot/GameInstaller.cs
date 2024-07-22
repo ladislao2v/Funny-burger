@@ -1,4 +1,6 @@
 ﻿using Code.Services.AssetProvider;
+using Code.Services.AudioService;
+using Code.Services.ConfigProvider;
 using Code.Services.Factories.IngredientFactory;
 using Code.Services.Factories.PopupFactory;
 using Code.Services.Factories.PrefabFactory;
@@ -7,7 +9,6 @@ using Code.Services.LevelService;
 using Code.Services.PopupService;
 using Code.Services.SaveDataService;
 using Code.Services.SceneLoader;
-using Code.Services.StaticDataService;
 using Code.Services.WalletService;
 using Zenject;
 
@@ -23,6 +24,25 @@ namespace Code.CompositionRoot
             BindLevelService();
             BindWalletService();
             BindGameDataService();
+            BindPrefabFactory();
+            BindFactories();
+            BindAudioService();
+        }
+        
+        private void BindAudioService()
+        {
+            Container.BindInterfacesAndSelfTo<AudioService>().AsSingle();
+        }
+
+        private void BindPrefabFactory()
+        {
+            Container.BindInterfacesAndSelfTo<PrefabFactory>().AsSingle();
+        }
+
+        private void BindFactories()
+        {
+            Container.BindInterfacesAndSelfTo<IngredientFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PopupFactory>().AsSingle();
         }
 
         private void BindGameDataService()
@@ -43,7 +63,7 @@ namespace Code.CompositionRoot
 
         private void BindStaticData()
         {
-            Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ConfigProvider>().AsSingle();
         }
 
         private void BindAssetProvider()

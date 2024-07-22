@@ -8,9 +8,9 @@ using Code.Recipes;
 using Code.Services.PopupService;
 using UnityEngine;
 
-namespace Code.Services.StaticDataService
+namespace Code.Services.ConfigProvider
 {
-    public sealed class StaticDataService : IStaticDataService
+    public sealed class ConfigProvider : IConfigProvider
     {
         private readonly Dictionary<IngredientType,IngredientConfig> _ingredientsConfigs;
         private readonly Dictionary<PopupType, PopupConfig> _popupConfigs;
@@ -18,7 +18,7 @@ namespace Code.Services.StaticDataService
 
         public SettingsConfig SettingsConfig { get; private set; }
 
-        public StaticDataService()
+        public ConfigProvider()
         {
             SettingsConfig = Resources
                 .LoadAll<SettingsConfig>(ResourcePath.Settings)
@@ -53,7 +53,7 @@ namespace Code.Services.StaticDataService
             return _popupConfigs[popupType];
         }
 
-        public Recipe[] GetRecipes() => 
+        public IEnumerable<Recipe> GetRecipes() => 
             _recipes;
     }
 }

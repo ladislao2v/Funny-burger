@@ -1,17 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Code.Configs;
 using Code.Goods;
 using Code.Recipes;
 using Code.Services.PopupService;
-using Cysharp.Threading.Tasks;
 
-namespace Code.Services.StaticDataService
+namespace Code.Services.ConfigProvider
 {
-    public interface IStaticDataService
+    public interface IConfigProvider
     {
         SettingsConfig SettingsConfig { get; }
         IngredientConfig GetIngredientConfig(IngredientType ingredientType);
         PopupConfig GetPopupConfig(PopupType popupType);
-        Recipe[] GetRecipes();
+        IEnumerable<Recipe> GetRecipes();
     }
 }
