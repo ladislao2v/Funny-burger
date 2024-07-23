@@ -1,8 +1,8 @@
 ﻿using Code.Configs;
 using Code.Services.AudioService;
+using Code.Services.ConfigProvider;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.PopupService;
-using Code.Services.StaticDataService;
 using Code.UI.Popups;
 using Code.UI.Popups.Settings;
 using Cysharp.Threading.Tasks;
@@ -13,32 +13,24 @@ namespace Code.Services.Factories.PopupFactory
     public class PopupFactory : IPopupFactory
     {
         private readonly IPrefabFactory _prefabFactory;
-        private readonly IStaticDataService _staticDataService;
+        private readonly IConfigProvider _configProvider;
         private readonly IAudioService _audioService;
 
-        public PopupFactory(IPrefabFactory prefabFactory, IStaticDataService staticDataService, 
-            IAudioService audioService)
+        public PopupFactory(IPrefabFactory prefabFactory, IConfigProvider configProvider)
         {
             _prefabFactory = prefabFactory;
-            _staticDataService = staticDataService;
-            _audioService = audioService;
+            _configProvider = configProvider;
         }
         
         public async UniTask<Popup> Create(PopupType popupType)
         {
-            PopupConfig config = _staticDataService
+            PopupConfig config = _configProvider
                 .GetPopupConfig(popupType);
             
-            GameObject popupGameObject = await _prefabFactory
+            GameObject popup = await _prefabFactory
                 .Create(config.PrefabReference);
 
-            Popup popup = popupGameObject
-                .GetComponent<Popup>();
-
-            if (popup is SettingsPopup settingsPopup)
-                settingsPopup.Construct(_audioService);
-            
-            return popup;
+            return popup.GetComponent<Popup>();
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Code.Services.AudioService;
+﻿using Code.Services.AudioService;
+using Code.Services.AudioService.Emitters;
 using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -14,10 +12,12 @@ namespace Code.UI.Popups.Settings
         private readonly CompositeDisposable _disposable = new();
         
         [SerializeField] private Toggle _soundToggle;
+        [SerializeField] private Emitter[] _emitters;
 
         private IAudioService _audioService;
         
-        public void Construct(IAudioService audioService)
+        [Inject]
+        private void Construct(IAudioService audioService)
         {
             _audioService = audioService;
             

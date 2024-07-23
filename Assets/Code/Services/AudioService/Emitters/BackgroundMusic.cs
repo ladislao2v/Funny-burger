@@ -7,7 +7,7 @@ namespace Code.Services.AudioService.Emitters
         private void Start() =>
             Play();
 
-        public override void Play(AudioSource audioSource, AudioClip audioClip)
+        protected override void Play(AudioSource audioSource, AudioClip audioClip)
         {
             if(!audioSource.enabled)
                 return;

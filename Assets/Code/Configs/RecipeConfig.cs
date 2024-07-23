@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Code.Extensions;
@@ -16,6 +17,7 @@ namespace Code.Configs
         [SerializeField] private Sprite _logo;
         [SerializeField] private string _description;
         [SerializeField] private int _price;
+<<<<<<< HEAD:Assets/Code/Configs/RecipeConfig.cs
         [SerializeField] private int _requiredLevel;
         
         [Header("Data")]
@@ -23,6 +25,9 @@ namespace Code.Configs
 
         public Sprite Logo => _logo;
         public string Description => _description;
+=======
+        public IEnumerable<IngredientConfig> Burger => _burger;
+>>>>>>> 3f2981a6ce365d14b31d0e298b0e3d3d8fd23979:Assets/Code/Recipes/Recipe.cs
         public int Price => _price;
         public int RequiredLevel => _requiredLevel;
         public IEnumerable<IngredientConfig> Burger => _burger;
