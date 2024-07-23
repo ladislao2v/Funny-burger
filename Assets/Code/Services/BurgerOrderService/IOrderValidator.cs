@@ -1,11 +1,11 @@
 using System.Collections.Generic;
+using Code.Configs;
 using Code.Goods;
-using Code.Recipes;
 
 namespace Code.Services.BurgerOrderService
 {
     public interface IOrderValidator
     {
-        bool Validate(Recipe currentOrder, IEnumerable<IngredientType> plateIngredients);
+        bool Validate(RecipeConfig currentOrder, IEnumerable<IngredientType> plateIngredients);
     }
 }

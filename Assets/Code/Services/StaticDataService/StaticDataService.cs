@@ -4,7 +4,6 @@ using System.Linq;
 using Code.Configs;
 using Code.Constants;
 using Code.Goods;
-using Code.Recipes;
 using Code.Services.PopupService;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace Code.Services.StaticDataService
     {
         private readonly Dictionary<IngredientType,IngredientConfig> _ingredientsConfigs;
         private readonly Dictionary<PopupType, PopupConfig> _popupConfigs;
-        private readonly Recipe[] _recipes;
+        private readonly RecipeConfig[] _recipes;
 
         public SettingsConfig SettingsConfig { get; private set; }
 
@@ -33,7 +32,7 @@ namespace Code.Services.StaticDataService
                 .ToDictionary(x => x.Type);
 
             _recipes = Resources
-                .LoadAll<Recipe>(ResourcePath.Recipes)
+                .LoadAll<RecipeConfig>(ResourcePath.Recipes)
                 .ToArray();
         }
         
@@ -53,7 +52,7 @@ namespace Code.Services.StaticDataService
             return _popupConfigs[popupType];
         }
 
-        public Recipe[] GetRecipes() => 
+        public RecipeConfig[] GetRecipes() => 
             _recipes;
     }
 }

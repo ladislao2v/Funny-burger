@@ -8,6 +8,7 @@ namespace Code.Services.WalletService
         IReadOnlyReactiveProperty<int> Money { get; }
 
         public void Add(int value);
+        void Spend(int value);
         public bool TrySpend(int value);
     }
 }

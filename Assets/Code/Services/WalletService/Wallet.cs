@@ -21,6 +21,14 @@ namespace Code.Services.WalletService
             _money.Value += value;
         }
 
+        public void Spend(int value)
+        {
+            if(!TrySpend(value))
+                return;
+            
+            _money.Value -= value;
+        }
+
         public bool TrySpend(int value)
         {
             if (value < 0)
@@ -28,8 +36,6 @@ namespace Code.Services.WalletService
 
             if (_money.Value < value)
                 return false;
-
-            _money.Value -= value;
 
             return true;
         }

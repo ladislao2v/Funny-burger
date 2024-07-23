@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Configs;
 using Code.Goods;
-using Code.Recipes;
 
 namespace Code.Services.BurgerOrderService
 {
     public class OrderValidator : IOrderValidator
     {
-        public bool Validate(Recipe currentOrder, IEnumerable<IngredientType> plateIngredients)
+        public bool Validate(RecipeConfig currentOrder, IEnumerable<IngredientType> plateIngredients)
         {
             var recipeIngredients = currentOrder
                 .Burger

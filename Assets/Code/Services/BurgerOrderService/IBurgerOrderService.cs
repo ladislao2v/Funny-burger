@@ -1,12 +1,12 @@
 ﻿using Code.BurgerPlate;
-using Code.Recipes;
+using Code.Configs;
 using Code.Services.RecipeService;
 
 namespace Code.Services.BurgerOrderService
 {
     public interface IBurgerOrderService
     {
-        public Recipe CurrentOrder { get; } 
+        public RecipeConfig CurrentOrder { get; } 
         
         public bool TryPassOrder(IBurgerPlate plate);
     }
@@ -16,7 +16,7 @@ namespace Code.Services.BurgerOrderService
         private readonly IRecipeService _recipeService;
         private readonly IOrderValidator _orderValidator = new OrderValidator();
 
-        public Recipe CurrentOrder { get; }
+        public RecipeConfig CurrentOrder { get; }
 
         public BurgerOrderService(IRecipeService recipeService)
         {

@@ -1,21 +1,31 @@
 using System.Collections.Generic;
 using System.Linq;
-using Code.Configs;
 using Code.Extensions;
+using Code.Services.ShopService;
 using UnityEngine;
 using static Code.Goods.IngredientType;
 
-namespace Code.Recipes
+namespace Code.Configs
 {
     [CreateAssetMenu(menuName = "Create Recipe", fileName = "Recipe", order = 0)]
-    public class Recipe : ScriptableObject
+    public sealed class RecipeConfig : ScriptableObject, IShopItem
     {
         private readonly int _maxIngredientsCount = 6;
         
-        [SerializeField] private List<IngredientConfig> _burger;
+        [Header("Main")]
+        [SerializeField] private Sprite _logo;
+        [SerializeField] private string _description;
         [SerializeField] private int _price;
-        public IReadOnlyList<IngredientConfig> Burger => _burger;
+        [SerializeField] private int _requiredLevel;
+        
+        [Header("Data")]
+        [SerializeField] private List<IngredientConfig> _burger;
+
+        public Sprite Logo => _logo;
+        public string Description => _description;
         public int Price => _price;
+        public int RequiredLevel => _requiredLevel;
+        public IEnumerable<IngredientConfig> Burger => _burger;
 
         private void OnValidate()
         {
