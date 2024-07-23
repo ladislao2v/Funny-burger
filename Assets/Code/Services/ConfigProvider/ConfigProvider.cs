@@ -52,11 +52,6 @@ namespace Code.Services.ConfigProvider
             return _popupConfigs[popupType];
         }
 
-<<<<<<< HEAD:Assets/Code/Services/StaticDataService/StaticDataService.cs
-        public RecipeConfig[] GetRecipes() => 
-=======
-        public IEnumerable<Recipe> GetRecipes() => 
->>>>>>> 3f2981a6ce365d14b31d0e298b0e3d3d8fd23979:Assets/Code/Services/ConfigProvider/ConfigProvider.cs
-            _recipes;
+        public IEnumerable<RecipeConfig> GetRecipes() => _recipes;
     }
 }

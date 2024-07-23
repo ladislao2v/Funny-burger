@@ -12,8 +12,6 @@ namespace Code.CompositionRoot
 {
     public sealed class SceneInstaller : MonoInstaller
     {
-        [Header("Configs")]
-        
         [Header("UI")]
         [SerializeField] private Joystick _joystick;
         [SerializeField] private PopupContainer _popupContainer;

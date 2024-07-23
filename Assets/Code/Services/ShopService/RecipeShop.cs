@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Configs;
+using Code.Services.ConfigProvider;
 using Code.Services.LevelService;
 using Code.Services.RecipeService;
-using Code.Services.StaticDataService;
 using Code.Services.WalletService;
 using UniRx;
 using Zenject;
 
 namespace Code.Services.ShopService
 {
-    public class RecipeShop : IRecipeShopService, IInitializable, IDisposable
+    public sealed class RecipeShop : IRecipeShopService, IInitializable, IDisposable
     {
-        private readonly IStaticDataService _staticDataService;
+        private readonly IConfigProvider _configProvider;
         private readonly ILevelService _levelService;
         private readonly IRecipeService _recipeService;
         private readonly IWalletService _walletService;
         private readonly CompositeDisposable _disposables = new();
 
-        public IEnumerable<RecipeConfig> AllRecipes => _staticDataService.GetRecipes();
+        public IEnumerable<RecipeConfig> AllRecipes => _configProvider.GetRecipes();
 
         public event Action Updated;
 
-        public RecipeShop(IStaticDataService staticDataService, ILevelService levelService,
+        public RecipeShop(IConfigProvider configProvider, ILevelService levelService,
             IRecipeService recipeService, IWalletService walletService)
         {
-            _staticDataService = staticDataService;
+            _configProvider = configProvider;
             _levelService = levelService;
             _recipeService = recipeService;
             _walletService = walletService;

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Code.Configs;
 using Code.Goods;
-using Code.Recipes;
 
 namespace Code.Services.GameDataService.Data
 {
@@ -9,7 +9,7 @@ namespace Code.Services.GameDataService.Data
     {
         public List<RecipeData> Recipes { get; set; }
 
-        public RecipesData(IEnumerable<Recipe> recipes = null)
+        public RecipesData(IEnumerable<RecipeConfig> recipes = null)
         {
             Recipes = new();
             
@@ -20,7 +20,7 @@ namespace Code.Services.GameDataService.Data
                 Recipes.Add(CreateRecipeData(recipe));
         }
 
-        private RecipeData CreateRecipeData(Recipe recipe)
+        private RecipeData CreateRecipeData(RecipeConfig recipe)
         {
             var burgerData = new RecipeData();
 

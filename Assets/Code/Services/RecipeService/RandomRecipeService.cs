@@ -1,37 +1,25 @@
 using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
-using Code.Configs;
-=======
 using System.Linq;
+using ModestTree;
+using Code.Configs;
 using Code.Goods;
-using Code.Recipes;
 using Code.Services.ConfigProvider;
 using Code.Services.GameDataService;
 using Code.Services.GameDataService.Data;
-using ModestTree;
->>>>>>> 3f2981a6ce365d14b31d0e298b0e3d3d8fd23979
 using Random = UnityEngine.Random;
 
 namespace Code.Services.RecipeService
 {
     public sealed class RandomRecipeService : IRecipeService
     {
-<<<<<<< HEAD
         private readonly List<RecipeConfig> _recipes = new();
-        
-        public RecipeConfig GetNextRecipe() =>
-            _recipes[Random.Range(0, _recipes.Count)];
-
-        public void AddRecipe(RecipeConfig recipeConfig)
-=======
-        private readonly List<Recipe> _recipes = new();
         private readonly IConfigProvider _configProvider;
 
-        public IEnumerable<Recipe> Storage => _recipes;
+        public IEnumerable<RecipeConfig> Storage => _recipes;
         public string SaveKey => nameof(RandomRecipeService);
 
-        public Recipe GetNextRecipe() =>
+        public RecipeConfig GetNextRecipe() =>
             _recipes[Random.Range(0, _recipes.Count)];
 
         public RandomRecipeService(IConfigProvider configProvider)
@@ -39,19 +27,17 @@ namespace Code.Services.RecipeService
             _configProvider = configProvider;
         }
 
-        public void AddRecipe(Recipe recipe)
->>>>>>> 3f2981a6ce365d14b31d0e298b0e3d3d8fd23979
+        public void AddRecipe(RecipeConfig recipeConfig)
         {
             if(_recipes.Contains(recipeConfig))
                 throw new ArgumentException(nameof(recipeConfig));
             
             _recipes.Add(recipeConfig);
         }
-
-<<<<<<< HEAD
+        
         public bool Has(RecipeConfig recipeConfig) =>
             _recipes.Contains(recipeConfig);
-=======
+        
         public void Load(IData data)
         {
             if (data == null)
@@ -63,13 +49,13 @@ namespace Code.Services.RecipeService
             if(recipesData.Recipes.IsEmpty())
                 return;
 
-            IEnumerable<Recipe> allRecipes = _configProvider
-                .GetRecipes();
+            IEnumerable<RecipeConfig> allRecipes = _configProvider.GetRecipes();
+            
             IEnumerable<List<IngredientType>> savedRecipeDatas = recipesData
                 .Recipes
                 .Select(recipeData => recipeData.Burger);
 
-            IEnumerable<Recipe> savedRecipes = allRecipes.Where(recipe =>
+            IEnumerable<RecipeConfig> savedRecipes = allRecipes.Where(recipe =>
             {
                 IEnumerable<IngredientType> ingredients = recipe
                     .Burger
@@ -86,6 +72,5 @@ namespace Code.Services.RecipeService
         }
 
         public IData Save() => new RecipesData(_recipes);
->>>>>>> 3f2981a6ce365d14b31d0e298b0e3d3d8fd23979
     }
 }

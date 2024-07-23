@@ -1,19 +1,19 @@
 using Code.BurgerPlate;
-using Code.Recipes;
+using Code.Configs;
 using Code.Services.LevelService;
 using Code.Services.WalletService;
 using UniRx;
 
 namespace Code.Services.BurgerOrderService
 {
-    public class BurgerOrderService : IBurgerOrderService
+    public sealed class BurgerOrderService : IBurgerOrderService
     {
         private readonly IWalletService _walletService;
         private readonly ILevelService _levelService;
         private readonly IOrderValidator _orderValidator = new OrderValidator();
-        private readonly ReactiveProperty<Recipe> _currentOrder = new();
+        private readonly ReactiveProperty<RecipeConfig> _currentOrder = new();
 
-        public IReadOnlyReactiveProperty<Recipe> CurrentOrder => _currentOrder;
+        public IReadOnlyReactiveProperty<RecipeConfig> CurrentOrder => _currentOrder;
 
         public BurgerOrderService(IWalletService walletService, ILevelService levelService)
         {
@@ -21,7 +21,7 @@ namespace Code.Services.BurgerOrderService
             _levelService = levelService;
         }
 
-        public void Order(Recipe recipe) => 
+        public void Order(RecipeConfig recipe) => 
             _currentOrder.Value = recipe;
 
         public bool TryPassOrder(IBurgerPlate plate)
