@@ -1,7 +1,8 @@
+using Code.Kitchen;
 using Code.Units;
 using Code.Units.Commands;
 
-namespace Code.Kitchen.Trash
+namespace Code.Triggers.Trash
 {
     public sealed class Trash : Trigger<IPlayer>
     {

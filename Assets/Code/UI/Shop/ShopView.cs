@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Code.UI.Popups.Shop
+namespace Code.UI.Shop
 {
     public sealed class ShopPanel : MonoBehaviour
     {

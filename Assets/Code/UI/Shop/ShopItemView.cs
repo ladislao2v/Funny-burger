@@ -9,6 +9,7 @@ namespace Code.UI.Popups.Shop
     public sealed class ShopItemView : View, IShopItemView
     {
         [SerializeField] private Image _logo;
+        [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private BuyButton _button;
         
@@ -21,16 +22,22 @@ namespace Code.UI.Popups.Shop
         public event Action<IShopItem> BuyButtonClicked;
         
 
-        public void Construct(IShopItem recipeConfig)
+        public void Construct(IShopItem shopItem)
         {
-            _shopItem = recipeConfig;
+            _shopItem = shopItem;
 
             _logo.sprite = _shopItem.Logo;
-            _description.text = _shopItem.Description;
+            _name.text = _shopItem.Name;
+            _description.text = string.Format(_shopItem.Description, "\n");
+
+            _button.Construct(shopItem.Price);
         }
 
-        public void SetParent(Transform parent) => 
+        public void SetParent(Transform parent)
+        {
             transform.SetParent(parent);
+            transform.localScale = Vector3.one;
+        }
 
         private void OnEnable() => 
             _button.Clicked += OnBuyButtonClicked;

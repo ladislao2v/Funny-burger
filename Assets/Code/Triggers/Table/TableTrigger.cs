@@ -1,10 +1,10 @@
-﻿using System;
-using Code.BurgerPlate;
+﻿using Code.BurgerPlate;
+using Code.Kitchen;
 using Code.Units;
 using Code.Units.Commands;
 using UnityEngine;
 
-namespace Code.Kitchen.Table
+namespace Code.Triggers.Table
 {
     [RequireComponent(typeof(TablePlateView))]
     public sealed class Table : Trigger<IPlayer>
