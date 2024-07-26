@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Plugins.StateMachine.Core.Interfaces;
 using Plugins.StateMachine.StateFactory;
+using Zenject;
 
 namespace Plugins.StateMachine.Core
 {
-    public sealed class StateMachine : IStateMachine
+    public sealed class StateMachine : IStateMachine, ITickable
     {
         private readonly IStateFactory _stateFactory;
         private readonly List<Transition> _transitions = new();
@@ -48,7 +49,7 @@ namespace Plugins.StateMachine.Core
             _transitions.Add(new Transition(from, to, condition));
         }
 
-        public void Update()
+        public void Tick()
         {
             SetStateByTransition();
             

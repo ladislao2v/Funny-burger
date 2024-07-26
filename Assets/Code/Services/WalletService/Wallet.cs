@@ -5,7 +5,7 @@ using UniRx;
 
 namespace Code.Services.WalletService
 {
-    public class Wallet : IWalletService
+    public sealed class Wallet : IWalletService
     {
         private readonly ReactiveProperty<int> _money = new();
 

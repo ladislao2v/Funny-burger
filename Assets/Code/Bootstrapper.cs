@@ -15,8 +15,5 @@ namespace Code
 
         private void Awake() => 
             _stateMachine.EnterState<BootState>();
-
-        private void Update() => 
-            _stateMachine.Update();
     }
 }

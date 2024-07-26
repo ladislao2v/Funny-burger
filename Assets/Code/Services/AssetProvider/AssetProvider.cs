@@ -5,10 +5,10 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Code.Services.AssetProvider
 {
-    public class AssetProvider : IAssetProvider
+    public sealed class AssetProvider : IAssetProvider
     {
-        private Dictionary<string, AsyncOperationHandle> _completed = new();
-        private Dictionary<string, List<AsyncOperationHandle>> _handles = new();
+        private readonly Dictionary<string, AsyncOperationHandle> _completed = new();
+        private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new();
 
         public bool IsLoaded { get; private set; } = false;
 

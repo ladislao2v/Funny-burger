@@ -30,14 +30,10 @@ namespace Code.Effects.Units
             _player.TaskEnded -= OnTaskEnded;
         }
 
-        private void OnTaskEnded()
-        {
-            _animator.SetTrigger(ChefAnimatorParametr.TaskEnded);
-        }
+        private void OnTaskEnded() => _animator
+            .SetTrigger(ChefAnimatorParametr.TaskEnded);
 
-        private void OnTaskStarted()
-        {
-            _animator.SetTrigger(ChefAnimatorParametr.TaskStarted);
-        }
+        private void OnTaskStarted() => _animator.
+            SetTrigger(ChefAnimatorParametr.TaskStarted);
     }
 }

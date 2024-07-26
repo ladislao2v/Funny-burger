@@ -6,14 +6,10 @@ namespace Code.Units.Commands
     {
         private readonly IBurgerPlate _burgerPlate;
 
-        public ClearPlateCommand(IBurgerPlate burgerPlate)
-        {
+        public ClearPlateCommand(IBurgerPlate burgerPlate) => 
             _burgerPlate = burgerPlate;
-        }
-        
-        public void Execute()
-        {
+
+        public void Execute() => 
             _burgerPlate.Clear();
-        }
     }
 }

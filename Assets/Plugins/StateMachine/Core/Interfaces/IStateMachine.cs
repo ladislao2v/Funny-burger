@@ -12,6 +12,5 @@ namespace Plugins.StateMachine.Core.Interfaces
             where TStateFrom : class, IState
             where TStateTo : class, IState;
         void AddTransition<TStateTo>(Func<bool> condition) where TStateTo : class, IState;
-        void Update();
     }
 }

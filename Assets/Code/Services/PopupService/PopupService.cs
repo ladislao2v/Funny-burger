@@ -3,7 +3,7 @@ using Code.UI.Popups;
 
 namespace Code.Services.PopupService
 {
-    public class PopupService : IPopupService
+    public sealed class PopupService : IPopupService
     {
         private readonly IPopupFactory _popupFactory;
         private readonly IPopupContainer _popupContainer;
@@ -19,7 +19,7 @@ namespace Code.Services.PopupService
             Popup popup = 
                 await _popupFactory.Create(popupType);
 
-            _popupContainer.LinkPopup(popup);
+            _popupContainer.Put(popup);
         }
     }
 }

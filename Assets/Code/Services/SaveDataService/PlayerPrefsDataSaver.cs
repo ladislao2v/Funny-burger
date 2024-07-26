@@ -15,14 +15,16 @@ namespace Code.Services.SaveDataService
         {
             string json = PlayerPrefs.GetString(key);
 
-            IData data = JsonConvert.DeserializeObject<IData>(json, _settings);
+            IData data = JsonConvert
+                .DeserializeObject<IData>(json, _settings);
 
             return data;
         }
 
         public void Save(IData data, string key)
         {
-            string json = JsonConvert.SerializeObject(data, _settings);
+            string json = JsonConvert
+                .SerializeObject(data, _settings);
             
             PlayerPrefs.SetString(key, json);
             PlayerPrefs.Save();

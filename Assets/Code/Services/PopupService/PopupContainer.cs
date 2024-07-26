@@ -13,7 +13,7 @@ namespace Code.Services.PopupService
 
         private Popup _current;
         
-        public void LinkPopup(Popup popup)
+        public void Put(Popup popup)
         {
             if(_current != null)
                 Hide();

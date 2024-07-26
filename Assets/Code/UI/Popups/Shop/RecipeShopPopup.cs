@@ -5,7 +5,6 @@ using Code.Services.ShopService;
 using Code.UI.Shop;
 using ModestTree;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 namespace Code.UI.Popups.Shop

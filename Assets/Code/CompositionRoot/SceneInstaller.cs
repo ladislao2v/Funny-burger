@@ -1,6 +1,4 @@
 ﻿using Code.Movement;
-using Code.Services.Factories.IngredientFactory;
-using Code.Services.Factories.PopupFactory;
 using Code.Services.Input;
 using Code.Services.PopupService;
 using Code.Units;
@@ -73,7 +71,7 @@ namespace Code.CompositionRoot
         
         private void BindStateMachine()
         {
-            Container.BindInterfacesAndSelfTo<Plugins.StateMachine.Core.StateMachine>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Plugins.StateMachine.Core.StateMachine>().AsCached();
         }
 
         private void BindStateFactory()
