@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f747585ce3d44270aceb572925b15b81, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 3.8
-  <TaskTime>k__BackingField: 2
+  <Speed>k__BackingField: 4.2
+  <TaskTime>k__BackingField: 1.5

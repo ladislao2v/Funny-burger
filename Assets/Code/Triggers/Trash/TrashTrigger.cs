@@ -1,10 +1,9 @@
-using Code.Kitchen;
 using Code.Units;
 using Code.Units.Commands;
 
 namespace Code.Triggers.Trash
 {
-    public sealed class Trash : Trigger<IPlayer>
+    public sealed class TrashTrigger : Trigger<IPlayer>
     {
         protected override bool TryInteractWith(IPlayer player)
         {

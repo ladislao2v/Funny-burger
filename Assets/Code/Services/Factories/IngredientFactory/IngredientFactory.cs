@@ -1,5 +1,4 @@
 ﻿using Code.Configs;
-using Code.Goods;
 using Code.Ingredients;
 using Code.Services.ConfigProvider;
 using Code.Services.Factories.PrefabFactory;

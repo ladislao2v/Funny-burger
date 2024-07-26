@@ -1,5 +1,5 @@
 ﻿using System;
-using Code.Kitchen;
+using Code.Triggers;
 using Code.Units;
 using DG.Tweening;
 using UnityEngine;

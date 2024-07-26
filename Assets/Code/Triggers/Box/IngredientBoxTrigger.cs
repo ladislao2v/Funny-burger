@@ -1,14 +1,12 @@
 using Code.BurgerPlate;
-using Code.Goods;
-using Code.Kitchen;
+using Code.Ingredients;
 using Code.Units;
 using Code.Units.Commands;
 using UnityEngine;
 
 namespace Code.Triggers.Box
 {
-    [RequireComponent(typeof(SphereCollider))]
-    public sealed class Box : Trigger<IPlayer>
+    public sealed class IngredientBoxTrigger : Trigger<IPlayer>
     {
         [SerializeField] private IngredientType _ingredientType;
         protected override bool TryInteractWith(IPlayer player)

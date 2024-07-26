@@ -6,8 +6,8 @@ namespace Code.Configs
     public class SettingsConfig : ScriptableObject, IChefConfig
     {
         [field: Header("Chef")]
-        [field: SerializeField] public float Speed { get; private set; }
-        [field: SerializeField] public float TaskTime { get; private set; }
+        [field: SerializeField, Range(0, 10)] public float Speed { get; private set; }
+        [field: SerializeField, Range(0, 3)] public float TaskTime { get; private set; }
     }
 
     public interface IChefConfig

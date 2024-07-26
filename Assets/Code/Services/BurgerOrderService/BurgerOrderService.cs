@@ -1,3 +1,4 @@
+using System;
 using Code.BurgerPlate;
 using Code.Configs;
 using Code.Services.LevelService;
@@ -11,9 +12,14 @@ namespace Code.Services.BurgerOrderService
         private readonly IWalletService _walletService;
         private readonly ILevelService _levelService;
         private readonly IOrderValidator _orderValidator = new OrderValidator();
-        private readonly ReactiveProperty<RecipeConfig> _currentOrder = new();
 
-        public IReadOnlyReactiveProperty<RecipeConfig> CurrentOrder => _currentOrder;
+        private RecipeConfig _currentOrder;
+        private IDisposable _timer;
+        public bool HasOrder => _currentOrder != null;
+        
+        public event Action<RecipeConfig> Ordered;
+        public event Action Failed;
+        public event Action OrderPassed;
 
         public BurgerOrderService(IWalletService walletService, ILevelService levelService)
         {
@@ -21,16 +27,47 @@ namespace Code.Services.BurgerOrderService
             _levelService = levelService;
         }
 
-        public void Order(RecipeConfig recipe) => 
-            _currentOrder.Value = recipe;
+        public void Order(RecipeConfig recipe)
+        {
+            _currentOrder = recipe;
+
+            StartTimer();
+            
+            Ordered?.Invoke(_currentOrder);
+        }
+
+        private void StartTimer()
+        {
+            TimeSpan timerTime =
+                TimeSpan.FromSeconds(_currentOrder.CookTime);
+
+            _timer = Observable
+                .Timer(timerTime)
+                .Subscribe((_) =>
+                {
+                    _currentOrder = null;
+                    Failed?.Invoke();
+                    _timer.Dispose();
+                });
+        }
 
         public bool TryPassOrder(IBurgerPlate plate)
         {
-            if (!_orderValidator.Validate(_currentOrder.Value, plate.Ingredients))
+            if (_currentOrder == null)
                 return false;
             
-            _walletService.Add(_currentOrder.Value.Price);
+            if (plate.IsEmpty)
+                return false;
+            
+            if (!_orderValidator.Validate(_currentOrder, plate.Ingredients))
+                return false;
+            
+            _walletService.Add(_currentOrder.Price);
             _levelService.AddPoint();
+            
+            OrderPassed?.Invoke();
+
+            _currentOrder = null;
 
             return true;
         }

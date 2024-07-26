@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Configs;
 using Code.Constants;
-using Code.Goods;
+using Code.Ingredients;
 using Code.Services.PopupService;
 using UnityEngine;
 

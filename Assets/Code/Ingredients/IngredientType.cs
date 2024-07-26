@@ -1,4 +1,4 @@
-namespace Code.Goods
+namespace Code.Ingredients
 {
     public enum IngredientType
     {

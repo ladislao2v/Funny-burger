@@ -4,10 +4,8 @@ using Code.Services.GameDataService.Data;
 
 namespace Code.Services.LevelService
 {
-    public class LevelService : ILevelService
+    public sealed class LevelService : ILevelService
     {
-        private const int K = 1;
-
         private int _progress;
         
         public int Current { get; private set; }
@@ -62,7 +60,10 @@ namespace Code.Services.LevelService
             if (level < 0)
                 throw new ArgumentException(nameof(level));
 
-            return (int)(K * Math.Pow(Math.Log(K + 1, 2), level - 1));
+            if (level == 0)
+                return 1;
+
+            return (int)Math.Pow(2, level - 1) + 1;
         }
     }
 }

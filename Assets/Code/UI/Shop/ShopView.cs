@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.UI.Shop
 {
-    public sealed class ShopPanel : MonoBehaviour
+    public sealed class ShopView : View, IShopView
     {
         [SerializeField] private Transform _container;
 

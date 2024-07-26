@@ -1,5 +1,4 @@
-﻿using Code.Goods;
-using Code.Ingredients;
+﻿using Code.Ingredients;
 using Cysharp.Threading.Tasks;
 
 namespace Code.Services.Factories.IngredientFactory

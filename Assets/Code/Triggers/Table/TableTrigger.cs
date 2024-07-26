@@ -1,5 +1,4 @@
 ﻿using Code.BurgerPlate;
-using Code.Kitchen;
 using Code.Units;
 using Code.Units.Commands;
 using UnityEngine;
@@ -7,7 +6,7 @@ using UnityEngine;
 namespace Code.Triggers.Table
 {
     [RequireComponent(typeof(TablePlateView))]
-    public sealed class Table : Trigger<IPlayer>
+    public sealed class TableTrigger : Trigger<IPlayer>
     {
         private readonly IBurgerPlate _plate = new Plate();
 

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using ModestTree;
 using Code.Configs;
-using Code.Goods;
+using Code.Extensions;
+using Code.Ingredients;
 using Code.Services.ConfigProvider;
 using Code.Services.GameDataService;
 using Code.Services.GameDataService.Data;
-using Random = UnityEngine.Random;
-
 namespace Code.Services.RecipeService
 {
     public sealed class RandomRecipeService : IRecipeService
@@ -20,11 +19,17 @@ namespace Code.Services.RecipeService
         public string SaveKey => nameof(RandomRecipeService);
 
         public RecipeConfig GetNextRecipe() =>
-            _recipes[Random.Range(0, _recipes.Count)];
+            _recipes.GetRandom();
 
         public RandomRecipeService(IConfigProvider configProvider)
         {
             _configProvider = configProvider;
+
+            var startRecipe = _configProvider
+                .GetRecipes()
+                .First(x => x.IsStart);
+            
+            AddRecipe(startRecipe);
         }
 
         public void AddRecipe(RecipeConfig recipeConfig)

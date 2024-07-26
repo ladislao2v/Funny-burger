@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Code.Configs;
-using Code.Goods;
+using Code.Ingredients;
 
 namespace Code.Services.BurgerOrderService
 {

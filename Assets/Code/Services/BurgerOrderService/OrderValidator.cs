@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Code.Configs;
-using Code.Goods;
+using Code.Ingredients;
 
 namespace Code.Services.BurgerOrderService
 {

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Code.UI.Popups.Shop
+namespace Code.UI.Shop
 {
     public sealed class ShopItemView : View, IShopItemView
     {

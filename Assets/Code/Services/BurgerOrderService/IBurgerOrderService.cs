@@ -1,4 +1,5 @@
-﻿using Code.BurgerPlate;
+﻿using System;
+using Code.BurgerPlate;
 using Code.Configs;
 using Code.Services.BurgerOrderService;
 using Code.Services.RecipeService;
@@ -8,7 +9,11 @@ namespace Code.Services.BurgerOrderService
 {
     public interface IBurgerOrderService
     {
-        IReadOnlyReactiveProperty<RecipeConfig> CurrentOrder { get; }
+        bool HasOrder { get; }
+        
+        event Action<RecipeConfig> Ordered;
+        event Action Failed;
+        event Action OrderPassed;
 
         void Order(RecipeConfig recipe);
         bool TryPassOrder(IBurgerPlate plate);

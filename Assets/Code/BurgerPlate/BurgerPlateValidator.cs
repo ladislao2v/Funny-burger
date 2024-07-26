@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Goods;
+using Code.Ingredients;
 using ModestTree;
-using static Code.Goods.IngredientType;
+using static Code.Ingredients.IngredientType;
 
 namespace Code.BurgerPlate
 {

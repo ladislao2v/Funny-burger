@@ -1,7 +1,9 @@
-﻿namespace Code.UI.Order
+﻿using Code.Configs;
+
+namespace Code.UI.Order
 {
-    public interface IOrverView
+    public interface IOrderView : IView
     {
-        
+        void OnOrder(RecipeConfig config);
     }
 }

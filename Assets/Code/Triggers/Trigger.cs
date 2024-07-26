@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Code.Kitchen
+namespace Code.Triggers
 {
+    [RequireComponent(typeof(SphereCollider))]
     public abstract class Trigger<TTriggerActivator> : MonoBehaviour
     {
         public event Action Enter;

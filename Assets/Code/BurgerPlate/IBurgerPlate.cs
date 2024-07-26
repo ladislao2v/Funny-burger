@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Code.Goods;
+using Code.Ingredients;
 
 namespace Code.BurgerPlate
 {

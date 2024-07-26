@@ -2,7 +2,7 @@
 using Code.Services.ShopService;
 using UnityEngine;
 
-namespace Code.UI.Popups.Shop
+namespace Code.UI.Shop
 {
     public interface IShopItemView : IView
     {

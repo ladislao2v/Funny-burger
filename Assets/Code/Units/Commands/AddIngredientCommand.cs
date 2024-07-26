@@ -1,5 +1,5 @@
 using Code.BurgerPlate;
-using Code.Goods;
+using Code.Ingredients;
 using UnityEngine;
 
 namespace Code.Units.Commands

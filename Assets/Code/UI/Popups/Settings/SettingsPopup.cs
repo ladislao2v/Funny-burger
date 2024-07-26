@@ -12,7 +12,6 @@ namespace Code.UI.Popups.Settings
         private readonly CompositeDisposable _disposable = new();
         
         [SerializeField] private Toggle _soundToggle;
-        [SerializeField] private Emitter[] _emitters;
 
         private IAudioService _audioService;
         

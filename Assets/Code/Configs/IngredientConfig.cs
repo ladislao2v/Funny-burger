@@ -1,7 +1,6 @@
-﻿using Code.Goods;
+﻿using Code.Ingredients;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Serialization;
 
 namespace Code.Configs
 {

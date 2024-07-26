@@ -2,6 +2,7 @@
 using Code.Configs;
 using Code.Services.Factories.ItemShopFactory;
 using Code.Services.ShopService;
+using Code.UI.Shop;
 using ModestTree;
 using UniRx;
 using UnityEngine;
@@ -12,17 +13,17 @@ namespace Code.UI.Popups.Shop
     public sealed class RecipeShopPopup : Popup
     {
         private readonly CompositeDisposable _disposables = new();
-        
-        [SerializeField] private ShopPanel _shopPanel;
 
         private IRecipeShopService _recipeShop;
         private IShopItemViewFactory _factory;
+        private IShopView _shopView;
 
         [Inject]
         private void Construct(IRecipeShopService recipeShop, IShopItemViewFactory factory)
         {
             _factory = factory;
             _recipeShop = recipeShop;
+            _shopView = GetComponent<IShopView>();
         }
 
         private void OnEnable()
@@ -35,8 +36,8 @@ namespace Code.UI.Popups.Shop
         {
             _disposables.Dispose();
 
-            foreach (IShopItemView itemView in _shopPanel.ItemViews)
-                itemView.BuyButtonClicked -= TryBuy;
+            foreach (IShopItemView itemView in _shopView.ItemViews)
+                itemView.BuyButtonClicked -= OnBuyButtonClicked;
             
             _recipeShop.Updated -= OnShopUpdated;
         }
@@ -47,6 +48,9 @@ namespace Code.UI.Popups.Shop
 
             foreach (var item in items)
             {
+                if(item.IsStart)
+                    continue;
+
                 IShopItemView shopItemView = await 
                     _factory.Create(item);
 
@@ -55,15 +59,15 @@ namespace Code.UI.Popups.Shop
                 else
                     shopItemView.DisableButton();
                 
-                shopItemView.BuyButtonClicked += TryBuy;
+                shopItemView.BuyButtonClicked += OnBuyButtonClicked;
 
                 itemViews.Add(shopItemView);
             }
             
-            _shopPanel.Show(itemViews);
+            _shopView.Show(itemViews);
         }
 
-        private void TryBuy(IShopItem item)
+        private void OnBuyButtonClicked(IShopItem item)
         {
             if(item is not RecipeConfig recipe)
                 return;
@@ -76,10 +80,10 @@ namespace Code.UI.Popups.Shop
         
         private void OnShopUpdated()
         {
-            if(_shopPanel.ItemViews.IsEmpty())
+            if(_shopView.ItemViews.IsEmpty())
                 return;
 
-            foreach (var itemView in _shopPanel.ItemViews)
+            foreach (var itemView in _shopView.ItemViews)
             {
                 if(_recipeShop.TryBuy(itemView.ShopItem as RecipeConfig))
                     itemView.EnableButton();
@@ -87,7 +91,7 @@ namespace Code.UI.Popups.Shop
                     itemView.DisableButton();
             }
             
-            _shopPanel.Sort();
+            _shopView.Sort();
         }
     }
 }

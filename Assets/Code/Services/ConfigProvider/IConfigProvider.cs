@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Configs;
-using Code.Goods;
+using Code.Ingredients;
 using Code.Services.PopupService;
 
 namespace Code.Services.ConfigProvider
