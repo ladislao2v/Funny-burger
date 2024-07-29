@@ -9,20 +9,18 @@ namespace Code.Units.Commands
     {
         private readonly IClient _client;
         private readonly Transform _point;
-        private readonly Action _moved;
+        private readonly float _duration; 
 
-        private readonly float _duration = 1f; 
-
-        public MoveTo(IClient client, Transform point, Action moved = null)
+        public MoveTo(IClient client, Transform point, float duration)
         {
             _client = client;
             _point = point;
-            _moved = moved;
+            _duration = duration;
         }
 
         public void Execute()
         {
-            _client.Movement.Move(_point.position, _duration, _moved);
+            _client.Movement.Move(_point.position, _duration);
         }
     }
 }

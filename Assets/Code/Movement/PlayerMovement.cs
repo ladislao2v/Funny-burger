@@ -17,7 +17,7 @@ namespace Code.Movement
         private void Awake() => 
             _characterController = GetComponent<CharacterController>();
 
-        public void Move(Vector3 direction, float speed, Action onMoved = null)
+        public void Move(Vector3 direction, float speed)
         {
             bool isMove = direction.magnitude != 0;
 

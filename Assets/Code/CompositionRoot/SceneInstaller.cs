@@ -1,4 +1,5 @@
 ﻿using Code.Movement;
+using Code.Services.ClientsService;
 using Code.Services.Input;
 using Code.Services.PopupService;
 using Code.Units;
@@ -16,6 +17,7 @@ namespace Code.CompositionRoot
 
         [Header("Units")] 
         [SerializeField] private Chef _chef;
+        [SerializeField] private ClientsService _clientService;
 
         public override void InstallBindings()
         {
@@ -23,9 +25,15 @@ namespace Code.CompositionRoot
             BindInputService();
             BindPlayer();
             BindPlayerRouter();
+            BindClientService();
             BindPopupService();
             BindStateFactory();
             BindStateMachine();
+        }
+
+        private void BindClientService()
+        {
+            Container.BindInterfacesAndSelfTo<ClientsService>().FromInstance(_clientService).AsSingle();
         }
 
         private void BindPopupService()

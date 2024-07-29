@@ -2,13 +2,13 @@
 using Code.Services.AudioService;
 using Code.Services.BurgerOrderService;
 using Code.Services.ConfigProvider;
+using Code.Services.Factories.ClientFactory;
 using Code.Services.Factories.IngredientFactory;
 using Code.Services.Factories.ItemShopFactory;
 using Code.Services.Factories.PopupFactory;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.GameDataService;
 using Code.Services.LevelService;
-using Code.Services.PopupService;
 using Code.Services.RecipeService;
 using Code.Services.SaveDataService;
 using Code.Services.SceneLoader;
@@ -61,6 +61,7 @@ namespace Code.CompositionRoot
             Container.BindInterfacesAndSelfTo<IngredientFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<PopupFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<ShopItemViewFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ClientFactory>().AsSingle();
         }
 
         private void BindGameDataService()

@@ -8,6 +8,6 @@ namespace Code.Movement
     {
         public IReactiveProperty<bool> IsMoving { get; }
         
-        public void Move(Vector3 direction, float speed, Action onMoved = null);
+        public void Move(Vector3 direction, float speed);
     }
 }
