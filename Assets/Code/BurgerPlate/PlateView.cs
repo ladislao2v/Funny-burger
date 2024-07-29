@@ -52,10 +52,10 @@ namespace Code.BurgerPlate
         {
             ingredient.gameObject.SetActive(true);
             ingredient.transform.SetParent(_container);
-            ingredient.transform.localPosition = GetPosition();
+            ingredient.transform.localPosition = GetCurrentOffset();
         }
 
-        private Vector3 GetPosition() =>
+        private Vector3 GetCurrentOffset() =>
             _ingredients.Count * _offsetBetweenIngredients;
     }
 }

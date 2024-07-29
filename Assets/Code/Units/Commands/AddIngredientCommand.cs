@@ -5,18 +5,18 @@ namespace Code.Units.Commands
 {
     public sealed class AddIngredientCommand : ICommand
     {
-        private readonly IBurgerPlate _playerBurgerPlate;
+        private readonly IBurgerPlate _plate;
         private readonly IngredientType _ingredientType;
 
-        public AddIngredientCommand(IBurgerPlate playerBurgerPlate, IngredientType ingredientType)
+        public AddIngredientCommand(IBurgerPlate plate, IngredientType ingredientType)
         {
-            _playerBurgerPlate = playerBurgerPlate;
+            _plate = plate;
             _ingredientType = ingredientType;
         }
 
         public void Execute()
         {
-            _playerBurgerPlate.Add(_ingredientType);
+            _plate.Add(_ingredientType);
         }
     }
 }

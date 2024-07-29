@@ -14,21 +14,19 @@ namespace Code.Movement
         private ReactiveProperty<bool> _isMoving = new();
         public IReactiveProperty<bool> IsMoving => _isMoving;
 
-        private void Awake()
-        {
+        private void Awake() => 
             _characterController = GetComponent<CharacterController>();
-        }
 
-        public void Move(Vector3 direction, float speed)
+        public void Move(Vector3 direction, float speed, Action onMoved = null)
         {
             bool isMove = direction.magnitude != 0;
 
             if (_isMoving.Value != isMove)
                 _isMoving.Value = isMove;
-            
-            if(IsMoving.Value == false)
+
+            if (IsMoving.Value == false)
                 return;
-            
+
             _model.LookAt(_model.position + direction);
             _characterController.Move(direction * (speed * Time.fixedDeltaTime));
         }

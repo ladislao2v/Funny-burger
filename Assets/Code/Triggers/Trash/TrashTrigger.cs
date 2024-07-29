@@ -12,7 +12,7 @@ namespace Code.Triggers.Trash
 
             var clearPlateCommand = 
                 new ClearPlateCommand(player.Plate);
-            
+
             player.Do(clearPlateCommand, Disable);
 
             return true;

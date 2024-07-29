@@ -61,7 +61,7 @@ namespace Code.Services.LevelService
                 throw new ArgumentException(nameof(level));
 
             if (level == 0)
-                return 1;
+                return 1; 
 
             return (int)Math.Pow(2, level - 1) + 1;
         }

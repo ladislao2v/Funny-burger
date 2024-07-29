@@ -18,6 +18,7 @@ namespace Code.Services.AssetProvider
 
             IsLoaded = true;
         }
+        
         public async UniTask<T> GetAsset<T>(AssetReference assetReference) where T : class
         {
             if (_completed.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))

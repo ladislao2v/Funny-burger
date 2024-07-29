@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine;
 
 namespace Code.Movement
@@ -7,6 +8,6 @@ namespace Code.Movement
     {
         public IReactiveProperty<bool> IsMoving { get; }
         
-        public void Move(Vector3 direction, float speed);
+        public void Move(Vector3 direction, float speed, Action onMoved = null);
     }
 }

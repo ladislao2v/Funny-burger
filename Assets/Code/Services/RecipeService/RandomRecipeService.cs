@@ -73,7 +73,6 @@ namespace Code.Services.RecipeService
             });
 
             _recipes.AddRange(savedRecipes);
-
         }
 
         public IData Save() => new RecipesData(_recipes);

@@ -1,6 +1,5 @@
 ﻿using Code.Services.BurgerOrderService;
 using Code.Units;
-using Code.Units.Commands;
 using Zenject;
 
 namespace Code.Triggers.OrderWindow
@@ -19,11 +18,8 @@ namespace Code.Triggers.OrderWindow
         {
             if (!_burgerOrderService.TryPassOrder(player.Plate))
                 return false;
-            
-            var clearPlateCommand = 
-                new ClearPlateCommand(player.Plate);
-            
-            player.Do(clearPlateCommand, Disable);
+
+            player.Plate.Clear();
 
             return true;
         }

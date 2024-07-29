@@ -17,11 +17,9 @@ namespace Code.UI.Shop
         
         public IShopItem ShopItem => _shopItem;
         public bool IsActive => _button.IsActive;
-        
 
         public event Action<IShopItem> BuyButtonClicked;
         
-
         public void Construct(IShopItem shopItem)
         {
             _shopItem = shopItem;

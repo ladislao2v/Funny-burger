@@ -1,16 +1,16 @@
-﻿using Code.Configs;
+﻿using System;
+using Code.Configs;
 using Code.Services.AudioService;
 using Code.Services.ConfigProvider;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.PopupService;
 using Code.UI.Popups;
-using Code.UI.Popups.Settings;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Code.Services.Factories.PopupFactory
 {
-    public class PopupFactory : IPopupFactory
+    public sealed class PopupFactory : IPopupFactory
     {
         private readonly IPrefabFactory _prefabFactory;
         private readonly IConfigProvider _configProvider;
@@ -27,10 +27,13 @@ namespace Code.Services.Factories.PopupFactory
             PopupConfig config = _configProvider
                 .GetPopupConfig(popupType);
             
-            GameObject popup = await _prefabFactory
+            GameObject gameObject = await _prefabFactory
                 .Create(config.PrefabReference);
 
-            return popup.GetComponent<Popup>();
+            if (!gameObject.TryGetComponent(out Popup popup))
+                throw new ArgumentException(nameof(gameObject));
+            
+            return popup;
         }
     }
 }

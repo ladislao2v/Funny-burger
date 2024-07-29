@@ -18,21 +18,18 @@ namespace Code.Units
         public event Action TaskStarted;
         public event Action TaskEnded;
 
-        private void Awake()
-        {
+        private void Awake() => 
             Movement = GetComponent<IMovement>();
-        }
 
-        public void Construct(IChefConfig config)
-        {
+        public void Construct(IChefConfig config) => 
             Config = config;
-        }
 
         public void Do(ICommand command, Action onDo)
         {
             TaskStarted?.Invoke();
 
-            var timerTime = TimeSpan.FromSeconds(Config.TaskTime);
+            var timerTime = 
+                TimeSpan.FromSeconds(Config.TaskTime);
 
             _timer = Observable.Timer(timerTime)
                 .Subscribe(_ =>

@@ -1,8 +1,10 @@
-﻿using Code.Configs;
+﻿using System;
+using Code.Configs;
 using Code.Ingredients;
 using Code.Services.ConfigProvider;
 using Code.Services.Factories.PrefabFactory;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Code.Services.Factories.IngredientFactory
@@ -23,10 +25,13 @@ namespace Code.Services.Factories.IngredientFactory
             IngredientConfig config = _configProvider
                 .GetIngredientConfig(ingredientType);
             
-            GameObject ingredient = await _prefabFactory
+            GameObject gameObject = await _prefabFactory
                 .Create(config.PrefabReference);
 
-            return ingredient.GetComponent<Ingredient>();
+            if (!gameObject.TryGetComponent(out Ingredient ingredient))
+                throw new ArgumentException(nameof(gameObject));
+            
+            return ingredient;
         }
     }
 }
