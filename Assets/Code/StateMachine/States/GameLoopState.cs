@@ -1,10 +1,10 @@
 ﻿using Code.Configs;
 using Code.Services.BurgerOrderService;
+using Code.Services.ClientsService;
 using Code.Services.Input;
 using Code.Services.RecipeService;
 using Cysharp.Threading.Tasks;
 using Plugins.StateMachine.Core.Interfaces;
-using UnityEngine;
 
 namespace Code.StateMachine.States
 {
@@ -13,30 +13,49 @@ namespace Code.StateMachine.States
         private readonly IInput _input;
         private readonly IRecipeService _recipeService;
         private readonly IBurgerOrderService _orderService;
+        private readonly IClientsService _clientsService;
+        
+        private bool _isWorking = true;
 
-        public GameLoopState(IInput input, IRecipeService recipeService, IBurgerOrderService orderService)
+        public GameLoopState(IInput input, IRecipeService recipeService, 
+            IBurgerOrderService orderService, IClientsService clientsService)
         {
             _input = input;
             _recipeService = recipeService;
             _orderService = orderService;
+            _clientsService = clientsService;
         }
         
         public void Enter()
         {
             _input.Enable();
+            _orderService.OrderPassed += _clientsService.ReturnClient;
+            _orderService.Failed += _clientsService.ReturnClient;
 
             Order();
         }
 
-        private void Order()
+        private async void Order()
         {
-            RecipeConfig recipe = _recipeService.GetNextRecipe();
-            _orderService.Order(recipe);
+            while (_isWorking)
+            {
+                _clientsService.SendClient();
+
+                await UniTask.WaitWhile(() => _clientsService.IsSend);
+                
+                RecipeConfig recipe = _recipeService.GetNextRecipe();
+                _orderService.Order(recipe);
+                
+                await UniTask.WaitWhile(() => _clientsService.IsSend == false);
+            }
         }
 
         public void Exit()
         {
+            _isWorking = false;
             _input.Disable();
+            _orderService.OrderPassed -= _clientsService.ReturnClient;
+            _orderService.Failed -= _clientsService.ReturnClient;
         }
     }
 }
