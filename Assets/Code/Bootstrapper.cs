@@ -1,4 +1,4 @@
-using Code.StateMachine.States;
+using Code.States;
 using Plugins.StateMachine.Core.Interfaces;
 using UnityEngine;
 using Zenject;

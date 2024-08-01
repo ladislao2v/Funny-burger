@@ -13,6 +13,6 @@ namespace Code.UI.Shop
         void Construct(IShopItem shopItem);
         void SetParent(Transform parent);
         void EnableButton();
-        void DisableButton();
+        void DisableButton(bool isBought = false);
     }
 }

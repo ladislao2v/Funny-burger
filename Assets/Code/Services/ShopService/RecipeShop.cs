@@ -57,7 +57,11 @@ namespace Code.Services.ShopService
                 return;
 
             _recipeService.AddRecipe(recipeConfig);
+            _walletService.Spend(recipeConfig.Price);
         }
+
+        public bool IsBought(RecipeConfig recipe) => 
+            _recipeService.Has(recipe);
 
         public void Dispose()
         {

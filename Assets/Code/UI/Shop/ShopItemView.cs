@@ -44,8 +44,8 @@ namespace Code.UI.Shop
 
         public void EnableButton() => 
             _button.Enable();
-        public void DisableButton() => 
-            _button.Disable();
+        public void DisableButton(bool isBought) => 
+            _button.Disable(isBought);
 
         private void OnBuyButtonClicked() => 
             BuyButtonClicked?.Invoke(_shopItem);

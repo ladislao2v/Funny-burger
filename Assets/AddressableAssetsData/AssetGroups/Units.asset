@@ -69,6 +69,10 @@ MonoBehaviour:
     m_Address: Client
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: a93a5a4d1958f4a43807dadae5811d04
+    m_Address: Client
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
   m_SchemaSet:

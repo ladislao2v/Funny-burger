@@ -20,9 +20,12 @@ namespace Code.Movement
         public async void Move(Vector3 position, float duration)
         {
             _isMoving.Value = true;
-            _navMeshAgent.Move(position);
+
+            _navMeshAgent.SetDestination(position);
 
             await UniTask.WaitForSeconds(duration);
+            
+            _navMeshAgent.ResetPath();
 
             _isMoving.Value = false;
         }

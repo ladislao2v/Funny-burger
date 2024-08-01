@@ -5,13 +5,13 @@ using Code.Units;
 using Code.Units.Commands;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Services.ClientsService
 {
     public sealed class ClientsService : MonoBehaviour, IClientsService
     {
         private readonly Queue<IClient> _clients = new();
-        private readonly IClientFactory _clientFactory;
 
         [SerializeField] private int _clientsCount;
         
@@ -30,11 +30,13 @@ namespace Code.Services.ClientsService
         [Header("Queue")] 
         [SerializeField] private float _queueMoveDuration;
 
+        private IClientFactory _clientFactory;
         private IClient _current;
 
         public bool IsSend => _current != null;
 
-        public ClientsService(IClientFactory clientFactory)
+        [Inject]
+        private void Construct(IClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
         }
@@ -50,7 +52,7 @@ namespace Code.Services.ClientsService
             IClient client = DequeueClient();
 
             ICommand moveToWindow = 
-                new MoveTo(_current, _window, _windowDuration);
+                new MoveTo(client, _window, _windowDuration);
             
             client.Do(moveToWindow, () => 
                 OnMoved(_windowDuration, () => _current = client)
@@ -59,6 +61,9 @@ namespace Code.Services.ClientsService
 
         public void ReturnClient()
         {
+            if(_current == null)
+                throw new InvalidOperationException();
+
             ICommand goAway = 
                 new MoveTo(_current, _away, _awayDuration);
             
@@ -81,9 +86,11 @@ namespace Code.Services.ClientsService
             foreach (var client in _clients)
             {
                 ICommand moveToPrevios = 
-                    new MoveTo(_current, previos.Transform, _queueMoveDuration);
+                    new MoveTo(client, previos.Transform, _queueMoveDuration);
                 
                 client.Do(moveToPrevios);
+
+                previos = client;
             }
 
             return last;

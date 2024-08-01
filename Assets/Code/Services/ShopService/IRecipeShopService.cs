@@ -12,5 +12,6 @@ namespace Code.Services.ShopService
 
         bool TryBuy(RecipeConfig recipeConfig);
         void Buy(RecipeConfig recipeConfig);
+        bool IsBought(RecipeConfig recipe);
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Code.Services.Factories.ClientFactory
 {
-    public class ClientFactory : IClientFactory
+    public sealed class ClientFactory : IClientFactory
     {
         private readonly IPrefabFactory _prefabFactory;
 
@@ -21,7 +21,7 @@ namespace Code.Services.Factories.ClientFactory
             GameObject gameObject = await _prefabFactory.Create(AssetKey.Client);
             
             gameObject.transform.SetParent(parent);
-            gameObject.transform.Translate(position);
+            gameObject.transform.localPosition = position;
 
             if (!gameObject.TryGetComponent(out IClient client))
                 throw new ArgumentException(nameof(gameObject));

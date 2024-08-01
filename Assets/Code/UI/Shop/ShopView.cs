@@ -16,13 +16,6 @@ namespace Code.UI.Shop
         {
             _shopItemViews.AddRange(shopItemsView);
             _shopItemViews.ForEach(x => x.SetParent(_container));
-            
-            Sort();
         }
-
-        public void Sort() =>
-            _shopItemViews = _shopItemViews
-                .OrderByDescending(x => x.IsActive)
-                .ToList();
     }
 }

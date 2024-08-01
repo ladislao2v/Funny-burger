@@ -8,11 +8,14 @@ namespace Code.UI.Shop
     public sealed class BuyButton : View
     {
         [SerializeField] private TextMeshProUGUI _priceView;
+        [SerializeField] private Image _coin;
         [SerializeField] private Image _lock;
+        [SerializeField] private Image _mark;
         
         private Button _button;
-        public bool IsActive => _lock.enabled;
         
+        public bool IsActive => _lock.enabled;
+
         public event Action Clicked;
 
         public void Construct(int price) => 
@@ -30,13 +33,25 @@ namespace Code.UI.Shop
         public void Enable()
         {
             _lock.enabled = false;
+            _mark.enabled = false;
             _button.interactable = true;
         }
 
-        public void Disable()
+        public void Disable(bool isBought = false)
         {
-            _lock.enabled = true;
+            if (isBought)
+                SetBoughtState();
+            else
+                _lock.enabled = true;
+                
             _button.interactable = false;
+        }
+
+        private void SetBoughtState()
+        {
+            _mark.enabled = true;
+            _priceView.enabled = false;
+            _coin.enabled = false;
         }
 
         private void OnClicked() => 

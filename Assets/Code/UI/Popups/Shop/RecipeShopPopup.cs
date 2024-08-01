@@ -5,6 +5,7 @@ using Code.Services.ShopService;
 using Code.UI.Shop;
 using ModestTree;
 using UniRx;
+using Unity.VisualScripting;
 using Zenject;
 
 namespace Code.UI.Popups.Shop
@@ -47,16 +48,15 @@ namespace Code.UI.Popups.Shop
 
             foreach (var item in items)
             {
-                if(item.IsStart)
-                    continue;
-
                 IShopItemView shopItemView = await 
                     _factory.Create(item);
 
-                if(_recipeShop.TryBuy(item as RecipeConfig))
+                RecipeConfig recipeConfig = item as RecipeConfig;
+
+                if(_recipeShop.TryBuy(recipeConfig))
                     shopItemView.EnableButton();
                 else
-                    shopItemView.DisableButton();
+                    shopItemView.DisableButton(item.IsStart || _recipeShop.IsBought(recipeConfig));
                 
                 shopItemView.BuyButtonClicked += OnBuyButtonClicked;
 
@@ -84,13 +84,13 @@ namespace Code.UI.Popups.Shop
 
             foreach (var itemView in _shopView.ItemViews)
             {
-                if(_recipeShop.TryBuy(itemView.ShopItem as RecipeConfig))
+                RecipeConfig recipe = itemView.ShopItem as RecipeConfig; 
+                
+                if (_recipeShop.TryBuy(recipe))
                     itemView.EnableButton();
                 else
-                    itemView.DisableButton();
+                    itemView.DisableButton(_recipeShop.IsBought(recipe));
             }
-            
-            _shopView.Sort();
         }
     }
 }

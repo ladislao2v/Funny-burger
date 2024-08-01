@@ -6,6 +6,5 @@ namespace Code.UI.Shop
     {
         IEnumerable<IShopItemView> ItemViews { get; }
         void Show(IEnumerable<IShopItemView> shopItemViews);
-        void Sort();
     }
 }

@@ -38,6 +38,9 @@ namespace Code.Services.BurgerOrderService
 
         private void StartTimer()
         {
+            if (_timer != null)
+                _timer.Dispose();
+            
             TimeSpan timerTime =
                 TimeSpan.FromSeconds(_currentOrder.CookTime);
 
@@ -47,7 +50,6 @@ namespace Code.Services.BurgerOrderService
                 {
                     _currentOrder = null;
                     Failed?.Invoke();
-                    _timer.Dispose();
                 });
         }
 
