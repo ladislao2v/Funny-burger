@@ -1,6 +1,6 @@
 ﻿using Code.Services.AssetProvider;
-using Code.Services.ClientsService;
 using Plugins.StateMachine.Core.Interfaces;
+using UnityEngine;
 
 namespace Code.States
 {

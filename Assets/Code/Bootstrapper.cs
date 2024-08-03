@@ -15,5 +15,8 @@ namespace Code
 
         private void Awake() => 
             _stateMachine.EnterState<BootState>();
+        
+        private void Start() => 
+            Application.targetFrameRate = 30;
     }
 }

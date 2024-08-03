@@ -85,6 +85,14 @@ MonoBehaviour:
     m_Address: ShopItem
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 54e37a7f1877d481d87b51d024f4e6fe
+    m_Address: happiness
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1a0865487de92424489b58fb6d0a7d02
+    m_Address: sad
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
   m_SchemaSet:
