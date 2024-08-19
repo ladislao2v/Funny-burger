@@ -17,12 +17,14 @@ namespace Code.Services.SceneLoader
 
             handle.Completed += (_) => onLoaded?.Invoke();
 
-            _sceneInstance = await handle.Task;
+            _sceneInstance = await handle.ToUniTask();
         }
 
         public async void RestartScene(Action onLoaded = null)
         {
-            await SceneManager.LoadSceneAsync(_sceneInstance.Scene.name);
+            await SceneManager
+                .LoadSceneAsync(_sceneInstance.Scene.name)
+                .ToUniTask();
         }
     }
 }
