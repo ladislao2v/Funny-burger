@@ -1,5 +1,6 @@
 using Code.Services.Factories.PopupFactory;
 using Code.UI.Popups;
+using UnityEngine;
 
 namespace Code.Services.PopupService
 {
@@ -20,6 +21,7 @@ namespace Code.Services.PopupService
                 await _popupFactory.Create(popupType);
 
             _popupContainer.Put(popup);
+                
         }
     }
 }

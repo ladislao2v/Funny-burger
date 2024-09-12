@@ -1,5 +1,7 @@
-﻿using Code.Effects.Popup;
+﻿using System;
+using Code.Effects.Popup;
 using Code.UI.Popups;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +13,8 @@ namespace Code.Services.PopupService
         [SerializeField] private Button _background;
 
         private Popup _current;
-        
+        private IDisposable _timer;
+
         public void Put(Popup popup)
         {
             if(_current != null)
@@ -27,6 +30,14 @@ namespace Code.Services.PopupService
             popupTransform.SetParent(transform);
             popupTransform.localPosition = _popupPosition;
 
+            _timer = Observable
+                .Timer(TimeSpan.FromSeconds(0.175f))
+                .Subscribe(_ =>
+                {
+                    Time.timeScale = 0f;
+                    _timer.Dispose();
+            });
+
             popup.Clicked += Hide;
         }
 
@@ -36,6 +47,8 @@ namespace Code.Services.PopupService
             
             _background.gameObject.SetActive(false);
             _background.onClick.RemoveAllListeners();
+
+            Time.timeScale = 1f;
         }
 
         private void CloseLastPopup()
