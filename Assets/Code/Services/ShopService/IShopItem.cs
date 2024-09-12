@@ -7,6 +7,7 @@ namespace Code.Services.ShopService
         public Sprite Logo { get; }
         string Name { get; }
         public string Description { get; }
+        public int RequiredLevel { get; }
         public int Price { get; }
         bool IsStart { get; }
     }

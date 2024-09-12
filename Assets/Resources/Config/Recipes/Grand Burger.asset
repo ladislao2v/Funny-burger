@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144673e5a32644a19d9bbf6f77c92d70, type: 3}
+  m_Name: Grand Burger
+  m_EditorClassIdentifier: 
+  _logo: {fileID: 21300000, guid: a0516477be49ccf49880464283275178, type: 3}
+  _orderLogo: {fileID: 21300000, guid: 828554fb6cc93d74ba50ece45ac2a0a6, type: 3}
+  _name: Grand Burger
+  _description: Bun{0}Salad{0}Burger{0}Cheece{0}Burger{0}Bun
+  _price: 50
+  _requiredLevel: 11
+  _cookTime: 52.5
+  _isStart: 0
+  _burger:
+  - {fileID: 11400000, guid: af1be1bb5cbe34240bf0c4a41984711c, type: 2}
+  - {fileID: 11400000, guid: 6c4dfb0eb8027c8488542aa2409ec261, type: 2}
+  - {fileID: 11400000, guid: 03031d46500ab46ee8245f596ba1d265, type: 2}
+  - {fileID: 11400000, guid: 65c0f677ca129e94799a01193abffbcb, type: 2}
+  - {fileID: 11400000, guid: 03031d46500ab46ee8245f596ba1d265, type: 2}
+  - {fileID: 11400000, guid: ddb9479ee6f7c8b439dbc663ee5d4cd9, type: 2}

@@ -11,6 +11,7 @@ namespace Code.UI.Shop
         [SerializeField] private Image _logo;
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _description;
+        [SerializeField] private TextMeshProUGUI _level;
         [SerializeField] private BuyButton _button;
         
         private IShopItem _shopItem;
@@ -27,6 +28,7 @@ namespace Code.UI.Shop
             _logo.sprite = _shopItem.Logo;
             _name.text = _shopItem.Name;
             _description.text = string.Format(_shopItem.Description, "\n");
+            _level.text = string.Format(_level.text, _shopItem.RequiredLevel);
 
             _button.Construct(shopItem.Price);
         }
