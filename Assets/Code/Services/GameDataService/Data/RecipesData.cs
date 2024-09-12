@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using Code.Configs;
 using Code.Ingredients;
+using UnityEngine;
 
 namespace Code.Services.GameDataService.Data
 {
+    [Serializable]
     public sealed class RecipesData : IData
     {
         public List<RecipeData> Recipes { get; set; }
+
+        public RecipesData() { }
 
         public RecipesData(IEnumerable<RecipeConfig> recipes = null)
         {
@@ -23,9 +27,9 @@ namespace Code.Services.GameDataService.Data
         private RecipeData CreateRecipeData(RecipeConfig recipe)
         {
             var burgerData = new RecipeData();
-
-            foreach (var config in recipe.Burger)
-                burgerData.Add(config.Type);
+            
+            foreach (var ingredientConfig in recipe.Burger)
+                burgerData.Add(ingredientConfig.Type);
 
             return burgerData;
         }
@@ -34,7 +38,7 @@ namespace Code.Services.GameDataService.Data
     [Serializable]
     public class RecipeData
     {
-        public List<IngredientType> Burger { get; set; }
+        public List<IngredientType> Burger { get; set; } = new();
 
         public void Add(IngredientType type)
         {
