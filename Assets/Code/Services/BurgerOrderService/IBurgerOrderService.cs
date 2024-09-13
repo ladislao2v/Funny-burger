@@ -17,5 +17,6 @@ namespace Code.Services.BurgerOrderService
 
         void Order(RecipeConfig recipe);
         bool TryPassOrder(IBurgerPlate plate);
+        void CancelOrder();
     }
 }

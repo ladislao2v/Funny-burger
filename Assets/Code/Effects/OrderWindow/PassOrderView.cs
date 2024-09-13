@@ -10,9 +10,9 @@ namespace Code.Effects.OrderWindow
         [SerializeField] private ParticleSystem _coins;
 
         private void Awake() =>
-            _trigger.Enter += _coins.Play;
+            _trigger.InteractionStarted += _coins.Play;
 
         private void OnDestroy() => 
-            _trigger.Enter -= _coins.Play;
+            _trigger.InteractionStarted -= _coins.Play;
     }
 }

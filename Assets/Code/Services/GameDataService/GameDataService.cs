@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Services.SaveDataService;
+using UnityEngine;
 
 namespace Code.Services.GameDataService
 {
@@ -34,6 +35,9 @@ namespace Code.Services.GameDataService
         {
             foreach ((ISavable savable, string key) in _keys)
             {
+                if(!PlayerPrefs.HasKey(key))
+                    continue;
+                
                 IData data = _saveDataService.Load(key);
                 
                 savable.Load(data);

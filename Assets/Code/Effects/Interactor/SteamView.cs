@@ -11,14 +11,14 @@ namespace Code.Effects.Interactor
 
         private void OnEnable()
         {
-            _trigger.Enter += _steam.Play;
-            _trigger.Exit += _steam.Stop;
+            _trigger.InteractionStarted += _steam.Play;
+            _trigger.InteractionEnded += _steam.Stop;
         }
 
         private void OnDisable()
         {
-            _trigger.Enter -= _steam.Play;
-            _trigger.Exit -= _steam.Stop;
+            _trigger.InteractionStarted -= _steam.Play;
+            _trigger.InteractionEnded -= _steam.Stop;
         }
     }
 }

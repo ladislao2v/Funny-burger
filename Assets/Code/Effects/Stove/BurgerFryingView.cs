@@ -21,17 +21,17 @@ namespace Code.Effects.Stove
 
         private void Awake()
         {
-            _trigger.Enter += OnEnter;
-            _trigger.Exit += OnExit;
+            _trigger.InteractionStarted += OnInteractionStarted;
+            _trigger.InteractionEnded += OnInteractionEnded;
         }
 
         private void OnDestroy()
         {
-            _trigger.Enter -= OnEnter;
-            _trigger.Exit -= OnExit;
+            _trigger.InteractionStarted -= OnInteractionStarted;
+            _trigger.InteractionEnded -= OnInteractionEnded;
         }
 
-        private void OnEnter()
+        private void OnInteractionStarted()
         {
             _uncookedBurger.SetActive(true);
 
@@ -66,7 +66,7 @@ namespace Code.Effects.Stove
             return sequence;
         }
 
-        private void OnExit()
+        private void OnInteractionEnded()
         {
             _cookedBurger.SetActive(false);
             _sequence.Kill();

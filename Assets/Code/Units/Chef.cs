@@ -14,7 +14,6 @@ namespace Code.Units
         public IBurgerPlate Plate { get; } = new Plate();
         public IChefConfig Config { get; private set; }
         public IMovement Movement { get; private set; }
-        
         public event Action TaskStarted;
         public event Action TaskEnded;
 
@@ -36,10 +35,15 @@ namespace Code.Units
                 {
                     command.Execute();
                     onDo?.Invoke();
-                    TaskEnded?.Invoke();
-
-                    _timer.Dispose();
+                    
+                    Reset();
                 });
+        }
+
+        public void Reset()
+        {
+            TaskEnded?.Invoke();
+            _timer?.Dispose();
         }
     }
 }

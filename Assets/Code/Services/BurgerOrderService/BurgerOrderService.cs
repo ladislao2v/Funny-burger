@@ -36,21 +36,10 @@ namespace Code.Services.BurgerOrderService
             Ordered?.Invoke(_currentOrder);
         }
 
-        private void StartTimer()
+        public void CancelOrder()
         {
-            if (_timer != null)
-                _timer.Dispose();
-            
-            TimeSpan timerTime =
-                TimeSpan.FromSeconds(_currentOrder.CookTime);
-
-            _timer = Observable
-                .Timer(timerTime)
-                .Subscribe((_) =>
-                {
-                    _currentOrder = null;
-                    Failed?.Invoke();
-                });
+            _currentOrder = null;
+            Failed?.Invoke();
         }
 
         public bool TryPassOrder(IBurgerPlate plate)
@@ -72,6 +61,19 @@ namespace Code.Services.BurgerOrderService
             _currentOrder = null;
 
             return true;
+        }
+
+        private void StartTimer()
+        {
+            if (_timer != null)
+                _timer.Dispose();
+            
+            TimeSpan timerTime =
+                TimeSpan.FromSeconds(_currentOrder.CookTime);
+
+            _timer = Observable
+                .Timer(timerTime)
+                .Subscribe((_) => { CancelOrder(); });
         }
     }
 }

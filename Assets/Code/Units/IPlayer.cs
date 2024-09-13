@@ -2,7 +2,6 @@
 using Code.BurgerPlate;
 using Code.Configs;
 using Code.Movement;
-using UniRx;
 
 namespace Code.Units
 {
@@ -11,9 +10,10 @@ namespace Code.Units
         IChefConfig Config { get; }
         IBurgerPlate Plate { get; }
         IMovement Movement { get; }
-        
+
         event Action TaskStarted;
         event Action TaskEnded; 
         void Construct(IChefConfig config);
+        void Reset();
     }
 }
