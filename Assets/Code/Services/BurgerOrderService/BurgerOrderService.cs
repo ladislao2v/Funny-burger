@@ -2,14 +2,15 @@ using System;
 using Code.BurgerPlate;
 using Code.Configs;
 using Code.Services.LevelService;
-using Code.Services.WalletService;
+using Code.Services.ResourceStorage;
 using UniRx;
+using static Code.Services.ResourceStorage.ResourceType;
 
 namespace Code.Services.BurgerOrderService
 {
     public sealed class BurgerOrderService : IBurgerOrderService
     {
-        private readonly IWalletService _walletService;
+        private readonly IResourceStorage _resourceStorage;
         private readonly ILevelService _levelService;
         private readonly IOrderValidator _orderValidator = new OrderValidator();
 
@@ -21,9 +22,9 @@ namespace Code.Services.BurgerOrderService
         public event Action Failed;
         public event Action OrderPassed;
 
-        public BurgerOrderService(IWalletService walletService, ILevelService levelService)
+        public BurgerOrderService(IResourceStorage resourceStorage, ILevelService levelService)
         {
-            _walletService = walletService;
+            _resourceStorage = resourceStorage;
             _levelService = levelService;
         }
 
@@ -53,7 +54,9 @@ namespace Code.Services.BurgerOrderService
             if (!_orderValidator.Validate(_currentOrder, plate.Ingredients))
                 return false;
             
-            _walletService.Add(_currentOrder.Price);
+            _resourceStorage
+                .GetWallet(Coin)
+                .Add(_currentOrder.Price);
             _levelService.AddPoint();
             
             OrderPassed?.Invoke();

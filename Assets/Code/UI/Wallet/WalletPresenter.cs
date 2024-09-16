@@ -1,24 +1,27 @@
-﻿using Code.Services.WalletService;
+﻿using Code.Services.ResourceStorage;
 using UniRx;
 using UnityEngine;
 using Zenject;
+using ResourceType = Code.Services.ResourceStorage.ResourceType;
 
 namespace Code.UI.Wallet
 {
     public class WalletPresenter : MonoBehaviour
     {
+        [SerializeField] private ResourceType _resourceType;
+        
         private readonly CompositeDisposable _disposable = new();
         
-        private IWalletService _model;
+        private IResourceStorage _model;
         private IWalletView _view;
 
         [Inject]
-        private void Construct(IWalletService walletService)
+        private void Construct(IResourceStorage resourceStorage)
         {
-            _model = walletService;
+            _model = resourceStorage;
             _view = GetComponent<IWalletView>();
 
-            _model.Money
+            _model.GetWallet(_resourceType).Money
                 .Subscribe(_view.OnValueChanged)
                 .AddTo(_disposable);
         }

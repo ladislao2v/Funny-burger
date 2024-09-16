@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Threading;
 using Code.BurgerPlate;
 using Code.Configs;
 using Code.Movement;
 using Code.Units.Commands;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 
@@ -11,6 +13,7 @@ namespace Code.Units
     public sealed class Chef : MonoBehaviour, IPlayer
     {
         private IDisposable _timer;
+        
         public IBurgerPlate Plate { get; } = new Plate();
         public IChefConfig Config { get; private set; }
         public IMovement Movement { get; private set; }
@@ -26,7 +29,7 @@ namespace Code.Units
         public void Do(ICommand command, Action onDo)
         {
             TaskStarted?.Invoke();
-
+            
             var timerTime = 
                 TimeSpan.FromSeconds(Config.TaskTime);
 

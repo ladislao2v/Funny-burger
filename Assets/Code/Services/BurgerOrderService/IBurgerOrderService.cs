@@ -1,9 +1,6 @@
 ﻿using System;
 using Code.BurgerPlate;
 using Code.Configs;
-using Code.Services.BurgerOrderService;
-using Code.Services.RecipeService;
-using UniRx;
 
 namespace Code.Services.BurgerOrderService
 {

@@ -7,7 +7,7 @@ namespace Code.Services.ClientsService
         bool IsSend { get; }
 
         UniTask LoadClients();
-        void SendClient();
-        void ReturnClient();
+        void SendClientToWindow();
+        void SendClientAway();
     }
 }

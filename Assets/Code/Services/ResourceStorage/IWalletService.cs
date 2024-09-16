@@ -1,9 +1,9 @@
 ﻿using Code.Services.GameDataService;
 using UniRx;
 
-namespace Code.Services.WalletService
+namespace Code.Services.ResourceStorage
 {
-    public interface IWalletService : ISavable
+    public interface IWalletService
     {
         IReadOnlyReactiveProperty<int> Money { get; }
 

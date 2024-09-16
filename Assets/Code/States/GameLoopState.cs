@@ -37,9 +37,9 @@ namespace Code.States
             await _clientsService.LoadClients();
             
             _input.Enable();
-            _orderService.OrderPassed += _clientsService.ReturnClient;
+            _orderService.OrderPassed += _clientsService.SendClientAway;
             _orderService.OrderPassed += _gameDataService.SaveData;
-            _orderService.Failed += _clientsService.ReturnClient;
+            _orderService.Failed += _clientsService.SendClientAway;
 
             _recipeShopService.Updated += _gameDataService.SaveData;
 
@@ -50,7 +50,7 @@ namespace Code.States
         {
             while (_isWorking)
             {
-                _clientsService.SendClient();
+                _clientsService.SendClientToWindow();
 
                 await UniTask.WaitUntil(() => _clientsService.IsSend);
                 
@@ -65,9 +65,9 @@ namespace Code.States
         {
             _isWorking = false;
             _input.Disable();
-            _orderService.OrderPassed -= _clientsService.ReturnClient;
+            _orderService.OrderPassed -= _clientsService.SendClientAway;
             _orderService.OrderPassed -= _gameDataService.SaveData;
-            _orderService.Failed -= _clientsService.ReturnClient;
+            _orderService.Failed -= _clientsService.SendClientAway;
             
             _recipeShopService.Updated -= _gameDataService.SaveData;
         }

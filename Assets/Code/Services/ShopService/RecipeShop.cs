@@ -5,9 +5,10 @@ using Code.Services.ConfigProvider;
 using Code.Services.GameDataService;
 using Code.Services.LevelService;
 using Code.Services.RecipeService;
-using Code.Services.WalletService;
+using Code.Services.ResourceStorage;
 using UniRx;
 using Zenject;
+using static Code.Services.ResourceStorage.ResourceType;
 
 namespace Code.Services.ShopService
 {
@@ -16,7 +17,7 @@ namespace Code.Services.ShopService
         private readonly IConfigProvider _configProvider;
         private readonly ILevelService _levelService;
         private readonly IRecipeService _recipeService;
-        private readonly IWalletService _walletService;
+        private readonly IResourceStorage _resourceStorage;
         private readonly CompositeDisposable _disposables = new();
 
         public IEnumerable<RecipeConfig> AllRecipes => _configProvider.GetRecipes();
@@ -24,23 +25,29 @@ namespace Code.Services.ShopService
         public event Action Updated;
 
         public RecipeShop(IConfigProvider configProvider, ILevelService levelService,
-            IRecipeService recipeService, IWalletService walletService)
+            IRecipeService recipeService, IResourceStorage resourceStorage)
         {
             _configProvider = configProvider;
             _levelService = levelService;
             _recipeService = recipeService;
-            _walletService = walletService;
+            _resourceStorage = resourceStorage;
         }
 
         public void Initialize()
         {
-            _walletService.Money.Subscribe(OnMoneyChanged).AddTo(_disposables);
+            _resourceStorage
+                .GetWallet(Coin).Money.
+                Subscribe(OnMoneyChanged)
+                .AddTo(_disposables);
+            
             _levelService.LevelChanged += OnLevelChanged;
         }
 
         public bool TryBuy(RecipeConfig recipeConfig)
         {
-            if (!_walletService.TrySpend(recipeConfig.Price))
+            if (!_resourceStorage
+                    .GetWallet(Coin)
+                    .TrySpend(recipeConfig.Price))
                 return false;
 
             if (_levelService.Current < recipeConfig.RequiredLevel)
@@ -58,7 +65,9 @@ namespace Code.Services.ShopService
                 return;
 
             _recipeService.AddRecipe(recipeConfig);
-            _walletService.Spend(recipeConfig.Price);
+            _resourceStorage
+                .GetWallet(Coin)
+                .Spend(recipeConfig.Price);
         }
 
         public bool IsBought(RecipeConfig recipe) => 

@@ -10,10 +10,10 @@ using Code.Services.Factories.PrefabFactory;
 using Code.Services.GameDataService;
 using Code.Services.LevelService;
 using Code.Services.RecipeService;
+using Code.Services.ResourceStorage;
 using Code.Services.SaveDataService;
 using Code.Services.SceneLoader;
 using Code.Services.ShopService;
-using Code.Services.WalletService;
 using Zenject;
 
 namespace Code.CompositionRoot
@@ -72,7 +72,7 @@ namespace Code.CompositionRoot
 
         private void BindWalletService()
         {
-            Container.BindInterfacesAndSelfTo<Wallet>().AsCached();
+            Container.BindInterfacesAndSelfTo<ResourceStorage>().AsCached();
         }
 
         private void BindLevelService()

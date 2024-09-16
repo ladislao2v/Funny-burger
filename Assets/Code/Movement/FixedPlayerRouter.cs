@@ -10,7 +10,8 @@ namespace Code.Movement
     {
         private readonly IInput _input;
         private readonly IPlayer _player;
-        
+
+
         public FixedPlayerRouter(IInput input, IPlayer player)
         {
             _input = input;

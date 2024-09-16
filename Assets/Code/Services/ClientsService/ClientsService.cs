@@ -47,7 +47,7 @@ namespace Code.Services.ClientsService
                 _clients.Enqueue(await _clientFactory.Create(GetPosition(i), transform));
         }
 
-        public void SendClient()
+        public void SendClientToWindow()
         {
             IClient client = DequeueClient();
 
@@ -59,7 +59,7 @@ namespace Code.Services.ClientsService
                 );
         }
 
-        public void ReturnClient()
+        public void SendClientAway()
         {
             if(_current == null)
                 throw new InvalidOperationException();
