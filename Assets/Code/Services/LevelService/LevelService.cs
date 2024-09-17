@@ -72,9 +72,10 @@ namespace Code.Services.LevelService
                 return 1;
 
             int tasks = (int) Math.Pow(2, level - 1) + 1;
+            int maxLevelTasks = _configProvider.SettingsConfig.MaxLevelTasks;
 
-            if (tasks > _configProvider.SettingsConfig.MaxLevelTasks)
-                return _configProvider.SettingsConfig.MaxLevelTasks;
+            if (tasks > maxLevelTasks)
+                return maxLevelTasks;
 
             return tasks;
         }
