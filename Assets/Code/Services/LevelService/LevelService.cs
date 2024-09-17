@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Services.ConfigProvider;
 using Code.Services.GameDataService;
 using Code.Services.GameDataService.Data;
 
@@ -6,6 +7,8 @@ namespace Code.Services.LevelService
 {
     public sealed class LevelService : ILevelService
     {
+        private readonly IConfigProvider _configProvider;
+        
         private int _progress;
         
         public int Current { get; private set; }
@@ -17,6 +20,11 @@ namespace Code.Services.LevelService
         
         public event Action<int, int> LevelChanged;
         public event Action<int, int> ProgressChanged;
+
+        public LevelService(IConfigProvider configProvider)
+        {
+            _configProvider = configProvider;
+        }
 
 
         public void AddPoint()
@@ -61,9 +69,14 @@ namespace Code.Services.LevelService
                 throw new ArgumentException(nameof(level));
 
             if (level == 0)
-                return 1; 
+                return 1;
 
-            return (int)Math.Pow(2, level - 1) + 1;
+            int tasks = (int) Math.Pow(2, level - 1) + 1;
+
+            if (tasks > _configProvider.SettingsConfig.MaxLevelTasks)
+                return _configProvider.SettingsConfig.MaxLevelTasks;
+
+            return tasks;
         }
     }
 }

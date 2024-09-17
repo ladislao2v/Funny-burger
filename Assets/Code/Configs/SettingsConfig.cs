@@ -11,14 +11,13 @@ namespace Code.Configs
         
         [field: Header("Clients")]
         [field: SerializeField, Range(0, 10)] public int Clients { get; private set; }
-        [field: SerializeField] public Vector3 ClientSpawnPoint { get; private set; }
         [field: SerializeField] public Vector3 Offset { get; private set; }
+        [field: SerializeField] public int MaxLevelTasks { get; private set; } = 25;
     }
 
     public interface IClientConfig
     {
         int Clients { get; }
-        Vector3 ClientSpawnPoint { get; }
         Vector3 Offset { get; }
     }
 
