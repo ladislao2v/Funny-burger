@@ -30,14 +30,6 @@ namespace Code.Services.PopupService
             popupTransform.SetParent(transform);
             popupTransform.localPosition = _popupPosition;
 
-            _timer = Observable
-                .Timer(TimeSpan.FromSeconds(0.175f))
-                .Subscribe(_ =>
-                {
-                    Time.timeScale = 0f;
-                    _timer.Dispose();
-            });
-
             popup.Clicked += Hide;
         }
 
@@ -47,8 +39,6 @@ namespace Code.Services.PopupService
             
             _background.gameObject.SetActive(false);
             _background.onClick.RemoveAllListeners();
-
-            Time.timeScale = 1f;
         }
 
         private void CloseLastPopup()

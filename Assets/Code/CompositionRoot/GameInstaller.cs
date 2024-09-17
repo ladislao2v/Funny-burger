@@ -8,6 +8,7 @@ using Code.Services.Factories.ItemShopFactory;
 using Code.Services.Factories.PopupFactory;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.GameDataService;
+using Code.Services.GameTimeService;
 using Code.Services.LevelService;
 using Code.Services.RecipeService;
 using Code.Services.ResourceStorage;
@@ -33,6 +34,12 @@ namespace Code.CompositionRoot
             BindShop();
             BindAudioService();
             BindOrderService();
+            BindGameTimeService();
+        }
+
+        private void BindGameTimeService()
+        {
+            Container.BindInterfacesAndSelfTo<GameTimeService>().AsSingle();
         }
 
         private void BindOrderService()
