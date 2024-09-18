@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Code.Services.LocalizationService;
+using UnityEngine;
 
 namespace Code.Configs
 {
@@ -14,6 +18,8 @@ namespace Code.Configs
         [field: SerializeField] public Vector3 Offset { get; private set; }
         [field: SerializeField] public int MaxLevelTasks { get; private set; } = 25;
     }
+
+    
 
     public interface IClientConfig
     {

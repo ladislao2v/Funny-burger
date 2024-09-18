@@ -347,6 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2607186074036073464}
+  - component: {fileID: 5251991651639731008}
   m_Layer: 0
   m_Name: Languages
   m_TagString: Untagged
@@ -375,6 +376,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5251991651639731008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2607186074036073465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22fbf65fff4746b2aa86419d9fcd0f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _englishButton: {fileID: 3868143060253034442}
+  _russianButton: {fileID: 5714955728693266015}
 --- !u!1 &2607186074148141064
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +401,7 @@ GameObject:
   - component: {fileID: 2607186074148141063}
   - component: {fileID: 2607186074148141061}
   - component: {fileID: 2607186074148141062}
+  - component: {fileID: 4370410494058336468}
   m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
@@ -440,9 +456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SETTINGS
-
-'
+  m_text: SETTINGS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88671311e426c9e40887101148f7fb96, type: 2}
   m_sharedMaterial: {fileID: -4964145733932863951, guid: 88671311e426c9e40887101148f7fb96,
@@ -470,8 +484,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85
-  m_fontSizeBase: 85
+  m_fontSize: 65
+  m_fontSizeBase: 65
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -514,6 +528,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4370410494058336468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2607186074148141064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d115c98fd040af8ef3e4db498ed1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 2607186074148141062}
+  _translateData:
+    Words:
+    - Language: 0
+      Word: SETTINGS
+    - Language: 1
+      Word: "\u041D\u0410\u0421\u0422\u0420\u041E\u0419\u041A\u0418"
 --- !u!1 &2607186074254374148
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +558,7 @@ GameObject:
   - component: {fileID: 2607186074254374147}
   - component: {fileID: 2607186074254374145}
   - component: {fileID: 2607186074254374146}
+  - component: {fileID: 237468541011279703}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -548,7 +582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47, y: 0}
+  m_AnchoredPosition: {x: -39.3, y: 0}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2607186074254374145
@@ -607,8 +641,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.1
-  m_fontSizeBase: 67.1
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -651,6 +685,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &237468541011279703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2607186074254374148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d115c98fd040af8ef3e4db498ed1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 2607186074254374146}
+  _translateData:
+    Words:
+    - Language: 0
+      Word: SOUND
+    - Language: 1
+      Word: "\u0417\u0412\u0423\u041A"
 --- !u!1 &2607186074271592343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,8 +1136,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 173, y: 2.5}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: 138.6, y: 2.5}
+  m_SizeDelta: {x: 88.5, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2607186075091537180
 MonoBehaviour:
@@ -1389,6 +1442,7 @@ GameObject:
   - component: {fileID: 8617069956986457650}
   - component: {fileID: 2422001204428585107}
   - component: {fileID: 260864225637676862}
+  - component: {fileID: 3868143060253034442}
   m_Layer: 0
   m_Name: English
   m_TagString: Untagged
@@ -1498,6 +1552,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3868143060253034442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4017720362116374993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db98cb0381640c586468cdddfe5c56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 260864225637676862}
+  _picked: {fileID: 556289385394118625}
 --- !u!1 &4400668867028156729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +1578,7 @@ GameObject:
   - component: {fileID: 1257374174760009848}
   - component: {fileID: 4477597060915277857}
   - component: {fileID: 4500164507206573488}
+  - component: {fileID: 5714955728693266015}
   m_Layer: 0
   m_Name: Russian
   m_TagString: Untagged
@@ -1619,3 +1688,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5714955728693266015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4400668867028156729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db98cb0381640c586468cdddfe5c56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 4500164507206573488}
+  _picked: {fileID: 2943444119096907228}

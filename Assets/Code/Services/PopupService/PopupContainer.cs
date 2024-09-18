@@ -1,19 +1,31 @@
 ﻿using System;
 using Code.Effects.Popup;
+using Code.Services.GameTimeService;
 using Code.UI.Popups;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Code.Services.PopupService
 {
     public class PopupContainer : MonoBehaviour, IPopupContainer
     {
+        private const double PopupCreationTime = 0.175f;
+        
         [SerializeField] private Vector3 _popupPosition;
         [SerializeField] private Button _background;
 
         private Popup _current;
         private IDisposable _timer;
+        private IGameTimeService _gameTimeService;
+
+
+        [Inject]
+        private void Construct(IGameTimeService gameTimeService)
+        {
+            _gameTimeService = gameTimeService;
+        }
 
         public void Put(Popup popup)
         {
@@ -29,12 +41,22 @@ namespace Code.Services.PopupService
             
             popupTransform.SetParent(transform);
             popupTransform.localPosition = _popupPosition;
+            
+            _timer = Observable
+                .Timer(TimeSpan.FromSeconds(PopupCreationTime))
+                .Subscribe(_ =>
+                {
+                    _gameTimeService.StopTime();
+                    _timer.Dispose();
+                });
 
             popup.Clicked += Hide;
         }
 
         private void Hide()
         {
+            _gameTimeService.StartTime();
+            
             CloseLastPopup();
             
             _background.gameObject.SetActive(false);

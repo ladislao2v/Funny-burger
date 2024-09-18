@@ -10,6 +10,7 @@ using Code.Services.Factories.PrefabFactory;
 using Code.Services.GameDataService;
 using Code.Services.GameTimeService;
 using Code.Services.LevelService;
+using Code.Services.LocalizationService;
 using Code.Services.RecipeService;
 using Code.Services.ResourceStorage;
 using Code.Services.SaveDataService;
@@ -35,6 +36,12 @@ namespace Code.CompositionRoot
             BindAudioService();
             BindOrderService();
             BindGameTimeService();
+            BindLocalizationService();
+        }
+
+        private void BindLocalizationService()
+        {
+            Container.BindInterfacesAndSelfTo<LocalizationService>().AsCached();
         }
 
         private void BindGameTimeService()

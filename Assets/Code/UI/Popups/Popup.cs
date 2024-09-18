@@ -11,16 +11,15 @@ namespace Code.UI.Popups
 
         public event Action Clicked;
 
-        private void Start()
-        {
+        private void Start() => 
             _closeButton.onClick.AddListener(OnClicked);
-        }
 
         private void OnDestroy() => 
             _closeButton.onClick.RemoveListener(OnClicked);
 
         public void Close() => Destroy(gameObject);
 
-        private void OnClicked() => Clicked?.Invoke();
+        private void OnClicked() => 
+            Clicked?.Invoke();
     }
 }
