@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Configs;
+using Code.UI.Shop;
 
 namespace Code.Services.ShopService
 {
@@ -10,7 +11,7 @@ namespace Code.Services.ShopService
 
         event Action Updated;
 
-        bool TryBuy(RecipeConfig recipeConfig);
+        ItemState TryBuy(RecipeConfig recipeConfig);
         void Buy(RecipeConfig recipeConfig);
         bool IsBought(RecipeConfig recipe);
     }

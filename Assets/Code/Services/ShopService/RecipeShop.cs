@@ -6,6 +6,7 @@ using Code.Services.GameDataService;
 using Code.Services.LevelService;
 using Code.Services.RecipeService;
 using Code.Services.ResourceStorage;
+using Code.UI.Shop;
 using UniRx;
 using Zenject;
 using static Code.Services.ResourceStorage.ResourceType;
@@ -43,25 +44,26 @@ namespace Code.Services.ShopService
             _levelService.LevelChanged += OnLevelChanged;
         }
 
-        public bool TryBuy(RecipeConfig recipeConfig)
+        public ItemState TryBuy(RecipeConfig recipeConfig)
         {
+            if (_recipeService.Has(recipeConfig))
+                return (ItemState.InMenu);
+
+            if (_levelService.Current < recipeConfig.RequiredLevel)
+                return (ItemState.Level);
+            
             if (!_resourceStorage
                     .GetWallet(Coin)
                     .TrySpend(recipeConfig.Price))
-                return false;
+                return ItemState.Money;
 
-            if (_levelService.Current < recipeConfig.RequiredLevel)
-                return false;
 
-            if (_recipeService.Has(recipeConfig))
-                return false;
-
-            return true;
+            return (ItemState.CanBuy);
         }
 
         public void Buy(RecipeConfig recipeConfig)
         {
-            if(!TryBuy(recipeConfig))
+            if(TryBuy(recipeConfig) != ItemState.CanBuy)
                 return;
 
             _recipeService.AddRecipe(recipeConfig);

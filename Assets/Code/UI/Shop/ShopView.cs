@@ -14,6 +14,7 @@ namespace Code.UI.Shop
 
         public void Show(IEnumerable<IShopItemView> shopItemsView)
         {
+            _shopItemViews.Clear();
             _shopItemViews.AddRange(shopItemsView);
             _shopItemViews.ForEach(x => x.SetParent(_container));
         }

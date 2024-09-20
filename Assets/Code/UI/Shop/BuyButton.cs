@@ -8,13 +8,8 @@ namespace Code.UI.Shop
     public sealed class BuyButton : View
     {
         [SerializeField] private TextMeshProUGUI _priceView;
-        [SerializeField] private Image _coin;
-        [SerializeField] private Image _lock;
-        [SerializeField] private Image _mark;
         
         private Button _button;
-        
-        public bool IsActive => _lock.enabled;
 
         public event Action Clicked;
 
@@ -30,29 +25,11 @@ namespace Code.UI.Shop
         private void OnDisable() => 
             _button.onClick.RemoveListener(OnClicked);
 
-        public void Enable()
-        {
-            _lock.enabled = false;
-            _mark.enabled = false;
-            _button.interactable = true;
-        }
+        public void Enable() => 
+            gameObject.SetActive(true);
 
-        public void Disable(bool isBought = false)
-        {
-            if (isBought)
-                SetBoughtState();
-            else
-                _lock.enabled = true;
-                
-            _button.interactable = false;
-        }
-
-        private void SetBoughtState()
-        {
-            _mark.enabled = true;
-            _priceView.enabled = false;
-            _coin.enabled = false;
-        }
+        public void Disable() => 
+            gameObject.SetActive(false);
 
         private void OnClicked() => 
             Clicked?.Invoke();

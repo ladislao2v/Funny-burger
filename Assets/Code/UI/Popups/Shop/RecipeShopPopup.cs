@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Code.Configs;
 using Code.Services.Factories.ItemShopFactory;
 using Code.Services.ShopService;
 using Code.UI.Shop;
 using ModestTree;
 using UniRx;
-using Unity.VisualScripting;
 using Zenject;
 
 namespace Code.UI.Popups.Shop
@@ -46,17 +46,14 @@ namespace Code.UI.Popups.Shop
         {
             List<IShopItemView> itemViews = new();
 
-            foreach (var item in items)
+            foreach (var item in items.OrderByDescending(x => _recipeShop.TryBuy(x as RecipeConfig) == ItemState.InMenu))
             {
                 IShopItemView shopItemView = await 
                     _factory.Create(item);
 
                 RecipeConfig recipeConfig = item as RecipeConfig;
-
-                if(_recipeShop.TryBuy(recipeConfig))
-                    shopItemView.EnableButton();
-                else
-                    shopItemView.DisableButton(item.IsStart || _recipeShop.IsBought(recipeConfig));
+                
+                shopItemView.ChangeItemState(_recipeShop.TryBuy(recipeConfig));
                 
                 shopItemView.BuyButtonClicked += OnBuyButtonClicked;
 
@@ -71,7 +68,7 @@ namespace Code.UI.Popups.Shop
             if(item is not RecipeConfig recipe)
                 return;
 
-            if(!_recipeShop.TryBuy(recipe))
+            if(_recipeShop.TryBuy(recipe) != ItemState.CanBuy)
                 return;
             
             _recipeShop.Buy(recipe);
@@ -82,14 +79,18 @@ namespace Code.UI.Popups.Shop
             if(_shopView.ItemViews.IsEmpty())
                 return;
 
+            var items = _shopView.ItemViews
+                .Select(x => x.ShopItem)
+                .OrderByDescending(x => _recipeShop.TryBuy(x as RecipeConfig) == ItemState.InMenu)
+                .Cast<RecipeConfig>()
+                .ToList();
+            
+            int i = 0;
+            
             foreach (var itemView in _shopView.ItemViews)
             {
-                RecipeConfig recipe = itemView.ShopItem as RecipeConfig; 
-                
-                if (_recipeShop.TryBuy(recipe))
-                    itemView.EnableButton();
-                else
-                    itemView.DisableButton(_recipeShop.IsBought(recipe));
+                itemView.Construct(items[i]);
+                itemView.ChangeItemState(_recipeShop.TryBuy(items[i++]));
             }
         }
     }
