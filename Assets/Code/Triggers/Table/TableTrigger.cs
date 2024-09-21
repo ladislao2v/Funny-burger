@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Code.Triggers.Table
 {
     [RequireComponent(typeof(TablePlateView))]
-    public sealed class TableTrigger : Trigger<IPlayer>
+    public sealed class TableTrigger : Trigger
     {
         private readonly IBurgerPlate _plate = new Plate();
 

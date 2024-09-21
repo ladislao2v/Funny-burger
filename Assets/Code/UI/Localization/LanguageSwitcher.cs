@@ -23,6 +23,8 @@ namespace Code.UI.Localization
             _russianButton.Clicked += _localizationService.ChangeLanguage;
             
             _localizationService.LanguageChanged += OnLanguageChanged;
+            
+            OnLanguageChanged(_localizationService.Current);
         }
 
         private void OnDisable()

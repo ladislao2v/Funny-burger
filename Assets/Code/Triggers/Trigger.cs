@@ -1,29 +1,25 @@
 using System;
+using Code.Units;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Code.Triggers
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class Trigger<TTriggerActivator> : MonoBehaviour
+    public abstract class Trigger : MonoBehaviour
     {
         public event Action InteractionStarted;
         public event Action InteractionEnded;
         
-        private void OnTriggerEnter(Collider other)
+        public void ActivateBy(IPlayer player)
         {
-            if(!IsActivator(other, out TTriggerActivator triggerActivator))
-                return;
-            
-            if(!TryInteractWith(triggerActivator))
+            if(!TryInteractWith(player))
                 return;
             
             InteractionStarted?.Invoke();
         }
 
-        protected bool IsActivator(Collider other, out TTriggerActivator triggerActivator) => 
-            other.TryGetComponent(out triggerActivator);
-
         protected void Disable() => InteractionEnded?.Invoke();
-        protected abstract bool TryInteractWith(TTriggerActivator activator);
+        protected abstract bool TryInteractWith(IPlayer player);
     }
 }

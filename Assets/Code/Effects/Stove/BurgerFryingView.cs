@@ -8,7 +8,7 @@ namespace Code.Effects.Stove
 {
     public class BurgerFryingView : MonoBehaviour
     {
-        [SerializeField] private Trigger<IPlayer> _trigger;
+        [SerializeField] private Trigger _trigger;
         [SerializeField] private GameObject _uncookedBurger;
         [SerializeField] private GameObject _cookedBurger;
         [SerializeField] private float _height;

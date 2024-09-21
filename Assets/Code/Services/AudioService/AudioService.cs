@@ -5,10 +5,10 @@ using UniRx;
 
 namespace Code.Services.AudioService
 {
-    public class AudioService : IAudioService
+    public sealed class AudioService : IAudioService
     {
-        private readonly ReactiveProperty<bool> _isActive = new();
-        private readonly ReactiveProperty<float> _currentVolume = new();
+        private readonly ReactiveProperty<bool> _isActive = new(true);
+        private readonly ReactiveProperty<float> _currentVolume = new(1f);
 
         public IReadOnlyReactiveProperty<bool> IsActive => _isActive;
         public IReadOnlyReactiveProperty<float> CurrentVolume => _currentVolume;
@@ -32,7 +32,7 @@ namespace Code.Services.AudioService
         public void Load(IData data)
         {
             if (data == null)
-                data = new AudioData();
+                data = new AudioData(true, 1f);
             
             if (data is not AudioData audioData)
                 throw new ArgumentException(nameof(data));

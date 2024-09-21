@@ -6,7 +6,7 @@ namespace Code.Effects.Interactor
 {
     public class SteamView : MonoBehaviour
     {
-        [SerializeField] private Trigger<IPlayer> _trigger;
+        [SerializeField] private Trigger _trigger;
         [SerializeField] private ParticleSystem _steam;
 
         private void OnEnable()

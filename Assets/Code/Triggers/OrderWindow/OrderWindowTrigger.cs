@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Code.Triggers.OrderWindow
 {
-    public class OrderWindowTrigger : Trigger<IPlayer>
+    public class OrderWindowTrigger : Trigger
     {
         private IBurgerOrderService _burgerOrderService;
 
