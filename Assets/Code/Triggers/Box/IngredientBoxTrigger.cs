@@ -1,9 +1,7 @@
-using System;
 using Code.BurgerPlate;
 using Code.Ingredients;
 using Code.Units;
 using Code.Units.Commands;
-using UniRx;
 using UnityEngine;
 
 namespace Code.Triggers.Box
@@ -11,8 +9,6 @@ namespace Code.Triggers.Box
     public sealed class IngredientBoxTrigger : Trigger
     {
         [SerializeField] private IngredientType _ingredientType;
-        
-        private IDisposable _timer;
 
         protected override bool TryInteractWith(IPlayer player)
         {

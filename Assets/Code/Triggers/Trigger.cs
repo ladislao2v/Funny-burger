@@ -1,6 +1,5 @@
 using System;
 using Code.Units;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Code.Triggers
