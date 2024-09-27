@@ -4,6 +4,7 @@
     {
         Settings,
         Tutorial,
-        Shop
+        Shop,
+        Menu
     }
 }

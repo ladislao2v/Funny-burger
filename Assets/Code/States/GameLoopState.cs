@@ -17,19 +17,19 @@ namespace Code.States
         private readonly IGameDataService _gameDataService;
         private readonly IBurgerOrderService _orderService;
         private readonly IClientsService _clientsService;
-        private readonly IRecipeShopService _recipeShopService;
+        private readonly IShopService _shopService;
 
         private bool _isWorking = true;
 
         public GameLoopState(IInput input, IRecipeService recipeService, IGameDataService gameDataService, 
-        IBurgerOrderService orderService, IClientsService clientsService, IRecipeShopService recipeShopService)
+        IBurgerOrderService orderService, IClientsService clientsService, IShopService shopService)
         {
             _input = input;
             _recipeService = recipeService;
             _gameDataService = gameDataService;
             _orderService = orderService;
             _clientsService = clientsService;
-            _recipeShopService = recipeShopService;
+            _shopService = shopService;
         }
         
         public async void Enter()
@@ -41,7 +41,7 @@ namespace Code.States
             _orderService.OrderPassed += _gameDataService.SaveData;
             _orderService.Failed += _clientsService.SendClientAway;
 
-            _recipeShopService.Updated += _gameDataService.SaveData;
+            _shopService.Updated += _gameDataService.SaveData;
 
             Order();
         }
@@ -69,7 +69,7 @@ namespace Code.States
             _orderService.OrderPassed -= _gameDataService.SaveData;
             _orderService.Failed -= _clientsService.SendClientAway;
             
-            _recipeShopService.Updated -= _gameDataService.SaveData;
+            _shopService.Updated -= _gameDataService.SaveData;
         }
     }
 }

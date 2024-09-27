@@ -2,7 +2,8 @@ namespace Code.UI.Shop
 {
     public enum ItemState
     {
-        InMenu,
+        Select,
+        Selected,
         Money,
         Level,
         CanBuy

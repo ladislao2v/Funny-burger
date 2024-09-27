@@ -14,83 +14,83 @@ namespace Code.UI.Popups.Shop
     {
         private readonly CompositeDisposable _disposables = new();
 
-        private IRecipeShopService _recipeShop;
+        private IShopService _shop;
         private IShopItemViewFactory _factory;
-        private IShopView _shopView;
+        private IItemsView _itemsView;
 
         [Inject]
-        private void Construct(IRecipeShopService recipeShop, IShopItemViewFactory factory)
+        private void Construct(IShopService shop, IShopItemViewFactory factory)
         {
             _factory = factory;
-            _recipeShop = recipeShop;
-            _shopView = GetComponent<IShopView>();
+            _shop = shop;
+            _itemsView = GetComponent<IItemsView>();
         }
 
         private void OnEnable()
         {
-            CreateShopItems(_recipeShop.AllRecipes);
-            _recipeShop.Updated += OnShopUpdated;
+            CreateShopItems(_shop.AllItems);
+            _shop.Updated += OnShopUpdated;
         }
 
         private void OnDisable()
         {
             _disposables.Dispose();
 
-            foreach (IShopItemView itemView in _shopView.ItemViews)
+            foreach (IItemView itemView in _itemsView.ItemViews)
                 itemView.BuyButtonClicked -= OnBuyButtonClicked;
             
-            _recipeShop.Updated -= OnShopUpdated;
+            _shop.Updated -= OnShopUpdated;
         }
 
-        private async void CreateShopItems(IEnumerable<IShopItem> items)
+        private async void CreateShopItems(IEnumerable<IItem> items)
         {
-            List<IShopItemView> itemViews = new();
+            List<IItemView> itemViews = new();
 
-            foreach (var item in items.OrderByDescending(x => _recipeShop.TryBuy(x as RecipeConfig) == ItemState.InMenu))
+            foreach (var item in items.OrderByDescending(x => _shop.TryBuy(x as RecipeConfig) == ItemState.Selected))
             {
-                IShopItemView shopItemView = await 
+                IItemView itemView = await 
                     _factory.Create(item);
 
                 RecipeConfig recipeConfig = item as RecipeConfig;
                 
-                shopItemView.ChangeItemState(_recipeShop.TryBuy(recipeConfig));
+                itemView.ChangeItemState(_shop.TryBuy(recipeConfig));
                 
-                shopItemView.BuyButtonClicked += OnBuyButtonClicked;
+                itemView.BuyButtonClicked += OnBuyButtonClicked;
 
-                itemViews.Add(shopItemView);
+                itemViews.Add(itemView);
             }
             
-            _shopView.Show(itemViews);
+            _itemsView.Show(itemViews);
         }
 
-        private void OnBuyButtonClicked(IShopItem item)
+        private void OnBuyButtonClicked(IItem item)
         {
             if(item is not RecipeConfig recipe)
                 return;
 
-            if(_recipeShop.TryBuy(recipe) != ItemState.CanBuy)
+            if(_shop.TryBuy(recipe) != ItemState.CanBuy)
                 return;
             
-            _recipeShop.Buy(recipe);
+            _shop.Buy(recipe);
         }
         
         private void OnShopUpdated()
         {
-            if(_shopView.ItemViews.IsEmpty())
+            if(_itemsView.ItemViews.IsEmpty())
                 return;
 
-            var items = _shopView.ItemViews
-                .Select(x => x.ShopItem)
-                .OrderByDescending(x => _recipeShop.TryBuy(x as RecipeConfig) == ItemState.InMenu)
+            var items = _itemsView.ItemViews
+                .Select(x => x.Item)
+                .OrderByDescending(x => _shop.TryBuy(x as RecipeConfig) == ItemState.Selected)
                 .Cast<RecipeConfig>()
                 .ToList();
             
             int i = 0;
             
-            foreach (var itemView in _shopView.ItemViews)
+            foreach (IItemView itemView in _itemsView.ItemViews)
             {
                 itemView.Construct(items[i]);
-                itemView.ChangeItemState(_recipeShop.TryBuy(items[i++]));
+                itemView.ChangeItemState(_shop.TryBuy(items[i++]));
             }
         }
     }

@@ -6,6 +6,6 @@ namespace Code.Services.Factories.ItemShopFactory
 {
     public interface IShopItemViewFactory
     {
-        UniTask<IShopItemView> Create(IShopItem item);
+        UniTask<IItemView> Create(IItem item);
     }
 }

@@ -17,12 +17,12 @@ namespace Code.Services.Factories.ItemShopFactory
             _prefabFactory = prefabFactory;
         }
         
-        public async UniTask<IShopItemView> Create(IShopItem item)
+        public async UniTask<IItemView> Create(IItem item)
         {
             GameObject gameObject = await _prefabFactory
                 .Create(AssetKey.ShopItem);
 
-            if (!gameObject.TryGetComponent(out IShopItemView view))
+            if (!gameObject.TryGetComponent(out IItemView view))
                 throw new Exception(nameof(AssetKey.ShopItem));
             
             view.Construct(item);

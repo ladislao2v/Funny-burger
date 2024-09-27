@@ -12,7 +12,7 @@ using static Code.Services.ResourceStorage.ResourceType;
 
 namespace Code.Services.ShopService
 {
-    public sealed class RecipeShop : IRecipeShopService, IInitializable, IDisposable
+    public sealed class RecipeShop : IShopService, IInitializable, IDisposable
     {
         private readonly IConfigProvider _configProvider;
         private readonly ILevelService _levelService;
@@ -20,7 +20,7 @@ namespace Code.Services.ShopService
         private readonly IResourceStorage _resourceStorage;
         private readonly CompositeDisposable _disposables = new();
 
-        public IEnumerable<RecipeConfig> AllRecipes => _configProvider.GetRecipes();
+        public IEnumerable<IItem> AllItems => _configProvider.GetRecipes();
 
         public event Action Updated;
 
@@ -43,10 +43,13 @@ namespace Code.Services.ShopService
             _levelService.LevelChanged += OnLevelChanged;
         }
 
-        public ItemState TryBuy(RecipeConfig recipeConfig)
+        public ItemState TryBuy(IItem item)
         {
+            if (item is not RecipeConfig recipeConfig)
+                throw new ArgumentException(nameof(item));
+            
             if (_recipeService.Has(recipeConfig))
-                return (ItemState.InMenu);
+                return (ItemState.Selected);
 
             if (_levelService.Current < recipeConfig.RequiredLevel)
                 return (ItemState.Level);
@@ -60,8 +63,11 @@ namespace Code.Services.ShopService
             return (ItemState.CanBuy);
         }
 
-        public void Buy(RecipeConfig recipeConfig)
+        public void Buy(IItem item)
         {
+            if (item is not RecipeConfig recipeConfig)
+                throw new ArgumentException(nameof(item));
+            
             if(TryBuy(recipeConfig) != ItemState.CanBuy)
                 return;
 
@@ -71,8 +77,13 @@ namespace Code.Services.ShopService
                 .Spend(recipeConfig.Price);
         }
 
-        public bool IsBought(RecipeConfig recipe) => 
-            _recipeService.Has(recipe);
+        public bool IsBought(IItem item)
+        {
+            if (item is not RecipeConfig recipeConfig)
+                throw new ArgumentException(nameof(item));
+            
+            return _recipeService.Has(recipeConfig);
+        }
 
         public void Dispose()
         {

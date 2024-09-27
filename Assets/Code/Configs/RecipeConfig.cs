@@ -8,7 +8,7 @@ using static Code.Ingredients.IngredientType;
 namespace Code.Configs
 {
     [CreateAssetMenu(menuName = "Create Recipe", fileName = "Recipe", order = 0)]
-    public sealed class RecipeConfig : ScriptableObject, IShopItem
+    public sealed class RecipeConfig : ScriptableObject, IItem
     {
         private readonly int _maxIngredientsCount = 6;
         
@@ -16,7 +16,6 @@ namespace Code.Configs
         [SerializeField] private Sprite _logo;
         [SerializeField] private Sprite _orderLogo;
         [SerializeField] private string _name;
-        [SerializeField] private string _description;
         [SerializeField, Min(0)] private int _price;
         [SerializeField, Min(0)] private int _requiredLevel;
         [SerializeField, Range(0, 90)] private float _cookTime;
@@ -29,7 +28,6 @@ namespace Code.Configs
         public Sprite Logo => _logo;
         public Sprite OrderLogo => _orderLogo;
         public string Name => _name;
-        public string Description => _description;
         public int Price => _price;
         public int RequiredLevel => _requiredLevel;
         public float CookTime => _cookTime;
