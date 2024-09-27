@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Code.Configs;
 using Code.Ingredients;
-using UnityEngine;
 
 namespace Code.Services.GameDataService.Data
 {

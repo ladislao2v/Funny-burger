@@ -1,8 +1,5 @@
 ﻿using Code.Extensions;
-using UniRx;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Code.Services.Input

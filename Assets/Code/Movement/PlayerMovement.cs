@@ -1,8 +1,5 @@
-﻿using System;
-using Code.Configs;
-using UniRx;
+﻿using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Code.Movement
 {

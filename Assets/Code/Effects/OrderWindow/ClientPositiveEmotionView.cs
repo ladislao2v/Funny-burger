@@ -1,6 +1,4 @@
-using System;
 using Code.Services.BurgerOrderService;
-using Unity.VisualScripting;
 using Zenject;
 
 namespace Code.Effects.OrderWindow

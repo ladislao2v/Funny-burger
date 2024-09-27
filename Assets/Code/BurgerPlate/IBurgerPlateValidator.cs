@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Code.Ingredients;
+﻿using Code.Ingredients;
 
 namespace Code.BurgerPlate
 {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Code.Configs;
 using Code.Services.ConfigProvider;
-using Code.Services.GameDataService;
 using Code.Services.LevelService;
 using Code.Services.RecipeService;
 using Code.Services.ResourceStorage;

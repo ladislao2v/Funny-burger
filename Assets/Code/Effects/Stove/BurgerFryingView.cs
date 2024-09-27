@@ -1,6 +1,4 @@
-﻿using System;
-using Code.Triggers;
-using Code.Units;
+﻿using Code.Triggers;
 using DG.Tweening;
 using UnityEngine;
 

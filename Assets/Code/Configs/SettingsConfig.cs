@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Code.Services.LocalizationService;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Code.Configs
 {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Code.Ingredients;
-using Code.Services.Factories.IngredientFactory;
 using Code.Units;
-using UnityEngine;
 using Zenject;
 
 namespace Code.BurgerPlate

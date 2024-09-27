@@ -1,7 +1,5 @@
-﻿using System;
-using Code.Configs;
+﻿using Code.Configs;
 using Code.Services.ConfigProvider;
-using UnityEngine;
 using Zenject;
 
 namespace Code.Units

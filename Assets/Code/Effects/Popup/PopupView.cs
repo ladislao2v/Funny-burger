@@ -8,6 +8,7 @@ namespace Code.Effects.Popup
 {
     public class PopupView : MonoBehaviour
     {
+        [SerializeField] private Ease _ease = Ease.InOutBounce;
         [SerializeField] private Vector3 _scale = Vector3.one;
         [SerializeField] private float _duration = 1;
         
@@ -22,7 +23,7 @@ namespace Code.Effects.Popup
         public void ScaleUp()
         {
             _tween?.Kill();
-            _tween = transform.DOScale(_scale, _duration);
+            _tween = transform.DOScale(_scale, _duration).SetEase(_ease);
         }
         
         public void ScaleDown(Action callback)

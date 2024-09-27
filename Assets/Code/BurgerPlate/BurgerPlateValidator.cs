@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Code.Ingredients;
-using ModestTree;
+﻿using Code.Ingredients;
 using static Code.Ingredients.IngredientType;
 
 namespace Code.BurgerPlate

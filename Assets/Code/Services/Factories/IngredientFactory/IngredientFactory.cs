@@ -4,7 +4,6 @@ using Code.Ingredients;
 using Code.Services.ConfigProvider;
 using Code.Services.Factories.PrefabFactory;
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Code.Services.Factories.IngredientFactory

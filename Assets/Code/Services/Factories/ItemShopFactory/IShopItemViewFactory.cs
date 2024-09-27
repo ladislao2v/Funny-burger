@@ -1,5 +1,4 @@
 ﻿using Code.Services.ShopService;
-using Code.UI.Popups.Shop;
 using Code.UI.Shop;
 using Cysharp.Threading.Tasks;
 

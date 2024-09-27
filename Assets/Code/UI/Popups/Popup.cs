@@ -1,5 +1,4 @@
 ﻿using System;
-using Code.Effects.Popup;
 using UnityEngine;
 using UnityEngine.UI;
 

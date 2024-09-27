@@ -1,5 +1,4 @@
-﻿using Code.Services.GameDataService;
-using UniRx;
+﻿using UniRx;
 
 namespace Code.Services.ResourceStorage
 {

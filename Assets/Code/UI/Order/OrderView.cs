@@ -1,11 +1,6 @@
-﻿using System;
-using Code.Configs;
+﻿using Code.Configs;
 using Code.Constants;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 

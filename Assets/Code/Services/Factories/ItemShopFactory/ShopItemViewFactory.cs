@@ -2,7 +2,6 @@
 using Code.Constants;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.ShopService;
-using Code.UI.Popups.Shop;
 using Code.UI.Shop;
 using Cysharp.Threading.Tasks;
 using UnityEngine;

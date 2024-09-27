@@ -1,9 +1,5 @@
-using System;
 using Code.Services.Factories.PopupFactory;
-using Code.Services.GameTimeService;
 using Code.UI.Popups;
-using UniRx;
-using UnityEngine;
 
 namespace Code.Services.PopupService
 {

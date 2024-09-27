@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Code.Constants;
+﻿using Code.Constants;
 using Code.Movement;
 using UniRx;
 using UnityEngine;

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Code.Services.PopupService
+﻿namespace Code.Services.PopupService
 {
     public interface IPopupService
     {

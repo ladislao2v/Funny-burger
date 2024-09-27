@@ -1,5 +1,4 @@
 ﻿using Code.Triggers;
-using Code.Units;
 using UnityEngine;
 
 namespace Code.Effects.Interactor
