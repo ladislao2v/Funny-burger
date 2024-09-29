@@ -42,6 +42,8 @@ namespace Code.Services.PopupService
             popupTransform.SetParent(transform);
             popupTransform.localPosition = _popupPosition;
             
+            popup.Clicked += Hide;
+
             _timer = Observable
                 .Timer(TimeSpan.FromSeconds(PopupCreationTime))
                 .Subscribe(_ =>
@@ -49,8 +51,6 @@ namespace Code.Services.PopupService
                     _gameTimeService.StopTime();
                     _timer.Dispose();
                 });
-
-            popup.Clicked += Hide;
         }
 
         private void Hide()

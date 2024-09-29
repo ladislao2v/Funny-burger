@@ -6,8 +6,4 @@ namespace Code.Services.ClientsService
 
         public void Set(IClientsService clientsService);
     }
-    
-    namespace Code.Services.ClientsService
-    {
-    }
 }

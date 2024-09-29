@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.Configs;
 using Code.UI.Shop;
 
 namespace Code.Services.ShopService

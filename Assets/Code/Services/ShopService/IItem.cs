@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Code.Services.LevelRewardService;
+using UnityEngine;
 
 namespace Code.Services.ShopService
 {
@@ -8,5 +9,7 @@ namespace Code.Services.ShopService
         string Name { get; }
         public int RequiredLevel { get; }
         public int Price { get; }
+
+        void Accept(IItemVisitor itemVisitor);
     }
 }

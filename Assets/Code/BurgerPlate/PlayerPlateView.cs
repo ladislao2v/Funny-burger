@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.Ingredients;
 using Code.Units;
-using Zenject;
 
 namespace Code.BurgerPlate
 {

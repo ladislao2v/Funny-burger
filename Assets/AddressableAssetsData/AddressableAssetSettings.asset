@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
   m_DefaultGroup: c02ba6cd750f947acb3d7db594a9c6fe
-  m_CachedHash:
+  m_currentHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
@@ -32,11 +32,14 @@ MonoBehaviour:
   m_ShaderBundleNaming: 0
   m_ShaderBundleCustomNaming: 
   m_MonoScriptBundleNaming: 0
+  m_CheckForContentUpdateRestrictionsOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
     m_Id: 
   m_RemoteCatalogLoadPath:
     m_Id: 
+  m_ContentStateBuildPathProfileVariableName: 
+  m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: 
@@ -48,6 +51,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1bc4569423731e4e8dee299c225e761, type: 2}
   - {fileID: 11400000, guid: baa6a5c83c2a94db1a950ea0bb2a3681, type: 2}
   - {fileID: 11400000, guid: 00b3a5b0b950f420e86b2ab18c5a4a5b, type: 2}
+  - {fileID: 11400000, guid: 1cd00ff0a964d444d92a279b3dcd85b8, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -66,9 +70,9 @@ MonoBehaviour:
       - m_Id: ba33135049d29477b9d723ff420e3972
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 7b4196c09136e4344983e166cddf45cc
-        m_Value: ServerData/[BuildTarget]
+        m_Value: 'ServerData/[BuildTarget]'
       - m_Id: 69a555597ee55442c80475482aee72ce
-        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+        m_Value: 'http://[PrivateIpAddress]:[HostingServicePort]'
     m_ProfileEntryNames:
     - m_Id: 19d5ce45757eb4775af6345ddee71889
       m_Name: BuildTarget
@@ -108,3 +112,4 @@ MonoBehaviour:
     m_Settings: {fileID: 11400000}
     m_NextInstanceId: 0
     m_RegisteredServiceTypeRefs: []
+    m_PingTimeoutInMilliseconds: 5000

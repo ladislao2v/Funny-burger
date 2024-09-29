@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Code.Extensions;
+using Code.Services.LevelRewardService;
 using Code.Services.ShopService;
 using UnityEngine;
 using static Code.Ingredients.IngredientType;
@@ -29,9 +30,13 @@ namespace Code.Configs
         public Sprite OrderLogo => _orderLogo;
         public string Name => _name;
         public int Price => _price;
+
         public int RequiredLevel => _requiredLevel;
+
         public float CookTime => _cookTime;
+
         public bool IsStart => _isStart;
+
         public IEnumerable<IngredientConfig> Burger => _burger;
 
         private void OnValidate()
@@ -47,5 +52,8 @@ namespace Code.Configs
             if (_burger.Count == _maxIngredientsCount &&  _burger.Last()?.Type != BottomBun)
                 _burger.Remove( _burger.Last());
         }
+
+        public void Accept(IItemVisitor itemVisitor) => 
+            itemVisitor.Visit(this);
     }
 }

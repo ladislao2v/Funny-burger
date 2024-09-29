@@ -6,13 +6,13 @@ namespace Code.Services.PopupService
     public sealed class PopupService : IPopupService
     {
         private readonly IPopupFactory _popupFactory;
-        private readonly IPopupContainer _popupContainer;
+        private readonly IPopupContainerProvider _popupContainerProvider;
 
         public PopupService(IPopupFactory popupFactory, 
             IPopupContainerProvider popupContainerProvider)
         {
             _popupFactory = popupFactory;
-            _popupContainer = popupContainerProvider.Container;
+            _popupContainerProvider = popupContainerProvider;
         }
         
         public async void ShowPopup(PopupType popupType)
@@ -20,7 +20,7 @@ namespace Code.Services.PopupService
             Popup popup = 
                 await _popupFactory.Create(popupType);
             
-            _popupContainer.Put(popup);
+            _popupContainerProvider.Container.Put(popup);
         }
     }
 }

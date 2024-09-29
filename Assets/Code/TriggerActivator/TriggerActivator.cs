@@ -3,7 +3,6 @@ using Code.Triggers;
 using Code.Units;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Code.TriggerActivator
 {
@@ -18,10 +17,9 @@ namespace Code.TriggerActivator
         private IPlayer _player;
         private IMovement _movement;
 
-        [Inject]
-        private void Construct(IPlayerProvider playerProvider)
+        private void Awake()
         {
-            _player = playerProvider.Player;
+            _player = GetComponent<IPlayer>();
             _movement = GetComponent<IMovement>();
         }
 

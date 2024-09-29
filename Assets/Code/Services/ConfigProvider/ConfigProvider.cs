@@ -14,6 +14,7 @@ namespace Code.Services.ConfigProvider
         private readonly Dictionary<IngredientType,IngredientConfig> _ingredientsConfigs;
         private readonly Dictionary<PopupType, PopupConfig> _popupConfigs;
         private readonly RecipeConfig[] _recipes;
+        private readonly GemConfig[] _gems;
 
         public SettingsConfig SettingsConfig { get; private set; }
 
@@ -34,6 +35,10 @@ namespace Code.Services.ConfigProvider
             _recipes = Resources
                 .LoadAll<RecipeConfig>(ResourcePath.Recipes)
                 .ToArray();
+            
+            _gems = Resources
+                .LoadAll<GemConfig>(ResourcePath.Gems)
+                .ToArray();
         }
         
         public IngredientConfig GetIngredientConfig(IngredientType ingredientType)
@@ -53,5 +58,6 @@ namespace Code.Services.ConfigProvider
         }
 
         public IEnumerable<RecipeConfig> GetRecipes() => _recipes;
+        public IEnumerable<GemConfig> GetGems() => _gems;
     }
 }

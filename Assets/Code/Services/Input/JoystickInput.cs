@@ -6,35 +6,36 @@ namespace Code.Services.Input
 {
     public sealed class JoystickInput : IInput, ITickable
     {
-        private readonly Joystick _joystick;
+        private readonly IJoystickProvider _joystickProvider;
 
         private Vector3 _direction;
         public Vector3 Direction => _direction;
 
-        public bool IsInit => _joystick != null;
+        public bool IsInit => _joystickProvider != null;
         
-        public JoystickInput(IJoystickProvider joystickProvider) => 
-            _joystick = joystickProvider.Joystick;
+        public JoystickInput(IJoystickProvider joystickProviderProvider) => 
+            _joystickProvider = joystickProviderProvider;
 
         public void Enable() => 
-            _joystick.gameObject.SetActive(true);
+            _joystickProvider.Joystick.gameObject.SetActive(true);
 
         public void Disable()
         {
-            _joystick.OnPointerUp(null);
-            _joystick.gameObject.SetActive(false);
+            _joystickProvider.Joystick.OnPointerUp(null);
+            _joystickProvider.Joystick.gameObject.SetActive(false);
             _direction = Vector3.zero;
         }
 
         public void Tick()
         {
-            if(_joystick == null)
+            if(_joystickProvider.Joystick == null)
                 return;
             
-            if(!_joystick.gameObject.activeInHierarchy)
+            if(!_joystickProvider.Joystick.gameObject.activeInHierarchy)
                 return;
             
-            _direction = _joystick
+            _direction = _joystickProvider
+                .Joystick
                 .Direction
                 .normalized
                 .ToVector3();

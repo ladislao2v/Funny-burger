@@ -1,5 +1,4 @@
-﻿using Code.Movement;
-using Code.Services.AssetProvider;
+﻿using Code.Services.AssetProvider;
 using Code.Services.AudioService;
 using Code.Services.BurgerOrderService;
 using Code.Services.ClientsService;
@@ -7,11 +6,13 @@ using Code.Services.ConfigProvider;
 using Code.Services.Factories.ClientFactory;
 using Code.Services.Factories.IngredientFactory;
 using Code.Services.Factories.ItemShopFactory;
+using Code.Services.Factories.ItemVisitorFactory;
 using Code.Services.Factories.PopupFactory;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.GameDataService;
 using Code.Services.GameTimeService;
 using Code.Services.Input;
+using Code.Services.LevelRewardService;
 using Code.Services.LevelService;
 using Code.Services.LocalizationService;
 using Code.Services.PopupService;
@@ -32,13 +33,14 @@ namespace Code.CompositionRoot
         {
             BindAssetProvider();
             BindStaticData();
+            BindPrefabFactory();
+            BindFactories();
             BindSceneLoader();
             BindLevelService();
             BindWalletService();
+            BindLevelRewardService();
             BindGameDataService();
             BindInputService();
-            BindPrefabFactory();
-            BindFactories();
             BindShop();
             BindAudioService();
             BindOrderService();
@@ -50,7 +52,12 @@ namespace Code.CompositionRoot
             BindStateFactory();
             BindStateMachine();
         }
-        
+
+        private void BindLevelRewardService()
+        {
+            Container.BindInterfacesAndSelfTo<LevelRewardService>().AsCached();
+        }
+
         private void BindClientService()
         {
             Container.BindInterfacesAndSelfTo<ClientsServiceProvider>().AsSingle();
@@ -112,6 +119,7 @@ namespace Code.CompositionRoot
             Container.BindInterfacesAndSelfTo<PopupFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<ShopItemViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<ClientFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ItemVisitorFactory>().AsSingle();
         }
 
         private void BindGameDataService()

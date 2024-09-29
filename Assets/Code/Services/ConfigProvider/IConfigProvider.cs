@@ -12,5 +12,6 @@ namespace Code.Services.ConfigProvider
         PopupConfig GetPopupConfig(PopupType popupType);
 
         IEnumerable<RecipeConfig> GetRecipes();
+        IEnumerable<GemConfig> GetGems();
     }
 }

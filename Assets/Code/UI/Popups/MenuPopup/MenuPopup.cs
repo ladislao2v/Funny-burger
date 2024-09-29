@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Code.Services.Factories.ItemShopFactory;
 using Code.Services.RecipeService;
 using Code.Services.ShopService;
@@ -21,8 +22,8 @@ namespace Code.UI.Popups.MenuPopup
             _itemsView = GetComponent<IItemsView>();
         }
 
-        private void Start() => 
-            CreateRecipesIcons(_recipeService.Storage);
+        private void OnEnable() => CreateRecipesIcons(_recipeService.Storage);
+            
 
         private async void CreateRecipesIcons(IEnumerable<IItem> items)
         {

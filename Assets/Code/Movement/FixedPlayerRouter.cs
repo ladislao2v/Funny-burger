@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Services.Input;
+﻿using Code.Services.Input;
 using Code.Units;
 using UnityEngine;
 using Zenject;

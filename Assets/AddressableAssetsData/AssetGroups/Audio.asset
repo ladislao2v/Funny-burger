@@ -18,13 +18,15 @@ MonoBehaviour:
   m_GUID: ed3c8fb0e82116c4f8afad6d8c9ab22c
   m_SerializeEntries:
   - m_GUID: 83fb831a27d2145af9dc01de3ca67313
-    m_Address: Assets/Sounds/background.mp3
+    m_Address: background
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1fdd98e27d850a34b9188900ab891288
     m_Address: mixkit-modern-technology-select-3124
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
   m_SchemaSet:

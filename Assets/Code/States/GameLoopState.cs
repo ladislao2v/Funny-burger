@@ -16,7 +16,7 @@ namespace Code.States
         private readonly IRecipeService _recipeService;
         private readonly IGameDataService _gameDataService;
         private readonly IBurgerOrderService _orderService;
-        private readonly IClientsService _clientsService;
+        private readonly IClientsServiceProvider _clientsServiceProvider;
         private readonly IShopService _shopService;
 
         private bool _isWorking = true;
@@ -30,20 +30,19 @@ namespace Code.States
             _recipeService = recipeService;
             _gameDataService = gameDataService;
             _orderService = orderService;
-            _clientsService = clientsServiceProvider.ClientsService;
+            _clientsServiceProvider = clientsServiceProvider;
             _shopService = shopService;
         }
         
         public async void Enter()
         {
-            await UniTask.WaitUntil(() => _clientsService != null);
-            await UniTask.WaitUntil(() => _input.IsInit);
-            await _clientsService.LoadClients();
+            await UniTask.WaitUntil(() => _clientsServiceProvider.ClientsService != null);
+            await _clientsServiceProvider.ClientsService.LoadClients();
             
             _input.Enable();
-            _orderService.OrderPassed += _clientsService.SendClientAway;
+            _orderService.OrderPassed += _clientsServiceProvider.ClientsService.SendClientAway;
             _orderService.OrderPassed += _gameDataService.SaveData;
-            _orderService.Failed += _clientsService.SendClientAway;
+            _orderService.Failed += _clientsServiceProvider.ClientsService.SendClientAway;
 
             _shopService.Updated += _gameDataService.SaveData;
 
@@ -54,14 +53,14 @@ namespace Code.States
         {
             while (_isWorking)
             {
-                _clientsService.SendClientToWindow();
+                _clientsServiceProvider.ClientsService.SendClientToWindow();
 
-                await UniTask.WaitUntil(() => _clientsService.IsSend);
+                await UniTask.WaitUntil(() => _clientsServiceProvider.ClientsService.IsSend);
                 
                 RecipeConfig recipe = _recipeService.GetNextRecipe();
                 _orderService.Order(recipe);
                 
-                await UniTask.WaitUntil(() => _clientsService.IsSend == false);
+                await UniTask.WaitUntil(() => _clientsServiceProvider.ClientsService.IsSend == false);
             }
         }
 
@@ -69,9 +68,9 @@ namespace Code.States
         {
             _isWorking = false;
             _input.Disable();
-            _orderService.OrderPassed -= _clientsService.SendClientAway;
+            _orderService.OrderPassed -= _clientsServiceProvider.ClientsService.SendClientAway;
             _orderService.OrderPassed -= _gameDataService.SaveData;
-            _orderService.Failed -= _clientsService.SendClientAway;
+            _orderService.Failed -= _clientsServiceProvider.ClientsService.SendClientAway;
             
             _shopService.Updated -= _gameDataService.SaveData;
         }

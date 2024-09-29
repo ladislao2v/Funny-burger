@@ -6,5 +6,6 @@
         public const string Ingredients = "Config/Ingredients";
         public const string Recipes = "Config/Recipes";
         public const string Popups = "Config/Popups";
+        public const string Gems = "Config/Gems";
     }
 }

@@ -5,35 +5,35 @@ using Zenject;
 
 namespace Code.UI.TaskProgress
 {
-    public class CommandProgressPresenter : MonoBehaviour
+    public class TaskProgressPresenter : MonoBehaviour
     {
-        private IPlayer _model;
+        private IPlayerProvider _modelProvider;
         private ITaskProgressView _view;
 
         [Inject]
         private void Construct(IPlayerProvider modelProvider)
         {
-            _model = modelProvider.Player;
+            _modelProvider = modelProvider;
             _view = GetComponent<ITaskProgressView>();
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            _model.TaskStarted += OnTaskStarted;
-            _model.TaskEnded += OnTaskEnded;
+            _modelProvider.Player.TaskStarted += OnTaskStarted;
+            _modelProvider.Player.TaskEnded += OnTaskEnded;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            _model.TaskStarted -= OnTaskStarted;
-            _model.TaskEnded -= OnTaskEnded;
+            _modelProvider.Player.TaskStarted -= OnTaskStarted;
+            _modelProvider.Player.TaskEnded -= OnTaskEnded;
         }
 
         private void OnTaskStarted()
         {
             _view.Show();
             
-            float taskTime = _model.Config.TaskTime;
+            float taskTime = _modelProvider.Player.Config.TaskTime;
             
             _view.OnCommandProgressed(taskTime);
         }
