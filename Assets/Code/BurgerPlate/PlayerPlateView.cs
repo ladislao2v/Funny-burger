@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Code.Ingredients;
 using Code.Units;
 using Zenject;
@@ -9,10 +10,9 @@ namespace Code.BurgerPlate
     {
         private IBurgerPlate _burgerPlate;
 
-        [Inject]
-        private void Construct(IPlayer player)
+        private void Awake()
         {
-            _burgerPlate = player.Plate;
+            _burgerPlate = GetComponent<IPlayer>().Plate;
             
             _burgerPlate.IngredientAdded += OnAdded;
             _burgerPlate.IngredientsAdded += OnRangeAdded; 

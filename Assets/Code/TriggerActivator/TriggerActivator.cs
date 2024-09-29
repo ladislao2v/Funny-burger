@@ -19,9 +19,9 @@ namespace Code.TriggerActivator
         private IMovement _movement;
 
         [Inject]
-        private void Construct(IPlayer player)
+        private void Construct(IPlayerProvider playerProvider)
         {
-            _player = player;
+            _player = playerProvider.Player;
             _movement = GetComponent<IMovement>();
         }
 

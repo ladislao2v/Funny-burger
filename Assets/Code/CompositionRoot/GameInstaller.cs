@@ -1,6 +1,8 @@
-﻿using Code.Services.AssetProvider;
+﻿using Code.Movement;
+using Code.Services.AssetProvider;
 using Code.Services.AudioService;
 using Code.Services.BurgerOrderService;
+using Code.Services.ClientsService;
 using Code.Services.ConfigProvider;
 using Code.Services.Factories.ClientFactory;
 using Code.Services.Factories.IngredientFactory;
@@ -9,13 +11,17 @@ using Code.Services.Factories.PopupFactory;
 using Code.Services.Factories.PrefabFactory;
 using Code.Services.GameDataService;
 using Code.Services.GameTimeService;
+using Code.Services.Input;
 using Code.Services.LevelService;
 using Code.Services.LocalizationService;
+using Code.Services.PopupService;
 using Code.Services.RecipeService;
 using Code.Services.ResourceStorage;
 using Code.Services.SaveDataService;
 using Code.Services.SceneLoader;
 using Code.Services.ShopService;
+using Code.Units;
+using Plugins.StateMachine.StateFactory;
 using Zenject;
 
 namespace Code.CompositionRoot
@@ -30,6 +36,7 @@ namespace Code.CompositionRoot
             BindLevelService();
             BindWalletService();
             BindGameDataService();
+            BindInputService();
             BindPrefabFactory();
             BindFactories();
             BindShop();
@@ -37,6 +44,35 @@ namespace Code.CompositionRoot
             BindOrderService();
             BindGameTimeService();
             BindLocalizationService();
+            BindPlayer();
+            BindClientService();
+            BindPopupService();
+            BindStateFactory();
+            BindStateMachine();
+        }
+        
+        private void BindClientService()
+        {
+            Container.BindInterfacesAndSelfTo<ClientsServiceProvider>().AsSingle();
+        }
+
+        private void BindPopupService()
+        {
+            Container.BindInterfacesAndSelfTo<PopupContainerProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PopupService>().AsSingle();
+        }
+
+        private void BindPlayer()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerProvider>()
+                .AsSingle();
+        }
+        
+        private void BindInputService()
+        {
+            Container.BindInterfacesAndSelfTo<JoystickProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<JoystickInput>().AsCached();
         }
 
         private void BindLocalizationService()
@@ -109,5 +145,14 @@ namespace Code.CompositionRoot
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
         }
 
+        private void BindStateMachine()
+        {
+            Container.BindInterfacesAndSelfTo<Plugins.StateMachine.Core.StateMachine>().AsCached();
+        }
+
+        private void BindStateFactory()
+        {
+            Container.BindInterfacesAndSelfTo<StateFactory>().AsSingle();
+        }
     }
 }

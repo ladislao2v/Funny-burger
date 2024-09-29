@@ -1,4 +1,5 @@
-﻿using Code.Constants;
+﻿using System;
+using Code.Constants;
 using Code.Units;
 using UnityEngine;
 using Zenject;
@@ -12,9 +13,9 @@ namespace Code.Effects.Units
         private IPlayer _player;
 
         [Inject]
-        private void Construct(IPlayer player)
+        private void Construct(IPlayerProvider playerProvider)
         {
-            _player = player;
+            _player = playerProvider.Player;
             _animator = GetComponent<Animator>();
         }
 

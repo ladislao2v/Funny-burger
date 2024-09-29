@@ -21,14 +21,22 @@ MonoBehaviour:
     m_Address: SettingsPopup
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9dcb3156ac716f04b9b055bce10b2b2b
     m_Address: ShopPopup
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36a5e05f4ae684ccda9c8a6357f299c3
     m_Address: TutorialPopup
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1941f5f2af5ba7e4fb109dd19c9af841
+    m_Address: MenuPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ad502ac61de7947d0b730d0bbb540cae, type: 2}
   m_SchemaSet:

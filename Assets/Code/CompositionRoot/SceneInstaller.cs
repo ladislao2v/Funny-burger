@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Code.CompositionRoot
 {
-    public sealed class SceneInstaller : MonoInstaller
+    public sealed class SceneInstaller : MonoInstaller, IInitializable
     {
         [Header("UI")]
         [SerializeField] private Joystick _joystick;
@@ -19,72 +19,14 @@ namespace Code.CompositionRoot
         [SerializeField] private Chef _chef;
         [SerializeField] private ClientsService _clientService;
 
-        public override void InstallBindings()
-        {
-            BindJoystick();
-            BindInputService();
-            BindPlayer();
-            BindPlayerRouter();
-            BindClientService();
-            BindPopupService();
-            BindStateFactory();
-            BindStateMachine();
-        }
+        public override void InstallBindings() { }
 
-        private void BindClientService()
+        public void Initialize()
         {
-            Container.BindInterfacesAndSelfTo<ClientsService>().FromInstance(_clientService).AsSingle();
-        }
-
-        private void BindPopupService()
-        {
-            Container.BindInterfacesAndSelfTo<PopupContainer>().FromInstance(_popupContainer).AsSingle();
-            Container.BindInterfacesAndSelfTo<PopupService>().AsSingle();
-        }
-
-        private void BindPlayerRouter()
-        {
-            Container
-                .BindInterfacesAndSelfTo<FixedPlayerRouter>()
-                .AsCached();
-        }
-
-        private void BindPlayer()
-        {
-            Container
-                .BindInterfacesAndSelfTo<Chef>()
-                .FromInstance(_chef)
-                .AsSingle();
-
-            Container
-                .BindInterfacesAndSelfTo<ChefInitializer>()
-                .AsCached();
-        }
-
-        private void BindInputService()
-        {
-            Container
-                .BindInterfacesAndSelfTo<JoystickInput>()
-                .AsCached();
-        }
-
-        private void BindJoystick()
-        {
-            Container
-                .Bind<Joystick>()
-                .FromInstance(_joystick)
-                .AsSingle();
-        }
-        
-        
-        private void BindStateMachine()
-        {
-            Container.BindInterfacesAndSelfTo<Plugins.StateMachine.Core.StateMachine>().AsCached();
-        }
-
-        private void BindStateFactory()
-        {
-            Container.BindInterfacesAndSelfTo<StateFactory>().AsSingle();
+            Container.Resolve<IJoystickProvider>().Set(_joystick);
+            Container.Resolve<IPopupContainerProvider>().Set(_popupContainer);
+            Container.Resolve<IPlayerProvider>().Set(_chef);
+            Container.Resolve<IClientsServiceProvider>().Set(_clientService);
         }
     }
 }

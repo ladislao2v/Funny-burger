@@ -21,19 +21,23 @@ namespace Code.States
 
         private bool _isWorking = true;
 
-        public GameLoopState(IInput input, IRecipeService recipeService, IGameDataService gameDataService, 
-        IBurgerOrderService orderService, IClientsService clientsService, IShopService shopService)
+        public GameLoopState(IInput input, IRecipeService recipeService, 
+            IGameDataService gameDataService, IBurgerOrderService orderService, 
+            IClientsServiceProvider clientsServiceProvider, 
+            IShopService shopService)
         {
             _input = input;
             _recipeService = recipeService;
             _gameDataService = gameDataService;
             _orderService = orderService;
-            _clientsService = clientsService;
+            _clientsService = clientsServiceProvider.ClientsService;
             _shopService = shopService;
         }
         
         public async void Enter()
         {
+            await UniTask.WaitUntil(() => _clientsService != null);
+            await UniTask.WaitUntil(() => _input.IsInit);
             await _clientsService.LoadClients();
             
             _input.Enable();

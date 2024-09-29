@@ -8,10 +8,11 @@ namespace Code.Services.PopupService
         private readonly IPopupFactory _popupFactory;
         private readonly IPopupContainer _popupContainer;
 
-        public PopupService(IPopupFactory popupFactory, IPopupContainer popupContainer)
+        public PopupService(IPopupFactory popupFactory, 
+            IPopupContainerProvider popupContainerProvider)
         {
             _popupFactory = popupFactory;
-            _popupContainer = popupContainer;
+            _popupContainer = popupContainerProvider.Container;
         }
         
         public async void ShowPopup(PopupType popupType)

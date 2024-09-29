@@ -6,28 +6,31 @@ using Zenject;
 
 namespace Code.Movement
 {
-    public sealed class FixedPlayerRouter : Router, IInitializable, IFixedTickable, IDisposable
+    public sealed class FixedPlayerRouter : Router
     {
-        private readonly IInput _input;
-        private readonly IPlayer _player;
+        private IInput _input;
+        private IPlayer _player;
 
-
-        public FixedPlayerRouter(IInput input, IPlayer player)
+        [Inject]
+        private void Construct(IInput input)
         {
             _input = input;
-            _player = player;
         }
 
-        public void Initialize()
+        private void Awake()
         {
+            _player = GetComponent<IPlayer>();
+            
             _player.TaskStarted += _input.Disable;
             _player.TaskEnded += _input.Enable;
         }
 
-        public void FixedTick() => 
+        public void FixedUpdate()
+        {
             Rout(_player.Movement, _input.Direction, _player.Config.Speed);
+        }
 
-        public void Dispose()
+        public void OnDestroy()
         {
             _player.TaskStarted -= _input.Disable;
             _player.TaskEnded -= _input.Enable;

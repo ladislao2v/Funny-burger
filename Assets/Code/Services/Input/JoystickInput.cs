@@ -11,15 +11,13 @@ namespace Code.Services.Input
         private Vector3 _direction;
         public Vector3 Direction => _direction;
 
-        public JoystickInput(Joystick joystick)
-        {
-            _joystick = joystick;
-        }
+        public bool IsInit => _joystick != null;
+        
+        public JoystickInput(IJoystickProvider joystickProvider) => 
+            _joystick = joystickProvider.Joystick;
 
-        public void Enable()
-        {
+        public void Enable() => 
             _joystick.gameObject.SetActive(true);
-        }
 
         public void Disable()
         {
@@ -30,6 +28,9 @@ namespace Code.Services.Input
 
         public void Tick()
         {
+            if(_joystick == null)
+                return;
+            
             if(!_joystick.gameObject.activeInHierarchy)
                 return;
             

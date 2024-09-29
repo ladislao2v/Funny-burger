@@ -1,4 +1,5 @@
-﻿using Code.Units;
+﻿using System;
+using Code.Units;
 using UnityEngine;
 using Zenject;
 
@@ -10,17 +11,19 @@ namespace Code.UI.TaskProgress
         private ITaskProgressView _view;
 
         [Inject]
-        private void Construct(IPlayer model)
+        private void Construct(IPlayerProvider modelProvider)
         {
-            _model = model;
+            _model = modelProvider.Player;
             _view = GetComponent<ITaskProgressView>();
-            
-            
+        }
+
+        private void OnEnable()
+        {
             _model.TaskStarted += OnTaskStarted;
             _model.TaskEnded += OnTaskEnded;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _model.TaskStarted -= OnTaskStarted;
             _model.TaskEnded -= OnTaskEnded;

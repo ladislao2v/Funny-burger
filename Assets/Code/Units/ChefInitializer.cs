@@ -1,26 +1,27 @@
-﻿using Code.Configs;
+﻿using System.Runtime.InteropServices;
+using Code.CompositionRoot;
+using Code.Configs;
 using Code.Services.ConfigProvider;
+using UnityEngine;
 using Zenject;
 
 namespace Code.Units
 {
-    public sealed class ChefInitializer : IInitializable 
+    public sealed class ChefInitializer : MonoBehaviour
     {
-        private readonly IPlayer _player;
-        private readonly IConfigProvider _configProvider;
+        private IConfigProvider _configProvider;
 
-        public ChefInitializer(IPlayer player, IConfigProvider configProvider)
-        {
-            _player = player;
+        [Inject]
+        private void Construct(IConfigProvider configProvider) => 
             _configProvider = configProvider;
-        }
 
-        public void Initialize()
+        public void Awake()
         {
             IChefConfig config = 
                 _configProvider.SettingsConfig;
             
-            _player.Construct(config);
+            GetComponent<IPlayer>()
+                .Construct(config);
         }
     }
 }
