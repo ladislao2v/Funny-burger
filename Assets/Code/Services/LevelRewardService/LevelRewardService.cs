@@ -5,6 +5,7 @@ using Code.Services.ConfigProvider;
 using Code.Services.Factories.ItemVisitorFactory;
 using Code.Services.LevelService;
 using Code.Services.ShopService;
+using UnityEngine;
 using Zenject;
 
 namespace Code.Services.LevelRewardService
@@ -61,11 +62,13 @@ namespace Code.Services.LevelRewardService
 
         private IItem PickNextReward(int next)
         {
-            var reward = _rewards
+            IItem reward = _rewards
                 .FirstOrDefault(x => x.RequiredLevel == next);
+            
+            Debug.Log(reward?.Name);
 
             if (reward == null)
-                return  NextReward;
+                return NextReward;
             
             return reward;
         }

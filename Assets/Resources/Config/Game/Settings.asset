@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f747585ce3d44270aceb572925b15b81, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 5.5
-  <TaskTime>k__BackingField: 1.5
+  <Speed>k__BackingField: 6
+  <TaskTime>k__BackingField: 1.25
   <Clients>k__BackingField: 0
-  <ClientSpawnPoint>k__BackingField: {x: 0, y: 0, z: 0}
   <Offset>k__BackingField: {x: 0, y: 0, z: 0}
+  <MaxLevelTasks>k__BackingField: 25

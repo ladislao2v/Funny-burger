@@ -2,6 +2,7 @@
 using Code.Services.ConfigProvider;
 using Code.Services.GameDataService;
 using Code.Services.GameDataService.Data;
+using UnityEngine;
 
 namespace Code.Services.LevelService
 {
@@ -9,12 +10,11 @@ namespace Code.Services.LevelService
     {
         private readonly IConfigProvider _configProvider;
         
-        private int _progress;
-        
         public int Current { get; private set; }
         public int Next => Current + 1;
 
-        private int RequiredProgress => GetRequiredTasks(Current);
+        public int Progress { get; private set; }
+        public int RequiredProgress => GetRequiredTasks(Current);
 
         public string SaveKey => nameof(LevelService);
         
@@ -29,18 +29,18 @@ namespace Code.Services.LevelService
 
         public void AddPoint()
         {
-            _progress += 1;
+            Progress += 1;
 
-            if (_progress == RequiredProgress)
+            if (Progress == RequiredProgress)
                 LevelUp();
             
-            ProgressChanged?.Invoke(_progress, RequiredProgress);
+            ProgressChanged?.Invoke(Progress, RequiredProgress);
         }
 
         private void LevelUp()
         {
             Current += 1;
-            _progress = 0;
+            Progress = 0;
 
             LevelChanged?.Invoke(Current, Next);
         }
@@ -54,14 +54,14 @@ namespace Code.Services.LevelService
                 throw new ArgumentException(nameof(data));
 
             Current = levelData.Current;
-            _progress = levelData.Progress;
+            Progress = levelData.Progress;
             
             LevelChanged?.Invoke(Current, Next);
-            ProgressChanged?.Invoke(_progress, RequiredProgress);
+            ProgressChanged?.Invoke(Progress, RequiredProgress);
         }
 
         public IData Save() => 
-            new LevelData(Current, _progress);
+            new LevelData(Current, Progress);
 
         private int GetRequiredTasks(int level)
         {

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Code.UI.Level
 {
-    public class LevelBarBarView : View, ILevelBarView
+    public class LevelBarView : View, ILevelBarView
     {
         [SerializeField] private Slider _bar;
         [SerializeField] private TextMeshProUGUI _current;

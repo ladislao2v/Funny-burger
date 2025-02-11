@@ -17,6 +17,9 @@ namespace Code.UI.Level
 
             _model.LevelChanged += _view.OnLevelChanged;
             _model.ProgressChanged += _view.OnProgressChanged;
+            
+            _view.OnLevelChanged(_model.Current, _model.Next);
+            _view.OnProgressChanged(_model.Progress, _model.RequiredProgress);
         }
 
         private void OnDestroy()

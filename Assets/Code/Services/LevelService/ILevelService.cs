@@ -5,6 +5,8 @@ namespace Code.Services.LevelService
 {
     public interface ILevelService : ISavable
     {
+        public int Progress { get; }
+        public int RequiredProgress { get; }
         public int Current { get; }
         public int Next { get; }
 
