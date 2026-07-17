@@ -13,6 +13,9 @@ namespace Code.UI.Shop
 
         public void Show(IEnumerable<IItemView> shopItemsView)
         {
+            foreach (Transform child in _container)
+                Destroy(child.gameObject);
+            
             _shopItemViews.Clear();
             _shopItemViews.AddRange(shopItemsView);
             _shopItemViews.ForEach(x => x.SetParent(_container));

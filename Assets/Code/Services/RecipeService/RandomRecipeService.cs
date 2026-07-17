@@ -72,7 +72,13 @@ namespace Code.Services.RecipeService
                             .SequenceEqual(ingredients));
             });
 
-            _recipes.AddRange(savedRecipes);
+            _recipes.Clear();
+
+            foreach (RecipeConfig recipe in savedRecipes)
+            {
+                if (!_recipes.Contains(recipe))
+                    _recipes.Add(recipe);
+            }
         }
 
         public IData Save() => new RecipesData(_recipes);

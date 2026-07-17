@@ -8,16 +8,17 @@ using static Code.Services.ResourceStorage.ResourceType;
 
 namespace Code.Services.BurgerOrderService
 {
-    public sealed class BurgerOrderService : IBurgerOrderService
+    public sealed class BurgerOrderService : IBurgerOrderService, IDisposable
     {
         private readonly IResourceStorage _resourceStorage;
         private readonly ILevelService _levelService;
         private readonly IOrderValidator _orderValidator = new OrderValidator();
 
         private RecipeConfig _currentOrder;
+        private Func<bool> _hasClient;
         private IDisposable _timer;
         public bool HasOrder => _currentOrder != null;
-        
+
         public event Action<RecipeConfig> Ordered;
         public event Action Failed;
         public event Action OrderPassed;
@@ -37,17 +38,11 @@ namespace Code.Services.BurgerOrderService
             Ordered?.Invoke(_currentOrder);
         }
 
-        public void CancelOrder()
-        {
-            _currentOrder = null;
-            Failed?.Invoke();
-        }
+        public void CancelOrder() => 
+            FinishOrder(success: false);
 
         public bool TryPassOrder(IBurgerPlate plate)
         {
-            if (_currentOrder == null)
-                return false;
-            
             if (plate.IsEmpty)
                 return false;
             
@@ -59,11 +54,27 @@ namespace Code.Services.BurgerOrderService
                 .Add(_currentOrder.Price);
             _levelService.AddPoint();
             
-            OrderPassed?.Invoke();
-
-            _currentOrder = null;
+            FinishOrder(success: true);
 
             return true;
+        }
+
+        public void Dispose() => 
+            _timer?.Dispose();
+
+        private void FinishOrder(bool success)
+        {
+            if (_currentOrder == null)
+                return;
+
+            _timer?.Dispose();
+            _timer = null;
+            _currentOrder = null;
+
+            if (success)
+                OrderPassed?.Invoke();
+            else
+                Failed?.Invoke();
         }
 
         private void StartTimer()

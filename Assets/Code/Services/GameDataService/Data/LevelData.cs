@@ -1,5 +1,8 @@
-﻿namespace Code.Services.GameDataService.Data
+﻿using System;
+
+namespace Code.Services.GameDataService.Data
 {
+    [Serializable]
     public class LevelData : IData
     {
         public int Current { get; set; }

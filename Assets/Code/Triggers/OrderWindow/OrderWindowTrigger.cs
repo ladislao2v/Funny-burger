@@ -16,6 +16,9 @@ namespace Code.Triggers.OrderWindow
         
         protected override bool TryInteractWith(IPlayer player)
         {
+            if(_burgerOrderService.HasOrder == false)
+                return false;
+            
             if (!_burgerOrderService.TryPassOrder(player.Plate))
                 _burgerOrderService.CancelOrder();
 

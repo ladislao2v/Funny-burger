@@ -5,6 +5,7 @@
         Settings,
         Tutorial,
         Shop,
-        Menu
+        Menu,
+        Reward
     }
 }

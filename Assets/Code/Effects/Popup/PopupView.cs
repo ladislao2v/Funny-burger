@@ -14,9 +14,18 @@ namespace Code.Effects.Popup
         
         private TweenerCore<Vector3,Vector3,VectorOptions> _tween;
         private Sequence _sequence;
-        
+        private RectTransform _rectTransform;
+
+        private void Awake()
+        {
+            _rectTransform = GetComponent<RectTransform>();
+        }
+
         private void Start()
         {
+            _rectTransform.offsetMin = Vector2.zero;
+            _rectTransform.offsetMax = Vector2.zero; 
+            
             ScaleUp();
         }
 
@@ -33,7 +42,10 @@ namespace Code.Effects.Popup
 
             _sequence
                 .Append(transform.DOScale(Vector3.zero, _duration))
-                .AppendCallback(() => callback?.Invoke());
+                .AppendCallback(() =>
+                {
+                    callback?.Invoke();
+                });
         }
 
         private void OnDestroy()

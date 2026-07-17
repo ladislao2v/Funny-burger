@@ -1,5 +1,6 @@
 ﻿using System;
-using Code.Services.ShopService;
+using Code.Configs;
+using Code.Services.ResourceStorage;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,24 +15,28 @@ namespace Code.UI.Shop
         [SerializeField] private BuyButton _button;
         [SerializeField] private GameObject _dark;
         [SerializeField] private GameObject _mark;
+        [SerializeField] private GameObject _notMark;
         [SerializeField] private GameObject _lock;
         
-        private IItem _item;
+        private Item _item;
         
-        public IItem Item => _item;
+        public Item Item => _item;
 
-        public event Action<IItem> BuyButtonClicked;
-        public event Action<IItem> SelectButtonClicked;
+        public event Action<Item> BuyButtonClicked;
+        public event Action<Item> SelectButtonClicked;
 
-        public void Construct(IItem item)
+        public void Construct(Item item, int? level = null, ResourceType? currency = null, int? price = null)
         {
             _item = item;
 
             _logo.sprite = _item.Logo;
             _name.text = _item.Name;
-            _level.text = string.Format(_level.text, _item.RequiredLevel);
+            
+            if (level.HasValue)
+                _level.text = string.Format(_level.text, level.Value);
 
-            _button.Construct(item.Price);
+            if (price.HasValue && currency.HasValue)
+                _button.Construct(price.Value, currency.Value);
         }
 
         public void SetParent(Transform parent)
@@ -52,8 +57,11 @@ namespace Code.UI.Shop
                 case ItemState.CanBuy:
                     SetCanBuyState();
                     break;
+                case ItemState.Select:
+                    SetSelectState();
+                    break;
                 case ItemState.Selected:
-                    SetBoughtState();
+                    SetSelectedState();
                     break;
                 case ItemState.Money:
                     SetNotMoneyState();
@@ -67,6 +75,7 @@ namespace Code.UI.Shop
         private void SetCanBuyState()
         {
             _mark.SetActive(false);
+            _notMark.SetActive(false);
             _lock.SetActive(false);
             _dark.SetActive(false);
             _button.Enable();
@@ -76,23 +85,35 @@ namespace Code.UI.Shop
         {
             _button.Disable();
             _mark.SetActive(false);
+            _notMark.SetActive(false);
             _lock.SetActive(true);
         }
 
         private void SetNotMoneyState()
         {
             _mark.SetActive(false);
+            _notMark.SetActive(false);
             _lock.SetActive(false);
             _dark.SetActive(true);
             _button.Enable();
         }
 
-        private void SetBoughtState()
+        private void SetSelectedState()
         {
             _lock.SetActive(false);
             _dark.SetActive(false);
+            _notMark.SetActive(false);
             _button.Disable();
             _mark.SetActive(true);
+        }
+        
+        private void SetSelectState()
+        {
+            _lock.SetActive(false);
+            _dark.SetActive(false);
+            _mark.SetActive(false);
+            _button.Disable();
+            _notMark.SetActive(true);
         }
 
         private void OnBuyButtonClicked() => 

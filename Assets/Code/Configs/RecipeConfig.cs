@@ -9,40 +9,23 @@ using static Code.Ingredients.IngredientType;
 namespace Code.Configs
 {
     [CreateAssetMenu(menuName = "Create Recipe", fileName = "Recipe", order = 0)]
-    public sealed class RecipeConfig : ScriptableObject, IItem
+    public sealed class RecipeConfig : Item
     {
         private readonly int _maxIngredientsCount = 6;
         
         [Header("Main")]
-        [SerializeField] private Sprite _logo;
-        [SerializeField] private Sprite _orderLogo;
-        [SerializeField] private string _name;
-        [SerializeField, Min(0)] private int _price;
-        [SerializeField, Min(0)] private int _requiredLevel;
-        [SerializeField, Range(0, 90)] private float _cookTime;
-        [SerializeField] private bool _isStart;
-
-
+        [field: SerializeField] public Sprite OrderLogo { get; private set;}
+        [field: SerializeField, Range(0, 90)] public float CookTime { get; private set; }
+        [field: SerializeField] public bool IsStart { get; private set; }
+        [field: SerializeField] public int Price { get; private set; }
+        
         [Header("Data")]
         [SerializeField] private List<IngredientConfig> _burger;
-
-        public Sprite Logo => _logo;
-        public Sprite OrderLogo => _orderLogo;
-        public string Name => _name;
-        public int Price => _price;
-
-        public int RequiredLevel => _requiredLevel;
-
-        public float CookTime => _cookTime;
-
-        public bool IsStart => _isStart;
 
         public IEnumerable<IngredientConfig> Burger => _burger;
 
         private void OnValidate()
         {
-            _name = name;
-            
             if (_burger.Count == 1 && _burger.First()?.Type != TopBun)
                 _burger.Clear();
 
@@ -53,7 +36,7 @@ namespace Code.Configs
                 _burger.Remove( _burger.Last());
         }
 
-        public void Accept(IItemVisitor itemVisitor) => 
+        public override void Accept(IItemVisitor itemVisitor) => 
             itemVisitor.Visit(this);
     }
 }

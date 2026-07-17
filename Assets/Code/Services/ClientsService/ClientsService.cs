@@ -32,6 +32,7 @@ namespace Code.Services.ClientsService
 
         private IClientFactory _clientFactory;
         private IClient _current;
+        private int _moveGeneration;
 
         public bool IsSend => _current != null;
 
@@ -54,27 +55,35 @@ namespace Code.Services.ClientsService
             ICommand moveToWindow = 
                 new MoveTo(client, _window, _windowDuration);
             
+            int generation = ++_moveGeneration;
+
             client.Do(moveToWindow, () => 
-                OnMoved(_windowDuration, () => _current = client)
+                OnMoved(_windowDuration, () => _current = client, generation)
                 );
         }
 
         public void SendClientAway()
         {
-            if(_current == null)
-                throw new InvalidOperationException();
+            if (_current == null)
+                return;
+
+            int generation = ++_moveGeneration;
 
             ICommand goAway = 
                 new MoveTo(_current, _away, _awayDuration);
             
             _current.Do(goAway, () => 
-                OnMoved(_awayDuration, BackClientToQueue)
+                OnMoved(_awayDuration, BackClientToQueue, generation)
                 );
         }
 
-        private async void OnMoved(float duration, Action callback)
+        private async void OnMoved(float duration, Action callback, int generation)
         {
             await UniTask.WaitForSeconds(duration);
+
+            if (generation != _moveGeneration)
+                return;
+
             callback.Invoke();
         }
 

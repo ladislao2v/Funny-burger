@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Services.ResourceStorage;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,13 +9,25 @@ namespace Code.UI.Shop
     public sealed class BuyButton : View
     {
         [SerializeField] private TextMeshProUGUI _priceView;
+        [SerializeField] private GameObject _gems;
+        [SerializeField] private GameObject _coins;
         
         private Button _button;
 
         public event Action Clicked;
 
-        public void Construct(int price) => 
+        public void Construct(int price, ResourceType currency)
+        {
             _priceView.text = price.ToString();
+            
+            _gems.SetActive(false);
+            _coins.SetActive(false);
+            
+            if(currency == ResourceType.Coin)
+                _coins.SetActive(true);
+            else
+                _gems.SetActive(true);
+        }
 
         private void Awake() => 
             _button = GetComponent<Button>();

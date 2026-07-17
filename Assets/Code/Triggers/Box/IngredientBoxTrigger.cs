@@ -10,6 +10,8 @@ namespace Code.Triggers.Box
     {
         [SerializeField] private IngredientType _ingredientType;
 
+        public IngredientType IngredientType => _ingredientType;
+
         protected override bool TryInteractWith(IPlayer player)
         {
             IBurgerPlateValidator validator = 

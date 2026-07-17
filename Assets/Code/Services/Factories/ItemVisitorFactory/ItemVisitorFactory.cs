@@ -1,3 +1,4 @@
+using Code.Configs;
 using Code.Services.LevelRewardService;
 using Zenject;
 

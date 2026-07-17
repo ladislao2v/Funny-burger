@@ -16,11 +16,13 @@ using Code.Services.LevelRewardService;
 using Code.Services.LevelService;
 using Code.Services.LocalizationService;
 using Code.Services.PopupService;
+using Code.Services.PurchasedBoxesService;
 using Code.Services.RecipeService;
 using Code.Services.ResourceStorage;
 using Code.Services.SaveDataService;
 using Code.Services.SceneLoader;
 using Code.Services.ShopService;
+using Code.Services.SkinsService;
 using Code.Units;
 using Plugins.StateMachine.StateFactory;
 using Zenject;
@@ -38,7 +40,9 @@ namespace Code.CompositionRoot
             BindSceneLoader();
             BindLevelService();
             BindWalletService();
+            BindSkinService();
             BindLevelRewardService();
+            BindPurchasedBoxesService();
             BindGameDataService();
             BindInputService();
             BindShop();
@@ -53,9 +57,14 @@ namespace Code.CompositionRoot
             BindStateMachine();
         }
 
+        private void BindSkinService()
+        {
+            Container.BindInterfacesAndSelfTo<SkinsService>().AsSingle();
+        }
+
         private void BindLevelRewardService()
         {
-            Container.BindInterfacesAndSelfTo<LevelRewardService>().AsCached();
+            Container.BindInterfacesAndSelfTo<LevelRewardService>().AsSingle();
         }
 
         private void BindClientService()
@@ -100,7 +109,7 @@ namespace Code.CompositionRoot
         private void BindShop()
         {
             Container.BindInterfacesAndSelfTo<RandomRecipeService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RecipeShop>().AsCached();
+            Container.BindInterfacesAndSelfTo<ShopService>().AsCached();
         }
 
         private void BindAudioService()
@@ -117,9 +126,14 @@ namespace Code.CompositionRoot
         {
             Container.BindInterfacesAndSelfTo<IngredientFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<PopupFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ShopItemViewFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ItemViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<ClientFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<ItemVisitorFactory>().AsSingle();
+        }
+
+        private void BindPurchasedBoxesService()
+        {
+            Container.BindInterfacesAndSelfTo<PurchasedBoxesService>().AsSingle();
         }
 
         private void BindGameDataService()

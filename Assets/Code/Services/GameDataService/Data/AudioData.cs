@@ -1,5 +1,8 @@
-﻿namespace Code.Services.GameDataService.Data
+﻿using System;
+
+namespace Code.Services.GameDataService.Data
 {
+    [Serializable]
     public sealed class AudioData : IData
     {
         public bool IsActive { get; set; }

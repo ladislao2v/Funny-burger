@@ -15,10 +15,12 @@ namespace Code.Services.PopupService
             _popupContainerProvider = popupContainerProvider;
         }
         
-        public async void ShowPopup(PopupType popupType)
+        public async void ShowPopup(PopupType popupType, IPopupData data = null)
         {
             Popup popup = 
                 await _popupFactory.Create(popupType);
+            
+            popup.Construct(data);
             
             _popupContainerProvider.Container.Put(popup);
         }

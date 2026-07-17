@@ -14,7 +14,7 @@ namespace Code.Services.LevelService
         public int Next => Current + 1;
 
         public int Progress { get; private set; }
-        public int RequiredProgress => GetRequiredTasks(Current);
+        public int RequiredProgress => GetRequiredOrders(Current);
 
         public string SaveKey => nameof(LevelService);
         
@@ -43,6 +43,7 @@ namespace Code.Services.LevelService
             Progress = 0;
 
             LevelChanged?.Invoke(Current, Next);
+            ProgressChanged?.Invoke(Progress, RequiredProgress);
         }
 
         public void Load(IData data)
@@ -56,28 +57,35 @@ namespace Code.Services.LevelService
             Current = levelData.Current;
             Progress = levelData.Progress;
             
-            LevelChanged?.Invoke(Current, Next);
             ProgressChanged?.Invoke(Progress, RequiredProgress);
         }
 
         public IData Save() => 
             new LevelData(Current, Progress);
 
-        private int GetRequiredTasks(int level)
+        private int GetRequiredOrders(int level)
         {
             if (level < 0)
                 throw new ArgumentException(nameof(level));
 
+            return GetOrdersToNewLevel(level);
+        }
+
+        private int GetOrdersToNewLevel(int level)
+        {
             if (level == 0)
                 return 1;
-
-            int tasks = (int) Math.Pow(2, level - 1) + 1;
+            
+            if(level == 1)
+                return 3;
+            
+            int orders = (int)Math.Floor(3 * (level - 1) + 2 * Math.Sqrt(level - 1));
             int maxLevelTasks = _configProvider.SettingsConfig.MaxLevelTasks;
-
-            if (tasks > maxLevelTasks)
+            
+            if (orders > maxLevelTasks)
                 return maxLevelTasks;
 
-            return tasks;
+            return orders;
         }
     }
 }

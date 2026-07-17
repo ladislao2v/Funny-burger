@@ -15,8 +15,6 @@ namespace Code.Configs
         [field: SerializeField] public int MaxLevelTasks { get; private set; } = 25;
     }
 
-    
-
     public interface IClientConfig
     {
         int Clients { get; }

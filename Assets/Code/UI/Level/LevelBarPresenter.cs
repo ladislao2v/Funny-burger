@@ -24,8 +24,8 @@ namespace Code.UI.Level
 
         private void OnDestroy()
         {
-            _model.LevelChanged += _view.OnLevelChanged;
-            _model.ProgressChanged += _view.OnProgressChanged;
+            _model.LevelChanged -= _view.OnLevelChanged;
+            _model.ProgressChanged -= _view.OnProgressChanged;
         }
     }
 }

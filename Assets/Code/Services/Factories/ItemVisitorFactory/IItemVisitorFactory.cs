@@ -1,4 +1,5 @@
-﻿using Code.Services.LevelRewardService;
+﻿using Code.Configs;
+using Code.Services.LevelRewardService;
 
 namespace Code.Services.Factories.ItemVisitorFactory
 {

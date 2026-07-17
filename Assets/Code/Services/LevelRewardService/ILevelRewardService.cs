@@ -1,12 +1,15 @@
 ﻿using System;
+using Code.Configs;
 using Code.Services.ShopService;
 
 namespace Code.Services.LevelRewardService
 {
     public interface ILevelRewardService
     {
-        IItem NextReward { get; }
-        event Action<IItem> RewardGot;
-        event Action<IItem> RewardUpdated;
+        RewardConfig NextReward { get; }
+        RewardConfig PreviousReward { get; }
+        event Action<RewardConfig> RewardGot;
+        event Action<RewardConfig> RewardUpdated;
+        void RefreshNextReward();
     }
 }

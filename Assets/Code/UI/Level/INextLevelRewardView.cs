@@ -1,9 +1,10 @@
-﻿using Code.Services.ShopService;
+﻿using Code.Configs;
+using Code.Services.ShopService;
 
 namespace Code.UI.Level
 {
     public interface INextLevelRewardView
     {
-        void PresentNextReward(IItem item);
+        void PresentNextReward(RewardConfig item);
     }
 }
