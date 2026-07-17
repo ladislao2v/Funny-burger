@@ -37,7 +37,8 @@ namespace Code.TriggerActivator
             
             foreach (var other in colliders)
             {
-                if (other.TryGetComponent(out Trigger trigger))
+                var triggers = other.GetComponents<Trigger>();
+                foreach (var trigger in triggers)
                 {
                     trigger.ActivateBy(_player);
                 }

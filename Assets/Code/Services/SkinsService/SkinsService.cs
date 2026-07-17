@@ -93,38 +93,38 @@ namespace Code.Services.SkinsService
 
         public void Load(IData data)
         {
-            if (data == null)
-                return;
-
-            if (data is not SkinData skinData)
-                throw new ArgumentException(nameof(data));
-            
-            BodySkinType bodySkinType = skinData.LastBodySkinType;
-            HatSkinType hatSkinType = skinData.LastHatSkinType;
-            List<BodySkinType> bodySkinTypes = skinData.OpenedBodySkins;
-            List<HatSkinType> hatSkinTypes = skinData.OpenedHatSkins;
-
-            CurrentBodySkin = _configProvider.GetBodySkinConfig(bodySkinType);
-            CurrentHatSkin = _configProvider.GetHatSkinConfig(hatSkinType);
-            _openedBodySkinConfigs.Concat(_configProvider
-                .GetBodySkinConfigs()
-                .Where(x => bodySkinTypes.Contains(x.BodySkinId))
-                .ToList());
-            _openedHatSkinConfigs.Concat(_configProvider
-                .GetHatSkinConfigs()
-                .Where(x => hatSkinTypes.Contains(x.HatSkinId))
-                .ToList());
-            
-            BodySkinChanged?.Invoke(CurrentBodySkin);
-            HatSkinChanged?.Invoke(CurrentHatSkin);
+            // if (data == null)
+            //     return;
+            //
+            // if (data is not SkinData skinData)
+            //     throw new ArgumentException(nameof(data));
+            //
+            // BodySkinType bodySkinType = skinData.LastBodySkinType;
+            // HatSkinType hatSkinType = skinData.LastHatSkinType;
+            // List<BodySkinType> bodySkinTypes = skinData.OpenedBodySkins;
+            // List<HatSkinType> hatSkinTypes = skinData.OpenedHatSkins;
+            //
+            // CurrentBodySkin = _configProvider.GetBodySkinConfig(bodySkinType);
+            // CurrentHatSkin = _configProvider.GetHatSkinConfig(hatSkinType);
+            // _openedBodySkinConfigs.Concat(_configProvider
+            //     .GetBodySkinConfigs()
+            //     .Where(x => bodySkinTypes.Contains(x.BodySkinId))
+            //     .ToList());
+            // _openedHatSkinConfigs.Concat(_configProvider
+            //     .GetHatSkinConfigs()
+            //     .Where(x => hatSkinTypes.Contains(x.HatSkinId))
+            //     .ToList());
+            //
+            // BodySkinChanged?.Invoke(CurrentBodySkin);
+            // HatSkinChanged?.Invoke(CurrentHatSkin);
         }
 
-        public IData Save() => new SkinData()
-            {
-                LastBodySkinType = CurrentBodySkin.BodySkinId,
-                LastHatSkinType = CurrentHatSkin.HatSkinId,
-                OpenedBodySkins = _openedBodySkinConfigs.Select(x => x.BodySkinId).ToList(),
-                OpenedHatSkins = _openedHatSkinConfigs.Select(x => x.HatSkinId).ToList(),
-            };
+        public IData Save() => new SkinData();
+        //     {
+        //         LastBodySkinType = CurrentBodySkin.BodySkinId,
+        //         LastHatSkinType = CurrentHatSkin.HatSkinId,
+        //         OpenedBodySkins = _openedBodySkinConfigs.Select(x => x.BodySkinId).ToList(),
+        //         OpenedHatSkins = _openedHatSkinConfigs.Select(x => x.HatSkinId).ToList(),
+        //     };
     }
 }

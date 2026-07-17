@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1f940e2fb344d29c0e6abc1ecf8d8d, type: 3}
   m_Name: Onion
   m_EditorClassIdentifier: 
-  Type: 3
+  Type: 4
   SpriteReference:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   PrefabReference:
     m_AssetGUID: 4db8e95ecaa6ab842a4d2295999f6a01
     m_SubObjectName: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

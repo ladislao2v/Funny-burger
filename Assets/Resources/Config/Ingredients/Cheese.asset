@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1f940e2fb344d29c0e6abc1ecf8d8d, type: 3}
   m_Name: Cheese
   m_EditorClassIdentifier: 
-  Type: 4
+  Type: 5
   SpriteReference:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   PrefabReference:
     m_AssetGUID: 19653c871d99b014e9272279ca22b747
     m_SubObjectName: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

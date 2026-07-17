@@ -1,3 +1,5 @@
+using System;
+using Code.Effects.Box;
 using Code.Effects.BuyZone;
 using Code.Services.GameDataService;
 using Code.Services.PurchasedBoxesService;
@@ -11,10 +13,12 @@ namespace Code.Triggers.Box
 {
     public class BoxBuyerTrigger : Trigger
     {
+        [SerializeField, Space] private bool _enableByDefault = false;
+        
         [SerializeField] private int _cost;
         [SerializeField] private IngredientBoxTrigger _boxTrigger;
         [SerializeField] private BuyZoneView _buyZoneView;
-        [SerializeField] private GameObject _boxView;
+        [SerializeField] private BoxIngredientView _boxView;
         
         private IResourceStorage _storage;
         private IPurchasedBoxesService _purchasedBoxesService;
@@ -28,13 +32,21 @@ namespace Code.Triggers.Box
             _purchasedBoxesService = purchasedBoxesService;
             _gameDataService = gameDataService;
             _buyZoneView.Construct(_cost);
+        }
 
-            if (_purchasedBoxesService.IsPurchased(_boxTrigger.IngredientType))
+        private void Start()
+        {
+            if (_purchasedBoxesService.IsPurchased(_boxTrigger.IngredientType) || _enableByDefault)
                 ApplyPurchasedState();
+            else
+                ApplyUnpurchasedState();
         }
 
         protected override bool TryInteractWith(IPlayer player)
         {
+            if (_purchasedBoxesService.IsPurchased(_boxTrigger.IngredientType) || _enableByDefault)
+                return false;
+            
             if(_storage.GetWallet(ResourceType.Coin).TrySpend(_cost) == false)
                 return false;
             
@@ -55,8 +67,17 @@ namespace Code.Triggers.Box
         private void ApplyPurchasedState()
         {
             _boxTrigger.enabled = true;
-            _boxView.SetActive(true);
+            _boxView.ShowView();
+            _buyZoneView.Hide();
             enabled = false;
+        }
+
+        private void ApplyUnpurchasedState()
+        {
+            _boxTrigger.enabled = false;
+            _boxView.HideView();
+            _buyZoneView.Show();
+            enabled = true;
         }
     }
 }

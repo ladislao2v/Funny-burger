@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1f940e2fb344d29c0e6abc1ecf8d8d, type: 3}
   m_Name: Burger
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 1
   SpriteReference:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   PrefabReference:
     m_AssetGUID: a9bdaac1a7ef1894fac704590db86ebf
     m_SubObjectName: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
