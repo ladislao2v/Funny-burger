@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Base
+  m_EditorClassIdentifier: Assembly-CSharp:Code.Configs:BodySkinConfig
+  <Name>k__BackingField: Base
+  <BodySkinId>k__BackingField: 1
+  <SkinMaterial>k__BackingField: {fileID: 2100000, guid: a055d27a319c3ce49996dbcb2d3a6bd5,
+    type: 2}

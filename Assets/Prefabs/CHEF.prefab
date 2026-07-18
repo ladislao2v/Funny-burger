@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4488482476878727749}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.52}
+  m_LocalPosition: {x: 0, y: -0.25, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 6381770350689015760}
   - component: {fileID: 8401744978103161575}
   - component: {fileID: 6381770350689015756}
+  - component: {fileID: 9147500872004640975}
   - component: {fileID: 6381770350689015757}
   - component: {fileID: 4511328094700797488}
   - component: {fileID: 3674026158046917367}
@@ -448,6 +449,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1b675ec92545fcbf5f841d67f3022a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9147500872004640975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6381770350689015763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27cafc31c3474f9ca5fca79c9054b08b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Units.ChefSkinsApplier
+  _bodyMeshRenderer: {fileID: 2059313297338861200}
+  _skinHatObjects:
+  - <Id>k__BackingField: 1
+    <Skin>k__BackingField: {fileID: 2961371192691119342}
 --- !u!114 &6381770350689015757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,7 +575,6 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -926,6 +942,12 @@ PrefabInstance:
 --- !u!4 &2252853901939910397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5175520950650102651, guid: 5ab78ff12c9c24645ab0ed766ceffff6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6381770349581452678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2961371192691119342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8180926414409797992, guid: 5ab78ff12c9c24645ab0ed766ceffff6,
     type: 3}
   m_PrefabInstance: {fileID: 6381770349581452678}
   m_PrefabAsset: {fileID: 0}
@@ -1308,6 +1330,12 @@ PrefabInstance:
       addedObject: {fileID: 2252853901939910397}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4cbe0083315016478c440f22507f397, type: 3}
+--- !u!137 &2059313297338861200 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4322122094648068838, guid: a4cbe0083315016478c440f22507f397,
+    type: 3}
+  m_PrefabInstance: {fileID: 6381770350064923530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2319352702592483852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8700783698680967558, guid: a4cbe0083315016478c440f22507f397,

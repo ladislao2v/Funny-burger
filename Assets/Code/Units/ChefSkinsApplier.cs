@@ -12,7 +12,7 @@ namespace Code.Units
     public class ChefSkinsApplier : MonoBehaviour
     {
         [Header("Body skin")]
-        [SerializeField] private MeshRenderer _bodyMeshRenderer;
+        [SerializeField] private SkinnedMeshRenderer _bodyMeshRenderer;
         
         [Header("Hat Skin")]
         [SerializeField] private List<HatSkin> _skinHatObjects;
