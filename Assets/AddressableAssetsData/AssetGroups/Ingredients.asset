@@ -40,18 +40,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 559f54dc34aeb4ba79ed254d95f4d41b
-    m_Address: Assets/Packs/Character/Hat/Materials/13551.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6983e185696b95f4ca64feeb6554121a
     m_Address: door_A
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6aeff35e9b2034964900df1fba96f857
-    m_Address: Assets/Packs/Character/Hat/Materials/image_2026-07-18_15-44-53.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -60,19 +50,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9430dd12f06674db98e8014ffce07045
-    m_Address: Assets/Packs/Character/Hat/Materials/49e50066f7abd4b201e9a89fca949cfa.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9bdaac1a7ef1894fac704590db86ebf
     m_Address: Burger
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ec128fa7c8d2940a6b517a8940ea8dcf
-    m_Address: "Assets/Packs/Character/Hat/Materials/\u2014Pngtree\u2014cheese illustration
-      free download for_1591148.mat"
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
