@@ -7,5 +7,9 @@ namespace Code.Configs
     public class HatSkinConfig : SkinConfig
     {
         [field: SerializeField] public HatSkinType HatSkinId { get; private set; }
+        public override void Accept(IItemVisitor itemVisitor)
+        {
+            itemVisitor.Visit(this);
+        }
     }
 }

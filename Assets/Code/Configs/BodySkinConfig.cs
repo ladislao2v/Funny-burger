@@ -8,5 +8,9 @@ namespace Code.Configs
     {
         [field: SerializeField] public BodySkinType BodySkinId { get; private set; }
         [field: SerializeField] public Material SkinMaterial { get; private set; }
+        public override void Accept(IItemVisitor itemVisitor)
+        {
+            itemVisitor.Visit(this);
+        }
     }
 }

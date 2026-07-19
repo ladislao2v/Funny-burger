@@ -3,8 +3,8 @@ using UnityEngine.AddressableAssets;
 
 namespace Code.Configs
 {
-    public abstract class SkinConfig : ScriptableObject
+    public abstract class SkinConfig : Item
     {
-        [field: SerializeField] public string Name { get; private set; }
+        
     }
 }

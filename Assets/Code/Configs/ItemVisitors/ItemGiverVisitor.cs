@@ -1,6 +1,7 @@
 ﻿using Code.Services.PopupService;
 using Code.Services.RecipeService;
 using Code.Services.ResourceStorage;
+using Code.Services.SkinsService;
 using Code.UI.Popups.Reward;
 
 namespace Code.Configs.ItemVisitors
@@ -10,15 +11,18 @@ namespace Code.Configs.ItemVisitors
         private readonly IResourceStorage _resourceStorage;
         private readonly IRecipeService _recipeService;
         private readonly IPopupService _popupService;
+        private readonly ISkinsService _skinsService;
 
         public ItemGiverVisitor(
             IResourceStorage resourceStorage, 
             IRecipeService recipeService, 
-            IPopupService popupService)
+            IPopupService popupService,
+            ISkinsService skinsService)
         {
             _resourceStorage = resourceStorage;
             _recipeService = recipeService;
             _popupService = popupService;
+            _skinsService = skinsService;
         }
         
         public void Visit(RecipeConfig recipeConfig) => 
@@ -47,5 +51,11 @@ namespace Code.Configs.ItemVisitors
             
             _popupService.ShowPopup(PopupType.Reward, data);
         }
+
+        public void Visit(BodySkinConfig bodySkinConfig) => 
+            _skinsService.OpenNewBodySkinConfig(bodySkinConfig);
+
+        public void Visit(HatSkinConfig hatSkinConfig) => 
+            _skinsService.OpenNewHatSkinConfig(hatSkinConfig);
     }
 }

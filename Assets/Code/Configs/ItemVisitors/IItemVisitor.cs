@@ -8,5 +8,7 @@ namespace Code.Configs
         void Visit(CoinConfig coinConfig);
         void Visit(LocationConfig locationConfig);
         void Visit(FeatureConfig featureConfig);
+        void Visit(BodySkinConfig bodySkinConfig);
+        void Visit(HatSkinConfig hatSkinConfig);
     }
 }
