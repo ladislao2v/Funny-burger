@@ -20,6 +20,31 @@ namespace Code.Services.ShopService
             _skinsService = skinsService;
         }
 
+        protected override void OnInitialize()
+        {
+            _skinsService.BodySkinChanged += OnBodySkinChanged;
+            _skinsService.HatSkinChanged += OnHatSkinChanged;
+        }
+
+        protected override void OnDispose()
+        {
+            _skinsService.BodySkinChanged -= OnBodySkinChanged;
+            _skinsService.HatSkinChanged -= OnHatSkinChanged;
+        }
+
+        public override void Apply(ShopItemConfig shopItem)
+        {
+            switch (shopItem.Item)
+            {
+                case BodySkinConfig bodySkinConfig:
+                    _skinsService.TryUseBodySkin(bodySkinConfig.BodySkinId);
+                    break;
+                case HatSkinConfig hatSkinConfig:
+                    _skinsService.TryUseHatSkin(hatSkinConfig.HatSkinId);
+                    break;
+            }
+        }
+
         public override bool IsBought(ShopItemConfig item) => 
             _skinsService.OpenedBodySkins.Contains(item.Item) || 
             _skinsService.OpenedHatSkin.Contains(item.Item);
@@ -28,7 +53,11 @@ namespace Code.Services.ShopService
             _skinsService.CurrentBodySkin == item.Item ||  
             _skinsService.CurrentHatSkin == item.Item;
 
-        protected override void CompleteBuyingProcess(ShopItemConfig item)
+        protected override bool ValidateItem(ShopItemConfig item) => 
+            item.Item is BodySkinConfig || 
+            item.Item is HatSkinConfig;
+
+        protected override void GetItem(ShopItemConfig item)
         {
             switch (item.Item)
             {
@@ -40,5 +69,8 @@ namespace Code.Services.ShopService
                     break;
             }
         }
+
+        private void OnBodySkinChanged(BodySkinConfig bodySkinConfig) => UpdateShop();
+        private void OnHatSkinChanged(HatSkinConfig hatSkinConfig) => UpdateShop();
     }
 }

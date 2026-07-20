@@ -46,7 +46,7 @@ namespace Code.UI.Popups.Shop
         {
             List<IItemView> itemViews = new();
 
-            foreach (var item in items.OrderByDescending(x => x.Price))
+            foreach (var item in items.OrderBy(x => x.RequiredLevel))
             {
                 IItemView itemView = await 
                     _factory.Create(item.Item, item.RequiredLevel, item.Currency, item.Price);
@@ -64,29 +64,26 @@ namespace Code.UI.Popups.Shop
         private void OnBuyButtonClicked(Item item)
         {
             ShopItemConfig shopItem = GetShopItemConfigByItem(item);
-            
-            if(_shop.TryBuy(shopItem) != ItemState.CanBuy)
-                return;
-            
-            _shop.Buy(shopItem);
+
+            switch (_shop.TryBuy(shopItem))
+            {
+                case ItemState.CanBuy:
+                    _shop.Buy(shopItem);
+                    break;
+                case ItemState.Select:
+                    _shop.Apply(shopItem);
+                    break;
+            }
         }
         
         private void OnShopUpdated()
         {
             if(_itemsView.ItemViews.IsEmpty())
                 return;
-
-            var items = _itemsView.ItemViews
-                .Select(x => x.Item)
-                .OrderByDescending(x => _shop.TryBuy(GetShopItemConfigByItem(x)) == ItemState.Selected)
-                .ToList();
-            
-            int i = 0;
             
             foreach (IItemView itemView in _itemsView.ItemViews)
             {
-                itemView.Construct(items[i]);
-                itemView.ChangeItemState(_shop.TryBuy(GetShopItemConfigByItem(items[i++])));
+                itemView.ChangeItemState(_shop.TryBuy(GetShopItemConfigByItem(itemView.Item)));
             }
         }
 

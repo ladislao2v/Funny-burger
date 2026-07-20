@@ -15,4 +15,5 @@ MonoBehaviour:
   <Price>k__BackingField: 100
   <Currency>k__BackingField: 1
   <RequiredLevel>k__BackingField: 23
-  <Item>k__BackingField: {fileID: 0}
+  <Item>k__BackingField: {fileID: 11400000, guid: 88f08a61177f2384ea84fbe0528795c3,
+    type: 2}

@@ -13,9 +13,7 @@ namespace Code.UI.Shop
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _level;
         [SerializeField] private BuyButton _button;
-        [SerializeField] private GameObject _dark;
-        [SerializeField] private GameObject _mark;
-        [SerializeField] private GameObject _notMark;
+        //[SerializeField] private GameObject _dark;
         [SerializeField] private GameObject _lock;
         
         private Item _item;
@@ -74,46 +72,38 @@ namespace Code.UI.Shop
 
         private void SetCanBuyState()
         {
-            _mark.SetActive(false);
-            _notMark.SetActive(false);
             _lock.SetActive(false);
-            _dark.SetActive(false);
+            //_dark.SetActive(false);
+            _button.ChangePriceColor(true);
             _button.Enable();
         }
 
         private void SetLockedState()
         {
             _button.Disable();
-            _mark.SetActive(false);
-            _notMark.SetActive(false);
             _lock.SetActive(true);
         }
 
         private void SetNotMoneyState()
         {
-            _mark.SetActive(false);
-            _notMark.SetActive(false);
             _lock.SetActive(false);
-            _dark.SetActive(true);
+            //_dark.SetActive(true);
+            _button.ChangePriceColor(false);
             _button.Enable();
         }
 
         private void SetSelectedState()
         {
             _lock.SetActive(false);
-            _dark.SetActive(false);
-            _notMark.SetActive(false);
-            _button.Disable();
-            _mark.SetActive(true);
+            //_dark.SetActive(false);
+            _button.SetSelectedState();
         }
         
         private void SetSelectState()
         {
             _lock.SetActive(false);
-            _dark.SetActive(false);
-            _mark.SetActive(false);
-            _button.Disable();
-            _notMark.SetActive(true);
+            //_dark.SetActive(false);
+            _button.SetUnselectedState();
         }
 
         private void OnBuyButtonClicked() => 

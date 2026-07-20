@@ -106,25 +106,34 @@ namespace Code.Services.SkinsService
             
             CurrentBodySkin = _configProvider.GetBodySkinConfig(bodySkinType);
             CurrentHatSkin = _configProvider.GetHatSkinConfig(hatSkinType);
-            _openedBodySkinConfigs.Concat(_configProvider
-                .GetBodySkinConfigs()
-                .Where(x => bodySkinTypes.Contains(x.BodySkinId))
-                .ToList());
-            _openedHatSkinConfigs.Concat(_configProvider
-                .GetHatSkinConfigs()
-                .Where(x => hatSkinTypes.Contains(x.HatSkinId))
-                .ToList());
+
+            foreach (var bodySkinConfig in _configProvider
+                         .GetBodySkinConfigs()
+                         .Where(x => bodySkinTypes.Contains(x.BodySkinId))
+                         .ToList())
+            {
+                _openedBodySkinConfigs.Add(bodySkinConfig);
+            }
+
+            foreach (var hatSkinConfig in _configProvider
+                         .GetHatSkinConfigs()
+                         .Where(x => hatSkinTypes.Contains(x.HatSkinId))
+                         .ToList())
+            {
+                _openedHatSkinConfigs.Add(hatSkinConfig);
+            }
             
             BodySkinChanged?.Invoke(CurrentBodySkin);
             HatSkinChanged?.Invoke(CurrentHatSkin);
         }
 
-        public IData Save() => new SkinData()
-        {
-            LastBodySkinType = CurrentBodySkin.BodySkinId,
-            LastHatSkinType = CurrentHatSkin.HatSkinId,
-            OpenedBodySkins = _openedBodySkinConfigs.Select(x => x.BodySkinId).ToList(),
-            OpenedHatSkins = _openedHatSkinConfigs.Select(x => x.HatSkinId).ToList(),
-        };
+        public IData Save() =>
+            new SkinData()
+            {
+                LastBodySkinType = CurrentBodySkin.BodySkinId,
+                LastHatSkinType = CurrentHatSkin.HatSkinId,
+                OpenedBodySkins = _openedBodySkinConfigs.Select(x => x.BodySkinId).ToList(),
+                OpenedHatSkins = _openedHatSkinConfigs.Select(x => x.HatSkinId).ToList(),
+            };
     }
 }

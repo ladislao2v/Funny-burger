@@ -105,6 +105,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -377,10 +378,10 @@ MonoBehaviour:
   m_Content: {fileID: 6837615811144012688}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.5
   m_Inertia: 1
-  m_DecelerationRate: 1
+  m_DecelerationRate: 0.135
   m_ScrollSensitivity: 2
   m_Viewport: {fileID: 1454967236375811639}
   m_HorizontalScrollbar: {fileID: 453192024288613408}
@@ -573,6 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 6837615811144012688}
+  _scrollRect: {fileID: 4550000319762037469}
 --- !u!114 &1228934087226704817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,6 +1156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6837615811144012688}
   - component: {fileID: 3274206513423084560}
+  - component: {fileID: 8765432109876543211}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -1177,8 +1180,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 14.44, y: 6216.561}
-  m_SizeDelta: {x: -11.69, y: 705.8}
+  m_AnchoredPosition: {x: 0, y: 287.34998}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3274206513423084560
 MonoBehaviour:
@@ -1204,3 +1207,17 @@ MonoBehaviour:
   m_Spacing: {x: 30, y: 30}
   m_Constraint: 1
   m_ConstraintCount: 3
+--- !u!114 &8765432109876543211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075215660464361089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2

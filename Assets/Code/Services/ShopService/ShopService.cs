@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Code.Configs;
 using Code.Services.ConfigProvider;
 using Code.Services.LevelService;
-using Code.Services.RecipeService;
 using Code.Services.ResourceStorage;
 using Code.UI.Shop;
 using UniRx;
+using UnityEngine;
 using Zenject;
 using static Code.Services.ResourceStorage.ResourceType;
 
@@ -38,12 +38,14 @@ namespace Code.Services.ShopService
                 .AddTo(_disposables);
             
             _levelService.LevelChanged += OnLevelChanged;
+
+            OnInitialize();
         }
 
         public ItemState TryBuy(ShopItemConfig item)
         {
-            if (item.Item is not RecipeConfig recipeConfig)
-                throw new ArgumentException(nameof(item));
+            if (!ValidateItem(item))
+                throw new ArgumentException(item.name);
             
             if (IsBought(item))
                 return IsActive(item) ? ItemState.Selected : ItemState.Select;
@@ -52,8 +54,8 @@ namespace Code.Services.ShopService
                 return (ItemState.Level);
             
             if (!_resourceStorage
-                    .GetWallet(Coin)
-                    .TrySpend(recipeConfig.Price))
+                    .GetWallet(item.Currency)
+                    .TrySpend(item.Price))
                 return ItemState.Money;
             
             return (ItemState.CanBuy);
@@ -61,30 +63,43 @@ namespace Code.Services.ShopService
 
         public void Buy(ShopItemConfig item)
         {
-            if (item.Item is not RecipeConfig recipeConfig)
+            if (!ValidateItem(item))
                 throw new ArgumentException(nameof(item));
             
             if(TryBuy(item) != ItemState.CanBuy)
                 return;
             
+            GetItem(item);
+            
             _resourceStorage
-                .GetWallet(Coin)
-                .Spend(recipeConfig.Price);
-
-            CompleteBuyingProcess(item);
+                .GetWallet(item.Currency)
+                .Spend(item.Price);
         }
+
+        public abstract void Apply(ShopItemConfig shopItem);
 
         public abstract bool IsBought(ShopItemConfig item);
         public abstract bool IsActive(ShopItemConfig item);
-        protected abstract void CompleteBuyingProcess(ShopItemConfig item);
+        protected abstract bool ValidateItem(ShopItemConfig item);
+        protected abstract void GetItem(ShopItemConfig item);
+        
+        protected virtual void OnInitialize() { }
+        protected virtual void OnDispose() { }
+
+        protected void UpdateShop()
+        {
+            Updated?.Invoke();
+        }
 
         public void Dispose()
         {
             _disposables.Dispose();
             _levelService.LevelChanged -= OnLevelChanged;
+            
+            OnDispose();
         }
-
-        private void OnMoneyChanged(int value) => Updated?.Invoke();
-        private void OnLevelChanged(int current, int next) => Updated?.Invoke();
+        
+        private void OnMoneyChanged(int value) => UpdateShop();
+        private void OnLevelChanged(int current, int next) => UpdateShop();
     }
 }
