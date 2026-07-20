@@ -12,11 +12,10 @@ using static Code.Services.ResourceStorage.ResourceType;
 
 namespace Code.Services.ShopService
 {
-    public sealed class ShopService : IShopService, IInitializable, IDisposable
+    public abstract class ShopService : IShopService, IInitializable, IDisposable
     {
         private readonly IConfigProvider _configProvider;
         private readonly ILevelService _levelService;
-        private readonly IRecipeService _recipeService;
         private readonly IResourceStorage _resourceStorage;
         private readonly CompositeDisposable _disposables = new();
 
@@ -24,12 +23,10 @@ namespace Code.Services.ShopService
 
         public event Action Updated;
 
-        public ShopService(IConfigProvider configProvider, ILevelService levelService,
-            IRecipeService recipeService, IResourceStorage resourceStorage)
+        public ShopService(IConfigProvider configProvider, ILevelService levelService, IResourceStorage resourceStorage)
         {
             _configProvider = configProvider;
             _levelService = levelService;
-            _recipeService = recipeService;
             _resourceStorage = resourceStorage;
         }
 
@@ -48,8 +45,8 @@ namespace Code.Services.ShopService
             if (item.Item is not RecipeConfig recipeConfig)
                 throw new ArgumentException(nameof(item));
             
-            if (_recipeService.Has(recipeConfig))
-                return (ItemState.Selected);
+            if (IsBought(item))
+                return IsActive(item) ? ItemState.Selected : ItemState.Select;
 
             if (_levelService.Current < item.RequiredLevel)
                 return (ItemState.Level);
@@ -58,8 +55,7 @@ namespace Code.Services.ShopService
                     .GetWallet(Coin)
                     .TrySpend(recipeConfig.Price))
                 return ItemState.Money;
-
-
+            
             return (ItemState.CanBuy);
         }
 
@@ -70,20 +66,17 @@ namespace Code.Services.ShopService
             
             if(TryBuy(item) != ItemState.CanBuy)
                 return;
-
-            _recipeService.AddRecipe(recipeConfig);
+            
             _resourceStorage
                 .GetWallet(Coin)
                 .Spend(recipeConfig.Price);
+
+            CompleteBuyingProcess(item);
         }
 
-        public bool IsBought(ShopItemConfig item)
-        {
-            if (item.Item is not RecipeConfig recipeConfig)
-                throw new ArgumentException(nameof(item));
-            
-            return _recipeService.Has(recipeConfig);
-        }
+        public abstract bool IsBought(ShopItemConfig item);
+        public abstract bool IsActive(ShopItemConfig item);
+        protected abstract void CompleteBuyingProcess(ShopItemConfig item);
 
         public void Dispose()
         {

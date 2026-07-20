@@ -14,5 +14,6 @@ namespace Code.Services.ShopService
         ItemState TryBuy(ShopItemConfig item);
         void Buy(ShopItemConfig item);
         bool IsBought(ShopItemConfig item);
+        bool IsActive(ShopItemConfig item);
     }
 }

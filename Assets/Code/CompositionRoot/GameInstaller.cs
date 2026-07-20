@@ -103,13 +103,13 @@ namespace Code.CompositionRoot
 
         private void BindOrderService()
         {
+            Container.BindInterfacesAndSelfTo<RandomRecipeService>().AsSingle();
             Container.BindInterfacesAndSelfTo<BurgerOrderService>().AsSingle();
         }
-
+        
         private void BindShop()
         {
-            Container.BindInterfacesAndSelfTo<RandomRecipeService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ShopService>().AsCached();
+            Container.BindInterfacesAndSelfTo<SkinsShopService>().AsCached();
         }
 
         private void BindAudioService()
