@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Red
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Red
+  <Logo>k__BackingField: {fileID: 21300000, guid: 6869ac8e6f5b3407c8cb6ab6e524f5df,
+    type: 3}
   <HatSkinId>k__BackingField: 2

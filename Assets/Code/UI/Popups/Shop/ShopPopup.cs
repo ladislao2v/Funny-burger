@@ -3,15 +3,22 @@ using System.Linq;
 using Code.Configs;
 using Code.Services.Factories.ItemShopFactory;
 using Code.Services.ShopService;
+using Code.UI.ActiveSkins;
 using Code.UI.Shop;
 using ModestTree;
 using UniRx;
+using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Code.UI.Popups.Shop
 {
     public sealed class ShopPopup : Popup
     {
+        [SerializeField] private ActiveSkinsBar _activeSkinsBar;
+        [SerializeField] private Toggle _hatsListToggle;
+        [SerializeField] private Toggle _bodyListToggle;
+        
         private readonly CompositeDisposable _disposables = new();
 
         private IShopService _shop;

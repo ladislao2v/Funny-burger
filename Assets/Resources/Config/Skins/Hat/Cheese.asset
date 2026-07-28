@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Cheese
+  <Logo>k__BackingField: {fileID: 21300000, guid: 040301eb229fa45dc9718fe84d73d51c,
+    type: 3}
   <HatSkinId>k__BackingField: 5

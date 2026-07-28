@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Viking
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Viking
+  <Logo>k__BackingField: {fileID: 21300000, guid: abc2ab071e79e496c92c50c2a4ebe3a4,
+    type: 3}
   <HatSkinId>k__BackingField: 9

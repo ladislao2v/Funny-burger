@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Steve
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.BodySkinConfig
   <Name>k__BackingField: Steve
+  <Logo>k__BackingField: {fileID: 21300000, guid: e2f650e2bb0c84d01a74a629cc1dff9e,
+    type: 3}
   <BodySkinId>k__BackingField: 5
   <SkinMaterial>k__BackingField: {fileID: 2100000, guid: 9f5474b2ca2fe2c45a2a1b04e40a0ec7,
     type: 2}

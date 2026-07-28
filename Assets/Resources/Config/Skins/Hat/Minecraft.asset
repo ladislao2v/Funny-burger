@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Minecraft
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Minecraft
+  <Logo>k__BackingField: {fileID: 21300000, guid: 63eb4b4ba188446e786b629bd8df85b3,
+    type: 3}
   <HatSkinId>k__BackingField: 7

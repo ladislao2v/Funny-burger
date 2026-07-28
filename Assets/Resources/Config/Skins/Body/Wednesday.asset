@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Wednesday
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.BodySkinConfig
   <Name>k__BackingField: Wednesday
+  <Logo>k__BackingField: {fileID: 21300000, guid: 308e55dfbd8404f7fa8de08af045a1c6,
+    type: 3}
   <BodySkinId>k__BackingField: 4
   <SkinMaterial>k__BackingField: {fileID: 2100000, guid: 57bb98204bb4d9749b6bc2feadd9fbdb,
     type: 2}

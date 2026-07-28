@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Spider
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.BodySkinConfig
   <Name>k__BackingField: Spider-man
+  <Logo>k__BackingField: {fileID: 21300000, guid: afa47d0285c8741f5b21dbd9399cf4dc,
+    type: 3}
   <BodySkinId>k__BackingField: 6
   <SkinMaterial>k__BackingField: {fileID: 2100000, guid: 81776bdd60be72743aa6f62652326423,
     type: 2}

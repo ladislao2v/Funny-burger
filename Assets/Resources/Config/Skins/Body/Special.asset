@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Special
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.BodySkinConfig
   <Name>k__BackingField: Special Chef
+  <Logo>k__BackingField: {fileID: 21300000, guid: 6efd259eebeb640da98a5c7fd63ba6c4,
+    type: 3}
   <BodySkinId>k__BackingField: 2
   <SkinMaterial>k__BackingField: {fileID: 2100000, guid: 4be5a8f0b948817478022053af1a5015,
     type: 2}

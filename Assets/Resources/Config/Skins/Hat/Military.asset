@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Military
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Military
+  <Logo>k__BackingField: {fileID: 21300000, guid: 38c699d3067114b609083818ac401e56,
+    type: 3}
   <HatSkinId>k__BackingField: 6

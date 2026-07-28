@@ -1,5 +1,6 @@
 using Code.Services.Factories.PopupFactory;
 using Code.UI.Popups;
+using Code.UI.Popups.Reward;
 
 namespace Code.Services.PopupService
 {
@@ -15,12 +16,13 @@ namespace Code.Services.PopupService
             _popupContainerProvider = popupContainerProvider;
         }
         
-        public async void ShowPopup(PopupType popupType, IPopupData data = null)
+        public async void ShowPopup(PopupType popupType, RewardData data = null)
         {
             Popup popup = 
                 await _popupFactory.Create(popupType);
             
-            popup.Construct(data);
+            if(data != null)
+                popup.Construct(data);
             
             _popupContainerProvider.Container.Put(popup);
         }

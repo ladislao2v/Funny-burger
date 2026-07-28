@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Pajama
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Pajama
+  <Logo>k__BackingField: {fileID: 21300000, guid: 4735fe3b94ae34e838b203fcfc01cf86,
+    type: 3}
   <HatSkinId>k__BackingField: 8

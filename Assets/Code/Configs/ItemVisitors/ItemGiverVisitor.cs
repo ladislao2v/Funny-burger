@@ -40,14 +40,22 @@ namespace Code.Configs.ItemVisitors
 
         public void Visit(LocationConfig locationConfig)
         {
-            IPopupData data = new LocationRewardData();
+            RewardData data = new RewardData()
+            {
+                Name = locationConfig.Name,
+                Description = "",
+            };
             
             _popupService.ShowPopup(PopupType.Reward, data);
         }
 
         public void Visit(FeatureConfig featureConfig)
         {
-            IPopupData data = new FeatureRewardData();
+            RewardData data = new RewardData()
+            {
+                Name = featureConfig.Name,
+                Description = "",
+            };
             
             _popupService.ShowPopup(PopupType.Reward, data);
         }

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Crown
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Crown
+  <Logo>k__BackingField: {fileID: 21300000, guid: 2a08a2d3583b14d5b8f9e895b80300a6,
+    type: 3}
   <HatSkinId>k__BackingField: 11

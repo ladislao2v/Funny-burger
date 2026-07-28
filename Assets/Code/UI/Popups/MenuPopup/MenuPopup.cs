@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Code.Configs;
 using Code.Services.Factories.ItemShopFactory;
 using Code.Services.RecipeService;
-using Code.Services.ShopService;
 using Code.UI.Shop;
 using Zenject;
 

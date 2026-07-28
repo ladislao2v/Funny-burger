@@ -21,5 +21,6 @@ namespace Code.Services.ConfigProvider
         IEnumerable<RecipeConfig> GetRecipes();
         IEnumerable<GemConfig> GetGems();
         IEnumerable<ShopItemConfig> GetShopItems();
+        ShopItemConfig GetShopItemConfigByItem(Item item);
     }
 }

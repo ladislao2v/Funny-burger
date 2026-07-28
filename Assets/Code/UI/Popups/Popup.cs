@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Services.PopupService;
+using Code.UI.Popups.Reward;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,16 +10,16 @@ namespace Code.UI.Popups
     {
         [SerializeField] private Button _closeButton;
         
-        public IPopupData Data { get; private set; }
+        public RewardData Data { get; private set; }
 
-        public void Construct(IPopupData data)
+        public void Construct(RewardData data)
         {
             Data = data;
         }
 
         public event Action Clicked;
 
-        private void Start() => 
+        private void Awake() => 
             _closeButton.onClick.AddListener(OnClicked);
 
         private void OnDestroy() => 

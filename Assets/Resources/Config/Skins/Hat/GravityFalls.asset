@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: GravityFalls
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Cap
+  <Logo>k__BackingField: {fileID: 21300000, guid: d29e4086bbb3942309981a198c7c260f,
+    type: 3}
   <HatSkinId>k__BackingField: 12

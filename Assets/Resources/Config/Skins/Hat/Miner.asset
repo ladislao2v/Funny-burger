@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Miner
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Miner
+  <Logo>k__BackingField: {fileID: 21300000, guid: d563a7635eff547b7ba25f9b702fe949,
+    type: 3}
   <HatSkinId>k__BackingField: 10

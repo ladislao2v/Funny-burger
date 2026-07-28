@@ -20,6 +20,7 @@ namespace Code.Services.ConfigProvider
         private readonly GemConfig[] _gems;
         private readonly CoinConfig[] _coins;
         private readonly ShopItemConfig[] _shopItems;
+        private readonly Dictionary<Item,ShopItemConfig> _shopItemsByItem;
 
         public SettingsConfig SettingsConfig { get; private set; }
         public LevelsRewardsConfig RewardsConfig { get; private set; }
@@ -54,6 +55,8 @@ namespace Code.Services.ConfigProvider
             _shopItems = Resources
                 .LoadAll<ShopItemConfig>(ResourcePath.ShopItems)
                 .ToArray();
+            
+            _shopItemsByItem = _shopItems.ToDictionary(x => x.Item, x => x);
 
             _recipes = Resources
                 .LoadAll<RecipeConfig>(ResourcePath.Recipes)
@@ -108,5 +111,16 @@ namespace Code.Services.ConfigProvider
         public IEnumerable<GemConfig> GetGems() => _gems;
         public IEnumerable<CoinConfig> GetCoins() => _coins;
         public IEnumerable<ShopItemConfig> GetShopItems() => _shopItems;
+
+        public ShopItemConfig GetShopItemConfigByItem(Item item)
+        {
+            if(item == null)
+                throw new ArgumentNullException(nameof(item));
+            
+            if(_shopItemsByItem.TryGetValue(item, out var config))
+                return config;
+            
+            throw new ArgumentException(nameof(item));
+        }
     }
 }

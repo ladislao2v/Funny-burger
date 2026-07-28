@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81f6a2147834ad4a447d6e7cbd9872b, type: 3}
   m_Name: Loc1
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
+  <Name>k__BackingField: New cafe
   <Logo>k__BackingField: {fileID: 21300000, guid: 577d02298cec04d7a85e18e04ad697ec,
     type: 3}
   <Description>k__BackingField: 

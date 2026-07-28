@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a5dd775ba08542b3b47d8f15d4767c3
+    m_Address: Assets/Prefabs/Popups/RewardPopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6983e185696b95f4ca64feeb6554121a
     m_Address: door_A
     m_ReadOnly: 0

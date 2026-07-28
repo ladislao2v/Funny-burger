@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Tiffany
   m_EditorClassIdentifier: Assembly-CSharp::Code.Configs.HatSkinConfig
   <Name>k__BackingField: Tiffany
+  <Logo>k__BackingField: {fileID: 21300000, guid: b691d4bf57d604ff4a99aab2e8529c0d,
+    type: 3}
   <HatSkinId>k__BackingField: 3
