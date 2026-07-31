@@ -14,18 +14,17 @@ namespace Code.Services.ShopService
 {
     public abstract class ShopService : IShopService, IInitializable, IDisposable
     {
-        private readonly IConfigProvider _configProvider;
+        protected readonly IConfigProvider ConfigProvider;
+        
         private readonly ILevelService _levelService;
         private readonly IResourceStorage _resourceStorage;
         private readonly CompositeDisposable _disposables = new();
-
-        public IEnumerable<ShopItemConfig> AllItems => _configProvider.GetShopItems();
 
         public event Action Updated;
 
         public ShopService(IConfigProvider configProvider, ILevelService levelService, IResourceStorage resourceStorage)
         {
-            _configProvider = configProvider;
+            ConfigProvider = configProvider;
             _levelService = levelService;
             _resourceStorage = resourceStorage;
         }
@@ -82,6 +81,7 @@ namespace Code.Services.ShopService
         public abstract bool IsActive(ShopItemConfig item);
         protected abstract bool ValidateItem(ShopItemConfig item);
         protected abstract void GetItem(ShopItemConfig item);
+        public abstract IEnumerable<ShopItemConfig> GetShopItemsByType(ShopType shopType);
         
         protected virtual void OnInitialize() { }
         protected virtual void OnDispose() { }

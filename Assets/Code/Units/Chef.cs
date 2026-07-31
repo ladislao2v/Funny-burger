@@ -12,9 +12,12 @@ namespace Code.Units
     {
         private IDisposable _timer;
         
+        private Action _lastOnDo;
+
         public IBurgerPlate Plate { get; } = new Plate();
         public IChefConfig Config { get; private set; }
         public IMovement Movement { get; private set; }
+        public bool IsBusy => _timer != null;
         public event Action TaskStarted;
         public event Action TaskEnded;
 
@@ -26,7 +29,12 @@ namespace Code.Units
 
         public void Do(ICommand command, Action onDo)
         {
+            if (_timer != null)
+                return;
+            
             TaskStarted?.Invoke();
+            
+            _lastOnDo = onDo;
             
             var timerTime = 
                 TimeSpan.FromSeconds(Config.TaskTime);
@@ -35,7 +43,8 @@ namespace Code.Units
                 .Subscribe(_ =>
                 {
                     command.Execute();
-                    onDo?.Invoke();
+                    _lastOnDo?.Invoke();
+                    _lastOnDo = null;
                     
                     Reset();
                 });
@@ -43,8 +52,13 @@ namespace Code.Units
 
         public void Reset()
         {
+            if (_timer == null)
+                return;
+            
+            _timer.Dispose();
+            _timer = null;
+            
             TaskEnded?.Invoke();
-            _timer?.Dispose();
         }
     }
 }

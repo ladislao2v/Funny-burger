@@ -17,3 +17,4 @@ MonoBehaviour:
   <RequiredLevel>k__BackingField: 7
   <Item>k__BackingField: {fileID: 11400000, guid: 4a7eda7659fe3dd47bf3f5ece5ade50d,
     type: 2}
+  <ShopType>k__BackingField: 1

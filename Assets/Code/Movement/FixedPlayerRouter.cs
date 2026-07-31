@@ -16,23 +16,20 @@ namespace Code.Movement
             _input = input;
         }
 
-        private void Awake()
-        {
+        private void Awake() => 
             _player = GetComponent<IPlayer>();
-            
-            _player.TaskStarted += _input.Disable;
-            _player.TaskEnded += _input.Enable;
-        }
 
         public void FixedUpdate()
         {
-            Rout(_player.Movement, _input.Direction, _player.Config.Speed);
-        }
+            if (_player.IsBusy)
+            {
+                if (_input.Direction != Vector3.zero)
+                    _player.Reset();
 
-        public void OnDestroy()
-        {
-            _player.TaskStarted -= _input.Disable;
-            _player.TaskEnded -= _input.Enable;
+                return;
+            }
+            
+            Rout(_player.Movement, _input.Direction, _player.Config.Speed);
         }
 
         protected override void Rout(IMovement movement, Vector3 direction, float speed) => 

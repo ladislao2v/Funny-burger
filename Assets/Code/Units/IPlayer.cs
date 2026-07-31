@@ -10,6 +10,7 @@ namespace Code.Units
         IChefConfig Config { get; }
         IBurgerPlate Plate { get; }
         IMovement Movement { get; }
+        bool IsBusy { get; }
 
         event Action TaskStarted;
         event Action TaskEnded; 

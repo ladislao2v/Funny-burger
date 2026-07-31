@@ -1,4 +1,5 @@
 using Code.Services.ResourceStorage;
+using Code.Services.ShopService;
 using UnityEngine;
 
 namespace Code.Configs
@@ -10,5 +11,6 @@ namespace Code.Configs
         [field: SerializeField] public ResourceType Currency { get; private set; }
         [field: SerializeField] public int RequiredLevel { get; private set; }
         [field: SerializeField] public Item Item { get; private set; }
+        [field: SerializeField] public ShopType ShopType { get; private set; }
     }
 }

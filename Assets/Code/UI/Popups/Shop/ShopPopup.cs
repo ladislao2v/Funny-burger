@@ -15,12 +15,14 @@ namespace Code.UI.Popups.Shop
 {
     public sealed class ShopPopup : Popup
     {
+        private readonly CompositeDisposable _disposables = new();
+        
         [SerializeField] private ActiveSkinsBar _activeSkinsBar;
         [SerializeField] private Toggle _hatsListToggle;
         [SerializeField] private Toggle _bodyListToggle;
-        
-        private readonly CompositeDisposable _disposables = new();
 
+        private ShopType _currentShopType = ShopType.HatSkinShop;
+        
         private IShopService _shop;
         private IItemViewFactory _factory;
         private IItemsView _itemsView;
@@ -35,12 +37,18 @@ namespace Code.UI.Popups.Shop
 
         private void OnEnable()
         {
-            CreateShopItems(_shop.AllItems);
+            _hatsListToggle.onValueChanged.AddListener(OnHatsListToggleValueChanged);
+            _bodyListToggle.onValueChanged.AddListener(OnBodyListToggleValueChanged);
+            
+            CreateShopItems(_shop.GetShopItemsByType(_currentShopType));
             _shop.Updated += OnShopUpdated;
         }
 
         private void OnDisable()
         {
+            _hatsListToggle.onValueChanged.RemoveAllListeners();
+            _bodyListToggle.onValueChanged.RemoveAllListeners();
+            
             _disposables.Dispose();
 
             foreach (IItemView itemView in _itemsView.ItemViews)
@@ -82,7 +90,7 @@ namespace Code.UI.Popups.Shop
                     break;
             }
         }
-        
+
         private void OnShopUpdated()
         {
             if(_itemsView.ItemViews.IsEmpty())
@@ -95,7 +103,27 @@ namespace Code.UI.Popups.Shop
         }
 
         private ShopItemConfig GetShopItemConfigByItem(Item item) => _shop
-            .AllItems.
+            .GetShopItemsByType(_currentShopType).
             FirstOrDefault(x => x.Item == item);
+
+        private void OnBodyListToggleValueChanged(bool active)
+        {
+            if (!active)
+                return;
+
+            _currentShopType = ShopType.BodySkinShop;
+            
+            CreateShopItems(_shop.GetShopItemsByType(_currentShopType));
+        }
+
+        private void OnHatsListToggleValueChanged(bool active)
+        {
+            if (!active)
+                return;
+
+            _currentShopType = ShopType.HatSkinShop;
+            
+            CreateShopItems(_shop.GetShopItemsByType(_currentShopType));
+        }
     }
 }

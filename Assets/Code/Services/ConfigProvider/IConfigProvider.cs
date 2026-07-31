@@ -2,6 +2,7 @@
 using Code.Configs;
 using Code.Ingredients;
 using Code.Services.PopupService;
+using Code.Services.ShopService;
 using Code.Skins;
 
 namespace Code.Services.ConfigProvider
@@ -22,5 +23,6 @@ namespace Code.Services.ConfigProvider
         IEnumerable<GemConfig> GetGems();
         IEnumerable<ShopItemConfig> GetShopItems();
         ShopItemConfig GetShopItemConfigByItem(Item item);
+        IEnumerable<ShopItemConfig> GetShopItemsByType(ShopType shopType);
     }
 }

@@ -23,7 +23,7 @@ namespace Code.Triggers.Box
             var addIngredientCommand = 
                 new AddIngredientCommand(player.Plate, _ingredientType);
             
-            player.Do(addIngredientCommand, Disable);
+            player.Do(addIngredientCommand);
 
             return true;
         }

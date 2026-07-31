@@ -720,7 +720,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4442136149107106684}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.472753
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1758,7 +1758,7 @@ RectTransform:
   m_GameObject: {fileID: 4418990942180938769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4418990940759681471}
@@ -1783,6 +1783,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeButton: {fileID: 4418990941252582203}
+  _activeSkinsBar: {fileID: 2310585491733796163}
+  _hatsListToggle: {fileID: 3562374054208737666}
+  _bodyListToggle: {fileID: 1209404390379546180}
 --- !u!114 &1836902617355749451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,7 +2132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -203897.78}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3441903632793451338
@@ -2145,11 +2148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 55
+    m_Right: 55
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 295, y: 381}
@@ -2669,6 +2672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 403980738787754863}
   - component: {fileID: 7445077020723201226}
+  - component: {fileID: 2310585491733796163}
   m_Layer: 0
   m_Name: ActiveSkins
   m_TagString: Untagged
@@ -2723,6 +2727,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &2310585491733796163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7582986042674878341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecf0df8b7344176b6439a87939da839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.ActiveSkins.ActiveSkinsBar
+  _hatSkinButton:
+    Icon: {fileID: 8010732372058897158}
+    Button: {fileID: 7402463287914680095}
+  _bodySkinButton:
+    Icon: {fileID: 3206353715687370951}
+    Button: {fileID: 2906996602779242119}
 --- !u!1 &9005625753534591524
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using Code.Configs;
 using Code.Constants;
 using Code.Ingredients;
 using Code.Services.PopupService;
+using Code.Services.ShopService;
 using Code.Skins;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace Code.Services.ConfigProvider
         private readonly CoinConfig[] _coins;
         private readonly ShopItemConfig[] _shopItems;
         private readonly Dictionary<Item,ShopItemConfig> _shopItemsByItem;
+        private readonly Dictionary<ShopType, ShopItemConfig[]> _shopItemsByType;
 
         public SettingsConfig SettingsConfig { get; private set; }
         public LevelsRewardsConfig RewardsConfig { get; private set; }
@@ -57,6 +59,9 @@ namespace Code.Services.ConfigProvider
                 .ToArray();
             
             _shopItemsByItem = _shopItems.ToDictionary(x => x.Item, x => x);
+            _shopItemsByType = _shopItems
+                .GroupBy(x=>x.ShopType)
+                .ToDictionary(x => x.Key, x => x.ToArray());
 
             _recipes = Resources
                 .LoadAll<RecipeConfig>(ResourcePath.Recipes)
@@ -121,6 +126,14 @@ namespace Code.Services.ConfigProvider
                 return config;
             
             throw new ArgumentException(nameof(item));
+        }
+
+        public IEnumerable<ShopItemConfig> GetShopItemsByType(ShopType shopType)
+        {
+            if(_shopItemsByType.TryGetValue(shopType, out var config))
+                return config;
+            
+            throw new ArgumentException(nameof(shopType));
         }
     }
 }

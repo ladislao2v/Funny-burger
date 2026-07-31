@@ -50,24 +50,16 @@ namespace Code.UI.Shop
             
         public void ChangeItemState(ItemState state)
         {
-            switch (state)
-            {
-                case ItemState.CanBuy:
-                    SetCanBuyState();
-                    break;
-                case ItemState.Select:
-                    SetSelectState();
-                    break;
-                case ItemState.Selected:
-                    SetSelectedState();
-                    break;
-                case ItemState.Money:
-                    SetNotMoneyState();
-                    break;
-                case ItemState.Level:
-                    SetLockedState();
-                    break;
-            }
+            if (state == ItemState.CanBuy)
+                SetCanBuyState();
+            else if (state == ItemState.Select)
+                SetSelectState();
+            else if (state == ItemState.Selected)
+                SetSelectedState();
+            else if (state == ItemState.Money)
+                SetNotMoneyState();
+            else if (state == ItemState.Level) 
+                SetLockedState();
         }
 
         private void SetCanBuyState()

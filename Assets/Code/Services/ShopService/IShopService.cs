@@ -7,8 +7,6 @@ namespace Code.Services.ShopService
 {
     public interface IShopService
     {
-        IEnumerable<ShopItemConfig>  AllItems { get; }
-
         event Action Updated;
 
         ItemState TryBuy(ShopItemConfig item);
@@ -16,5 +14,6 @@ namespace Code.Services.ShopService
         void Apply(ShopItemConfig shopItem);
         bool IsBought(ShopItemConfig item);
         bool IsActive(ShopItemConfig item);
+        IEnumerable<ShopItemConfig> GetShopItemsByType(ShopType shopType);
     }
 }

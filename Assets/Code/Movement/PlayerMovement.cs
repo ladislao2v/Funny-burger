@@ -9,10 +9,18 @@ namespace Code.Movement
         
         private CharacterController _characterController;
         private ReactiveProperty<bool> _isMoving = new();
+        
+        private float _heightAboveSurface;
+        
         public IReactiveProperty<bool> IsMoving => _isMoving;
 
         private void Awake() => 
             _characterController = GetComponent<CharacterController>();
+
+        private void Start()
+        {
+            _heightAboveSurface = transform.position.y;
+        }
 
         public void Move(Vector3 direction, float speed)
         {
@@ -26,6 +34,7 @@ namespace Code.Movement
 
             _model.LookAt(_model.position + direction);
             _characterController.Move(direction * (speed * Time.fixedDeltaTime));
+            transform.position = new Vector3(transform.position.x, _heightAboveSurface, transform.position.z);
         }
     }
 }

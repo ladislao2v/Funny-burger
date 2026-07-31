@@ -7,6 +7,8 @@ namespace Code.Triggers
     [RequireComponent(typeof(Collider))]
     public abstract class Trigger : MonoBehaviour
     {
+        private IPlayer _player;
+        
         public event Action InteractionStarted;
         public event Action InteractionEnded;
         
@@ -16,9 +18,22 @@ namespace Code.Triggers
                 return;
             
             InteractionStarted?.Invoke();
+
+            if (!player.IsBusy)
+                return;
+            
+            _player = player;
+            _player.TaskEnded += OnPlayerTaskEnded;
         }
 
-        protected void Disable() => InteractionEnded?.Invoke();
+        private void OnPlayerTaskEnded()
+        {
+            _player.TaskEnded -= OnPlayerTaskEnded;
+            _player = null;
+            
+            InteractionEnded?.Invoke();
+        }
+
         protected abstract bool TryInteractWith(IPlayer player);
     }
 }

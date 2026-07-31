@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Code.Configs;
 using Code.Services.ConfigProvider;
 using Code.Services.LevelService;
@@ -19,6 +21,14 @@ namespace Code.Services.ShopService
         {
             _skinsService = skinsService;
         }
+
+        public override IEnumerable<ShopItemConfig> GetShopItemsByType(ShopType shopType) =>
+            shopType switch
+            {
+                ShopType.HatSkinShop => ConfigProvider.GetShopItemsByType(shopType),
+                ShopType.BodySkinShop  => ConfigProvider.GetShopItemsByType(shopType).Where(x => _skinsService.OpenedBodySkins.Contains(x.Item)),
+                _ => throw new ArgumentException(nameof(shopType))
+            };
 
         protected override void OnInitialize()
         {
