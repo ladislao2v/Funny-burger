@@ -1,4 +1,6 @@
-﻿using Code.Ingredients;
+﻿using System.Linq;
+using Code.Constants;
+using Code.Ingredients;
 using static Code.Ingredients.IngredientType;
 
 namespace Code.BurgerPlate
@@ -14,6 +16,8 @@ namespace Code.BurgerPlate
         
         public bool Validate(IngredientType ingredient)
         {
+            if(_burgerPlate.Ingredients.Count() == GameplayConstants.MaxNumberOfIngredients)
+            
             if (_burgerPlate.IsEmpty && ingredient != BottomBun)
                 return false;
 

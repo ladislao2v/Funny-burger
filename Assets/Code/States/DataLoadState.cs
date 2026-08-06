@@ -28,7 +28,7 @@ namespace Code.States
             
             _gameDataService.LoadData();
             _levelRewardService.RefreshNextReward();
-            _sceneLoader.LoadScene(SceneNames.Game, _stateMachine.EnterState<GameLoopState>);
+            _sceneLoader.LoadScene(SceneNames.Location1, _stateMachine.EnterState<GameLoopState>);
         }
 
         private void RegisterSavables()
