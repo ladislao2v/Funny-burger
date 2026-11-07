@@ -13,5 +13,6 @@ namespace Code.Services.Input
 
         void Enable();
         void Disable();
+        void ShowHint();
     }
 }

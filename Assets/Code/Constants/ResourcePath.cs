@@ -11,5 +11,7 @@
         public const string ShopItems = "Config/Shop";
         public const string BodySkins = "Config/Skins/Body";
         public const string HatSkins = "Config/Skins/Hat";
+        public const string Locations = "Config/Locations";
+        public const string Tutorial = "Config/Tutorial";
     }
 }

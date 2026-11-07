@@ -25,6 +25,8 @@ namespace Code.Services.Factories.ClientFactory
 
             if (!gameObject.TryGetComponent(out IClient client))
                 throw new ArgumentException(nameof(gameObject));
+            
+            client.Teleport(gameObject.transform.position);
 
             return client;
         }

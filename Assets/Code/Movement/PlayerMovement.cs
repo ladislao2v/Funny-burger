@@ -11,15 +11,29 @@ namespace Code.Movement
         private ReactiveProperty<bool> _isMoving = new();
         
         private float _heightAboveSurface;
+        private Quaternion _modelStartRotation;
         
         public IReactiveProperty<bool> IsMoving => _isMoving;
 
-        private void Awake() => 
+        private void Awake()
+        {
             _characterController = GetComponent<CharacterController>();
+            _modelStartRotation = _model.rotation;
+        }
 
         private void Start()
         {
             _heightAboveSurface = transform.position.y;
+        }
+
+        public void Teleport(Vector3 position)
+        {
+            _isMoving.Value = false;
+            _model.rotation = _modelStartRotation;
+            
+            _characterController.enabled = false;
+            transform.position = position;
+            _characterController.enabled = true;
         }
 
         public void Move(Vector3 direction, float speed)

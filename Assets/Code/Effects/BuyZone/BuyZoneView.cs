@@ -9,7 +9,7 @@ namespace Code.Effects.BuyZone
     public class BuyZoneView : View
     {
         private const float EndValue = 0.5f;
-        private const float Duration = 1.25f;
+        private const float Duration = 3f;
 
         [SerializeField] private TextMeshProUGUI _cost;
         [SerializeField] private Image _zoneImage;

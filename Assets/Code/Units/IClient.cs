@@ -7,5 +7,9 @@ namespace Code.Units
     {
         public IMovement Movement { get; }
         Transform Transform { get; }
+
+        void Teleport(Vector3 position);
+        void Show(Vector3 position);
+        void Hide();
     }
 }

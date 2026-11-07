@@ -60,6 +60,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 739afc6b7e0ee8449a218a3fa4af5030
+    m_Address: ChefRenderTexture
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 81776bdd60be72743aa6f62652326423
     m_Address: Assets/Packs/Character/Materials/Chef Variant.mat
     m_ReadOnly: 0

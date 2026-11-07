@@ -42,6 +42,8 @@ namespace Code.UI.Popups.Shop
             
             CreateShopItems(_shop.GetShopItemsByType(_currentShopType));
             _shop.Updated += OnShopUpdated;
+            
+            _activeSkinsBar.SubscribeToButtons(OpenBodyList, OpenHatsList);
         }
 
         private void OnDisable()
@@ -55,6 +57,8 @@ namespace Code.UI.Popups.Shop
                 itemView.BuyButtonClicked -= OnBuyButtonClicked;
             
             _shop.Updated -= OnShopUpdated;
+            
+            _activeSkinsBar.UnsubscribeFromButtons();
         }
 
         private async void CreateShopItems(IEnumerable<ShopItemConfig> items)
@@ -125,5 +129,8 @@ namespace Code.UI.Popups.Shop
             
             CreateShopItems(_shop.GetShopItemsByType(_currentShopType));
         }
+
+        private void OpenBodyList() => _bodyListToggle.isOn = true;
+        private void OpenHatsList() => _hatsListToggle.isOn = true;
     }
 }

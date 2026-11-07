@@ -17,7 +17,7 @@ MonoBehaviour:
     type: 3}
   <OrderLogo>k__BackingField: {fileID: 21300000, guid: 1a20473dbc9e0a84b8a03b1e28dc91e1,
     type: 3}
-  <CookTime>k__BackingField: 20
+  <CookTime>k__BackingField: 22
   <IsStart>k__BackingField: 0
   <Price>k__BackingField: 7
   _burger:

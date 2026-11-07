@@ -14,6 +14,9 @@ namespace Code.Triggers
         
         public void ActivateBy(IPlayer player)
         {
+            if (!enabled)
+                return;
+
             if(!TryInteractWith(player))
                 return;
             

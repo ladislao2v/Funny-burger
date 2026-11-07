@@ -1,4 +1,5 @@
 using Code.Services.PopupService;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -28,6 +29,6 @@ namespace Code.UI.Buttons
         }
 
         private void OnClicked() => 
-            _popupService.ShowPopup(_popupType);
+            _popupService.ShowPopup(_popupType).Forget();
     }
 }

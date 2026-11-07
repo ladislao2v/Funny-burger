@@ -28,6 +28,9 @@ namespace Code.Effects.Units
         }
 
         private void OnDisable() => 
+            _disposable.Clear();
+
+        private void OnDestroy() => 
             _disposable.Dispose();
     }
 }

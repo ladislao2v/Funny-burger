@@ -1,4 +1,5 @@
-﻿using Code.Services.BurgerOrderService;
+﻿using Code.Configs;
+using Code.Services.BurgerOrderService;
 using UnityEngine;
 using Zenject;
 
@@ -15,7 +16,7 @@ namespace Code.UI.Order
             _model = burgerOrderService;
             _view = GetComponent<IOrderView>();
 
-            _model.Ordered += _view.OnOrder;
+            _model.Ordered += OnOrdered;
             _model.Failed += _view.Hide;
             _model.OrderPassed += _view.Hide;
         }
@@ -23,9 +24,12 @@ namespace Code.UI.Order
 
         private void OnDestroy()
         {
-            _model.Ordered += _view.OnOrder;
-            _model.Failed += _view.Hide;
-            _model.OrderPassed += _view.Hide;
+            _model.Ordered -= OnOrdered;
+            _model.Failed -= _view.Hide;
+            _model.OrderPassed -= _view.Hide;
         }
+
+        private void OnOrdered(RecipeConfig recipe) =>
+            _view.OnOrder(recipe, _model.HasTimer, _model.CookTime);
     }
 }

@@ -6,18 +6,19 @@ using UnityEngine;
 
 namespace Code.Effects.Popup
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public class PopupView : MonoBehaviour
     {
-        [SerializeField] private Ease _ease = Ease.InOutBounce;
-        [SerializeField] private Vector3 _scale = Vector3.one;
         [SerializeField] private float _duration = 1;
         
-        private TweenerCore<Vector3,Vector3,VectorOptions> _tween;
+        private Tween _tween;
         private Sequence _sequence;
         private RectTransform _rectTransform;
+        private CanvasGroup _canvasGroup;
 
         private void Awake()
         {
+            _canvasGroup = GetComponent<CanvasGroup>();
             _rectTransform = GetComponent<RectTransform>();
         }
 
@@ -25,23 +26,26 @@ namespace Code.Effects.Popup
         {
             _rectTransform.offsetMin = Vector2.zero;
             _rectTransform.offsetMax = Vector2.zero; 
+            _rectTransform.localScale = Vector3.one;
             
-            ScaleUp();
+            _canvasGroup.alpha = 0;
+            
+            Show();
         }
 
-        public void ScaleUp()
+        public void Show()
         {
             _tween?.Kill();
-            _tween = transform.DOScale(_scale, _duration).SetEase(_ease);
+            _tween = _canvasGroup.DOFade(1, _duration);
         }
         
-        public void ScaleDown(Action callback)
+        public void Hide(Action callback)
         {
             _sequence = 
                 DOTween.Sequence();
 
             _sequence
-                .Append(transform.DOScale(Vector3.zero, _duration))
+                .Append(_canvasGroup.DOFade(0, _duration))
                 .AppendCallback(() =>
                 {
                     callback?.Invoke();
@@ -50,8 +54,10 @@ namespace Code.Effects.Popup
 
         private void OnDestroy()
         {
-            _tween.Kill();
-            _sequence.Kill();
+            _tween?.Kill();
+            _tween = null;
+            _sequence?.Kill();
+            _sequence = null;
         }
     }
 }

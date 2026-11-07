@@ -4,6 +4,7 @@ using System.Linq;
 using Code.Configs;
 using Code.Constants;
 using Code.Ingredients;
+using Code.Services.LocationsService;
 using Code.Services.PopupService;
 using Code.Services.ShopService;
 using Code.Skins;
@@ -17,6 +18,7 @@ namespace Code.Services.ConfigProvider
         private readonly Dictionary<PopupType, PopupConfig> _popupConfigs;
         private readonly Dictionary<BodySkinType, BodySkinConfig> _bodySkinConfigs;
         private readonly Dictionary<HatSkinType, HatSkinConfig> _hatSkinConfigs;
+        private readonly Dictionary<Location, LocationConfig> _locationConfigs;
         private readonly RecipeConfig[] _recipes;
         private readonly GemConfig[] _gems;
         private readonly CoinConfig[] _coins;
@@ -26,6 +28,7 @@ namespace Code.Services.ConfigProvider
 
         public SettingsConfig SettingsConfig { get; private set; }
         public LevelsRewardsConfig RewardsConfig { get; private set; }
+        public TutorialConfig TutorialConfig { get; private set; }
 
 
         public ConfigProvider()
@@ -36,6 +39,10 @@ namespace Code.Services.ConfigProvider
             
             RewardsConfig = Resources
                 .LoadAll<LevelsRewardsConfig>(ResourcePath.Settings)
+                .FirstOrDefault();
+            
+            TutorialConfig = Resources
+                .LoadAll<TutorialConfig>(ResourcePath.Tutorial)
                 .FirstOrDefault();
             
             _ingredientsConfigs = Resources
@@ -53,6 +60,10 @@ namespace Code.Services.ConfigProvider
             _hatSkinConfigs = Resources
                 .LoadAll<HatSkinConfig>(ResourcePath.HatSkins)
                 .ToDictionary(x => x.HatSkinId);
+            
+            _locationConfigs = Resources
+                .LoadAll<LocationConfig>(ResourcePath.Locations)
+                .ToDictionary(x => x.LocationId);
             
             _shopItems = Resources
                 .LoadAll<ShopItemConfig>(ResourcePath.ShopItems)
@@ -108,6 +119,16 @@ namespace Code.Services.ConfigProvider
         {
             if (_hatSkinConfigs.TryGetValue(hatSkinType, out var config) == false)
                 throw new ArgumentException(nameof(hatSkinType));
+
+            return config;
+        }
+
+        public IEnumerable<LocationConfig> GetLocationConfigs() => _locationConfigs.Values;
+
+        public LocationConfig GetLocationConfig(Location location)
+        {
+            if (_locationConfigs.TryGetValue(location, out var config) == false)
+                throw new ArgumentException(nameof(location));
 
             return config;
         }

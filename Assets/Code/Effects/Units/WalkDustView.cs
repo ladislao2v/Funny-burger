@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.Movement;
 using UniRx;
 using UnityEngine;
@@ -10,14 +9,12 @@ namespace Code.Effects.Units
     {
         [SerializeField] private List<ParticleSystem> _dust;
 
-        private IMovement _movement;
-        private ICollection<IDisposable> _disposables;
+        private readonly CompositeDisposable _disposables = new();
 
-        private void Awake()
-        {
+        private IMovement _movement;
+
+        private void Awake() => 
             _movement = GetComponent<IMovement>();
-            _disposables = new List<IDisposable>();
-        }
 
         private void OnEnable()
         {
@@ -39,5 +36,8 @@ namespace Code.Effects.Units
 
         private void OnDisable() => 
             _disposables.Clear();
+
+        private void OnDestroy() => 
+            _disposables.Dispose();
     }
 }

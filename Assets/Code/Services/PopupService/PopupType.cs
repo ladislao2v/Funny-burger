@@ -6,6 +6,7 @@
         Tutorial,
         Shop,
         Menu,
-        Reward
+        Reward,
+        TutorialHint
     }
 }

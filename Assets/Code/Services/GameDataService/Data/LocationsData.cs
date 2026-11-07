@@ -1,18 +1,15 @@
-﻿using System.Collections.Generic;
-using Code.Ingredients;
+﻿using System;
+using System.Collections.Generic;
 using Code.Services.LocationsService;
 
 namespace Code.Services.GameDataService.Data
 {
+    [Serializable]
     public class LocationsData : IData
     {
-        public List<Location> PurchasedLocations { get; set; } = new();
+        public Location CurrentLocation;
 
-        public LocationsData() { }
-
-        public LocationsData(List<Location> purchasedLocations)
-        {
-            PurchasedLocations = purchasedLocations;
-        }
+        public List<Location> OpenedLocations;
+        public List<Location> PurchasedLocations;
     }
 }

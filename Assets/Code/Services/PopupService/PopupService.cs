@@ -1,6 +1,7 @@
 using Code.Services.Factories.PopupFactory;
 using Code.UI.Popups;
 using Code.UI.Popups.Reward;
+using Cysharp.Threading.Tasks;
 
 namespace Code.Services.PopupService
 {
@@ -16,15 +17,17 @@ namespace Code.Services.PopupService
             _popupContainerProvider = popupContainerProvider;
         }
         
-        public async void ShowPopup(PopupType popupType, RewardData data = null)
+        public async UniTask<Popup> ShowPopup(PopupType popupType, RewardData data = null)
         {
-            Popup popup = 
+            Popup popup =
                 await _popupFactory.Create(popupType);
-            
+
             if(data != null)
                 popup.Construct(data);
-            
+
             _popupContainerProvider.Container.Put(popup);
+
+            return popup;
         }
     }
 }

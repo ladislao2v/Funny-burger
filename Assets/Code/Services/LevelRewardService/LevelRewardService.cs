@@ -34,11 +34,6 @@ namespace Code.Services.LevelRewardService
         {
             RefreshNextReward();
             
-            var initialReward = PickRewardByLevel(GameplayConstants.InitialLevel).Item;
-            
-            if(_levelService.Current == GameplayConstants.InitialLevel)
-                GiveReward(initialReward);
-            
             _levelService.LevelChanged += OnLevelChanged;
         }
 
@@ -48,6 +43,9 @@ namespace Code.Services.LevelRewardService
             NextReward = PickRewardByLevel(_levelService.Next);
             RewardUpdated?.Invoke(NextReward);
         }
+
+        public void GiveInitialReward() => 
+            GiveReward(PickRewardByLevel(GameplayConstants.InitialLevel).Item);
 
         public void Dispose() => 
             _levelService.LevelChanged -= OnLevelChanged;

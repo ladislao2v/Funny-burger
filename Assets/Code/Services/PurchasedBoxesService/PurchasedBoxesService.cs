@@ -13,11 +13,16 @@ namespace Code.Services.PurchasedBoxesService
 
         public string SaveKey => nameof(PurchasedBoxesService);
 
+        public event Action<IngredientType> Purchased;
+
         public bool IsPurchased(IngredientType ingredientType) =>
             _purchasedIngredients.Contains(ingredientType);
 
-        public void MarkPurchased(IngredientType ingredientType) =>
-            _purchasedIngredients.Add(ingredientType);
+        public void MarkPurchased(IngredientType ingredientType)
+        {
+            if (_purchasedIngredients.Add(ingredientType))
+                Purchased?.Invoke(ingredientType);
+        }
 
         public void Load(IData data)
         {

@@ -36,6 +36,9 @@ namespace Code.Services.Input
             _direction = Vector3.zero;
         }
 
+        public void ShowHint() => 
+            _joystickProvider.Joystick.ShowIdle();
+
         public void Tick()
         {
             if(_joystickProvider.Joystick == null)

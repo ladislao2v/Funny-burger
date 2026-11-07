@@ -1,5 +1,6 @@
-using System;
 using System.Collections.Generic;
+using System.Threading;
+using Code.Services.ClientLoyaltyService;
 using Code.Services.Factories.ClientFactory;
 using Code.Units;
 using Code.Units.Commands;
@@ -22,6 +23,7 @@ namespace Code.Services.ClientsService
         [Header("Order window")]
         [SerializeField] private Transform _window;
         [SerializeField] private float _windowDuration;
+        [SerializeField, Min(0)] private float _windowClearDistance = 3f;
         
         [Header("Away")]
         [SerializeField] private Transform _away;
@@ -31,35 +33,56 @@ namespace Code.Services.ClientsService
         [SerializeField] private float _queueMoveDuration;
 
         private IClientFactory _clientFactory;
+        private IClientLoyaltyService _clientLoyaltyService;
         private IClient _current;
-        private int _moveGeneration;
+        private IClient _leaving;
+        private int _spawnedClients;
 
         public bool IsSend => _current != null;
+        public bool HasQueue => _clients.Count > 0;
+        public bool IsWindowFree => _current == null && !IsLeavingNearWindow();
+        
+        private float ClientInterval => _awayDuration + _windowDuration;
 
         [Inject]
-        private void Construct(IClientFactory clientFactory)
+        private void Construct(IClientFactory clientFactory, IClientLoyaltyService clientLoyaltyService)
         {
             _clientFactory = clientFactory;
+            _clientLoyaltyService = clientLoyaltyService;
         }
 
         public async UniTask LoadClients()
         {
-            for (int i = 0; i < _clientsCount; i++)
-                _clients.Enqueue(await _clientFactory.Create(GetPosition(i), transform));
+            while (_spawnedClients < _clientsCount)
+                await SpawnClient();
+        }
+
+        public async UniTask LoadTutorialClient()
+        {
+            if (_spawnedClients == 0)
+                await SpawnClient();
+        }
+
+        private async UniTask SpawnClient()
+        {
+            _spawnedClients++;
+
+            Vector3 position = GetPosition(_clients.Count);
+
+            _clients.Enqueue(await _clientFactory.Create(position, transform));
         }
 
         public void SendClientToWindow()
         {
             IClient client = DequeueClient();
 
-            ICommand moveToWindow = 
-                new MoveTo(client, _window, _windowDuration);
+            float duration = Mathf.Max(_windowDuration, 
+                GetQueueMoveDuration(client.Transform.position, _window.position));
             
-            int generation = ++_moveGeneration;
+            ICommand moveToWindow = 
+                new MoveTo(client, _window, duration);
 
-            client.Do(moveToWindow, () => 
-                OnMoved(_windowDuration, () => _current = client, generation)
-                );
+            client.Do(moveToWindow, () => SetCurrentOnArrival(client).Forget());
         }
 
         public void SendClientAway()
@@ -67,24 +90,22 @@ namespace Code.Services.ClientsService
             if (_current == null)
                 return;
 
-            int generation = ++_moveGeneration;
+            IClient client = _current;
+            _current = null;
+            _leaving = client;
 
             ICommand goAway = 
-                new MoveTo(_current, _away, _awayDuration);
+                new MoveTo(client, _away, _awayDuration);
             
-            _current.Do(goAway, () => 
-                OnMoved(_awayDuration, BackClientToQueue, generation)
-                );
+            client.Do(goAway, () => BackClientToQueue(client).Forget());
         }
 
-        private async void OnMoved(float duration, Action callback, int generation)
+        private async UniTaskVoid SetCurrentOnArrival(IClient client)
         {
-            await UniTask.WaitForSeconds(duration);
+            await UniTask.WaitUntil(() => client.Movement.IsMoving.Value == false, 
+                cancellationToken: destroyCancellationToken);
 
-            if (generation != _moveGeneration)
-                return;
-
-            callback.Invoke();
+            _current = client;
         }
 
         private IClient DequeueClient()
@@ -94,8 +115,8 @@ namespace Code.Services.ClientsService
 
             foreach (var client in _clients)
             {
-                ICommand moveToPrevios = 
-                    new MoveTo(client, previos.Transform, _queueMoveDuration);
+                ICommand moveToPrevios = new MoveTo(client, previos.Transform,
+                    GetQueueMoveDuration(client.Transform.position, previos.Transform.position));
                 
                 client.Do(moveToPrevios);
 
@@ -105,12 +126,45 @@ namespace Code.Services.ClientsService
             return last;
         }
 
-        private void BackClientToQueue()
+        private async UniTaskVoid BackClientToQueue(IClient client)
         {
-            _current.Transform.position = GetPosition(_clients.Count);
-            _clients.Enqueue(_current);
-            _current = null;
+            CancellationToken token = destroyCancellationToken;
+            
+            await UniTask.WaitForSeconds(_awayDuration, cancellationToken: token);
+            await UniTask.WaitUntil(() => client.Movement.IsMoving.Value == false, cancellationToken: token);
+
+            if (_leaving == client)
+                _leaving = null;
+            
+            client.Hide();
+            
+            await UniTask.WaitForSeconds(GetExtraClientInterval(), cancellationToken: token);
+            
+            Vector3 spawnPosition = GetPosition(_clientsCount);
+            Vector3 queuePosition = GetPosition(_clients.Count);
+            
+            client.Show(spawnPosition);
+            _clients.Enqueue(client);
+
+            ICommand moveToQueue = new MoveTo(client, queuePosition, 
+                GetQueueMoveDuration(spawnPosition, queuePosition));
+            
+            client.Do(moveToQueue);
         }
+
+        private bool IsLeavingNearWindow() =>
+            _leaving != null &&
+            Vector3.Distance(_leaving.Transform.position, _window.position) < _windowClearDistance;
+
+        private float GetQueueMoveDuration(Vector3 from, Vector3 to)
+        {
+            float places = Vector3.Distance(from, to) / _offset.magnitude;
+            
+            return _queueMoveDuration * Mathf.Max(1f, places);
+        }
+
+        private float GetExtraClientInterval() => 
+            _clientLoyaltyService.GetClientInterval(ClientInterval) - ClientInterval;
 
         private Vector3 GetPosition(int queuePosition) => 
             _spawn.position + queuePosition * _offset;

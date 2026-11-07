@@ -11,5 +11,6 @@ namespace Code.Services.LevelRewardService
         event Action<RewardConfig> RewardGot;
         event Action<RewardConfig> RewardUpdated;
         void RefreshNextReward();
+        void GiveInitialReward();
     }
 }

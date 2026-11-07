@@ -4,6 +4,6 @@ namespace Code.UI.Order
 {
     public interface IOrderView : IView
     {
-        void OnOrder(RecipeConfig config);
+        void OnOrder(RecipeConfig config, bool withTimer, float cookTime);
     }
 }

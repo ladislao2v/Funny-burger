@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Configs;
 using Code.Ingredients;
+using Code.Services.LocationsService;
 using Code.Services.PopupService;
 using Code.Services.ShopService;
 using Code.Skins;
@@ -11,6 +12,7 @@ namespace Code.Services.ConfigProvider
     {
         SettingsConfig SettingsConfig { get; }
         LevelsRewardsConfig RewardsConfig { get; }
+        TutorialConfig TutorialConfig { get; }
         IngredientConfig GetIngredientConfig(IngredientType ingredientType);
         PopupConfig GetPopupConfig(PopupType popupType);
         
@@ -18,6 +20,9 @@ namespace Code.Services.ConfigProvider
         IEnumerable<HatSkinConfig> GetHatSkinConfigs();
         BodySkinConfig GetBodySkinConfig(BodySkinType bodySkinType);
         HatSkinConfig GetHatSkinConfig(HatSkinType hatSkinType);
+
+        IEnumerable<LocationConfig> GetLocationConfigs();
+        LocationConfig GetLocationConfig(Location location);
 
         IEnumerable<RecipeConfig> GetRecipes();
         IEnumerable<GemConfig> GetGems();

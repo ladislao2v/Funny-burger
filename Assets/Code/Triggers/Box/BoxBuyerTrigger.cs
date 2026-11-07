@@ -1,9 +1,11 @@
 using System;
 using Code.Effects.Box;
 using Code.Effects.BuyZone;
+using Code.Services.ConfigProvider;
 using Code.Services.GameDataService;
 using Code.Services.PurchasedBoxesService;
 using Code.Services.ResourceStorage;
+using Code.Services.TutorialService;
 using Code.Units;
 using Code.Units.Commands;
 using UnityEngine;
@@ -23,14 +25,22 @@ namespace Code.Triggers.Box
         private IResourceStorage _storage;
         private IPurchasedBoxesService _purchasedBoxesService;
         private IGameDataService _gameDataService;
+        private ITutorialProgress _tutorialProgress;
+        private IConfigProvider _configProvider;
+
+        private bool IsLockedByTutorial => 
+            !_tutorialProgress.IsCompleted && 
+            !_configProvider.TutorialConfig.Boxes.Contains(_boxTrigger.IngredientType);
 
         [Inject]
         private void Construct(IResourceStorage storage, IPurchasedBoxesService purchasedBoxesService,
-            IGameDataService gameDataService)
+            IGameDataService gameDataService, ITutorialProgress tutorialProgress, IConfigProvider configProvider)
         {
             _storage = storage;
             _purchasedBoxesService = purchasedBoxesService;
             _gameDataService = gameDataService;
+            _tutorialProgress = tutorialProgress;
+            _configProvider = configProvider;
             _buyZoneView.Construct(_cost);
         }
 
@@ -45,6 +55,9 @@ namespace Code.Triggers.Box
         protected override bool TryInteractWith(IPlayer player)
         {
             if (_purchasedBoxesService.IsPurchased(_boxTrigger.IngredientType) || _enableByDefault)
+                return false;
+            
+            if (IsLockedByTutorial)
                 return false;
             
             if(_storage.GetWallet(ResourceType.Coin).TrySpend(_cost) == false)

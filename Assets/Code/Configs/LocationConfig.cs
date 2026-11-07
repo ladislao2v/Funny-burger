@@ -1,3 +1,4 @@
+using Code.Services.LocationsService;
 using UnityEngine;
 
 namespace Code.Configs
@@ -5,6 +6,7 @@ namespace Code.Configs
     [CreateAssetMenu(menuName = "Create LocationConfig", fileName = "LocationConfig", order = 0)]
     public class LocationConfig : Item
     {
+        [field: SerializeField] public Location LocationId { get; private set; }
         [field: SerializeField] public string Description {get; private set;}
         public override void Accept(IItemVisitor itemVisitor)
         {

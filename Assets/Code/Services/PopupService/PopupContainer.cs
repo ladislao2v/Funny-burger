@@ -20,6 +20,7 @@ namespace Code.Services.PopupService
         private IDisposable _timer;
         private IGameTimeService _gameTimeService;
 
+        public bool HasPopup => _current != null;
 
         [Inject]
         private void Construct(IGameTimeService gameTimeService)
@@ -55,6 +56,7 @@ namespace Code.Services.PopupService
 
         private void Hide()
         {
+            _timer?.Dispose();
             _gameTimeService.StartTime();
             
             CloseLastPopup();
@@ -68,7 +70,7 @@ namespace Code.Services.PopupService
             _current.Clicked -= Hide;
             _current
                 .GetComponent<PopupView>()
-                .ScaleDown(_current.Close);
+                .Hide(_current.Close);
             _current = null;
         }
     }

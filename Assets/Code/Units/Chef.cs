@@ -17,12 +17,26 @@ namespace Code.Units
         public IBurgerPlate Plate { get; } = new Plate();
         public IChefConfig Config { get; private set; }
         public IMovement Movement { get; private set; }
+        public Transform Transform { get; private set; }
         public bool IsBusy => _timer != null;
         public event Action TaskStarted;
         public event Action TaskEnded;
 
-        private void Awake() => 
-            Movement = GetComponent<IMovement>();
+        private PlayerMovement _playerMovement;
+
+        private void Awake()
+        {
+            _playerMovement = GetComponent<PlayerMovement>();
+            Movement = _playerMovement;
+            Transform = GetComponent<Transform>();
+        }
+
+        public void Teleport(Vector3 position)
+        {
+            Reset();
+            
+            _playerMovement.Teleport(position);
+        }
 
         public void Construct(IChefConfig config) => 
             Config = config;

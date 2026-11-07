@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reward
+  m_text: REWARD!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88671311e426c9e40887101148f7fb96, type: 2}
   m_sharedMaterial: {fileID: -4964145733932863951, guid: 88671311e426c9e40887101148f7fb96,
@@ -155,9 +155,9 @@ MonoBehaviour:
   _translateData:
     Words:
     - Language: 0
-      Word: MENU
+      Word: REWARD!
     - Language: 1
-      Word: "\u041C\u0415\u041D\u042E"
+      Word: "\u041D\u0410\u0413\u0420\u0410\u0414\u0410!"
 --- !u!1 &920392828249012695
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,10 +269,10 @@ RectTransform:
   - {fileID: 2229174433143326857}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5950637646153084578
 MonoBehaviour:
@@ -373,8 +373,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -51.6}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: -51.5}
+  m_SizeDelta: {x: -28, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6012840929705688278
 CanvasRenderer:
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_fontSize: 72
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

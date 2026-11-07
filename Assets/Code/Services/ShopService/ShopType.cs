@@ -5,5 +5,6 @@ namespace Code.Services.ShopService
         None = 0,
         HatSkinShop = 1,
         BodySkinShop = 2,
+        LocationShop = 3,
     }
 }

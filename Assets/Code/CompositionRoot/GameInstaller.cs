@@ -1,6 +1,8 @@
-﻿using Code.Services.AssetProvider;
+﻿using System;
+using Code.Services.AssetProvider;
 using Code.Services.AudioService;
 using Code.Services.BurgerOrderService;
+using Code.Services.ClientLoyaltyService;
 using Code.Services.ClientsService;
 using Code.Services.ConfigProvider;
 using Code.Services.Factories.ClientFactory;
@@ -15,6 +17,7 @@ using Code.Services.Input;
 using Code.Services.LevelRewardService;
 using Code.Services.LevelService;
 using Code.Services.LocalizationService;
+using Code.Services.LocationsService;
 using Code.Services.PopupService;
 using Code.Services.PurchasedBoxesService;
 using Code.Services.RecipeService;
@@ -23,8 +26,10 @@ using Code.Services.SaveDataService;
 using Code.Services.SceneLoader;
 using Code.Services.ShopService;
 using Code.Services.SkinsService;
+using Code.Services.TutorialService;
 using Code.Units;
 using Plugins.StateMachine.StateFactory;
+using UnityEngine.Rendering;
 using Zenject;
 
 namespace Code.CompositionRoot
@@ -41,9 +46,11 @@ namespace Code.CompositionRoot
             BindLevelService();
             BindWalletService();
             BindSkinService();
+            BindLocationsService();
             BindLevelRewardService();
             BindPurchasedBoxesService();
             BindGameDataService();
+            BindTutorial();
             BindInputService();
             BindShop();
             BindAudioService();
@@ -52,14 +59,32 @@ namespace Code.CompositionRoot
             BindLocalizationService();
             BindPlayer();
             BindClientService();
+            BindClientLoyaltyService();
             BindPopupService();
             BindStateFactory();
             BindStateMachine();
         }
 
+        private void BindClientLoyaltyService()
+        {
+            Container.BindInterfacesAndSelfTo<ClientLoyaltyService>().AsSingle();
+        }
+
+        private void BindTutorial()
+        {
+            Container.BindInterfacesAndSelfTo<TutorialProgress>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TutorialIngredientFilter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TutorialServiceProvider>().AsSingle();
+        }
+
         private void BindSkinService()
         {
             Container.BindInterfacesAndSelfTo<SkinsService>().AsSingle();
+        }
+
+        private void BindLocationsService()
+        {
+            Container.BindInterfacesAndSelfTo<LocationsService>().AsSingle();
         }
 
         private void BindLevelRewardService()
@@ -110,6 +135,10 @@ namespace Code.CompositionRoot
         private void BindShop()
         {
             Container.BindInterfacesAndSelfTo<SkinsShopService>().AsCached();
+            Container
+                .Bind(typeof(ILocationsShopService), typeof(IInitializable), typeof(IDisposable))
+                .To<LocationsShopService>()
+                .AsSingle();
         }
 
         private void BindAudioService()

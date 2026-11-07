@@ -1,5 +1,6 @@
 ﻿using Code.Configs;
 using Code.Services.BurgerOrderService;
+using Code.Services.ClientLoyaltyService;
 using Code.Services.ClientsService;
 using Code.Services.GameDataService;
 using Code.Services.Input;
@@ -18,13 +19,17 @@ namespace Code.States
         private readonly IBurgerOrderService _orderService;
         private readonly IClientsServiceProvider _clientsServiceProvider;
         private readonly IShopService _shopService;
+        private readonly ILocationsShopService _locationsShopService;
+        private readonly IClientLoyaltyService _clientLoyaltyService;
 
         private bool _isWorking = true;
 
         public GameLoopState(IInput input, IRecipeService recipeService, 
             IGameDataService gameDataService, IBurgerOrderService orderService, 
             IClientsServiceProvider clientsServiceProvider, 
-            IShopService shopService)
+            IShopService shopService,
+            ILocationsShopService locationsShopService, 
+            IClientLoyaltyService clientLoyaltyService)
         {
             _input = input;
             _recipeService = recipeService;
@@ -32,6 +37,8 @@ namespace Code.States
             _orderService = orderService;
             _clientsServiceProvider = clientsServiceProvider;
             _shopService = shopService;
+            _locationsShopService = locationsShopService;
+            _clientLoyaltyService = clientLoyaltyService;
         }
         
         public async void Enter()
@@ -40,11 +47,17 @@ namespace Code.States
             await _clientsServiceProvider.ClientsService.LoadClients();
             
             _input.Enable();
+            
+            _orderService.OrderPassed += _clientLoyaltyService.IncreaseLoyalty;
+            _orderService.Failed += _clientLoyaltyService.ReduceLoyalty;
+            
             _orderService.OrderPassed += _clientsServiceProvider.ClientsService.SendClientAway;
             _orderService.OrderPassed += _gameDataService.SaveData;
             _orderService.Failed += _clientsServiceProvider.ClientsService.SendClientAway;
+            _orderService.Failed += _gameDataService.SaveData;
 
             _shopService.Updated += _gameDataService.SaveData;
+            _locationsShopService.Updated += _gameDataService.SaveData;
 
             Order();
         }
@@ -53,6 +66,10 @@ namespace Code.States
         {
             while (_isWorking)
             {
+                await UniTask.WaitUntil(() => 
+                    _clientsServiceProvider.ClientsService.HasQueue && 
+                    _clientsServiceProvider.ClientsService.IsWindowFree);
+                
                 _clientsServiceProvider.ClientsService.SendClientToWindow();
 
                 await UniTask.WaitUntil(() => _clientsServiceProvider.ClientsService.IsSend);
@@ -68,11 +85,16 @@ namespace Code.States
         {
             _isWorking = false;
             _input.Disable();
+            _orderService.OrderPassed -= _clientLoyaltyService.IncreaseLoyalty;
+            _orderService.Failed -= _clientLoyaltyService.ReduceLoyalty;
+            
             _orderService.OrderPassed -= _clientsServiceProvider.ClientsService.SendClientAway;
             _orderService.OrderPassed -= _gameDataService.SaveData;
             _orderService.Failed -= _clientsServiceProvider.ClientsService.SendClientAway;
+            _orderService.Failed -= _gameDataService.SaveData;
             
             _shopService.Updated -= _gameDataService.SaveData;
+            _locationsShopService.Updated -= _gameDataService.SaveData;
         }
     }
 }

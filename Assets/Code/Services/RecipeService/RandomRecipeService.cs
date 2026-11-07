@@ -25,11 +25,12 @@ namespace Code.Services.RecipeService
         {
             _configProvider = configProvider;
 
-            var startRecipe = _configProvider
+            var startRecipes = _configProvider
                 .GetRecipes()
-                .First(x => x.IsStart);
-            
-            AddRecipe(startRecipe);
+                .Where(x => x.IsStart);
+
+            foreach (var startRecipe in startRecipes)
+                AddRecipe(startRecipe);
         }
 
         public void AddRecipe(RecipeConfig recipeConfig)

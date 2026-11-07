@@ -7,12 +7,14 @@ namespace Code.Services.BurgerOrderService
     public interface IBurgerOrderService
     {
         bool HasOrder { get; }
-        
+        bool HasTimer { get; }
+        float CookTime { get; }
+
         event Action<RecipeConfig> Ordered;
         event Action Failed;
         event Action OrderPassed;
 
-        void Order(RecipeConfig recipe);
+        void Order(RecipeConfig recipe, bool withTimer = true);
         bool TryPassOrder(IBurgerPlate plate);
         void CancelOrder();
     }
